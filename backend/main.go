@@ -38,10 +38,30 @@ func createPost(c *gin.Context) {
 	c.IndentedJSON(http.StatusCreated, newPost)
 }
 
+func updatePost(c *gin.Context) {
+	var newPost userPost
+	if err := c.BindJSON(&newPost); err != nil {
+		return
+	}
+	feed = append(feed, newPost)
+	c.IndentedJSON(http.StatusOK, newPost)
+}
+
+func deletePost(c *gin.Context) {
+	var newPost userPost
+	if err := c.BindJSON(&newPost); err != nil {
+		return
+	}
+	feed = append(feed, newPost)
+	c.IndentedJSON(http.StatusOK, newPost)
+}
+
 func main() {
 	router := gin.Default()
 	router.GET("/feed", getFeed)
 	router.POST("/createPost", createPost)
+	router.PUT("/updatePost", updatePost)
+	router.DELETE("/deletePost", deletePost)
 
 	router.Run("localhost:8080")
 }
