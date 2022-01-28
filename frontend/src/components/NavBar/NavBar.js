@@ -1,4 +1,5 @@
 import './NavBar.css';
+import SearchBar from '../SearchBar/SearchBar'
 
 function NavBar() {
   return (
@@ -7,8 +8,8 @@ function NavBar() {
        <div className="title">
           this.jobs
        </div>
-       <div className="Search Bar">
-          Search Bar will be here
+       <div className="SearchBar">
+          <SearchBar />
        </div>
        <div className="iconsHolder">
           Icons will be placed here
