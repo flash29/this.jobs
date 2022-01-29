@@ -6,12 +6,12 @@ type UserPost struct {
 	// ID        string    `json:"id,primary_key"`
 
 	gorm.Model
-	CreatedBy   string    `json:"createdBy"`
-	Content     string    `json:"content"`
-	Likes       []string  `json:"likes"`
-	Comments    []Comment `gorm:"foreignKey:postId"`
-	Attachments []string  `json:"attachemnts"`
-	Tag         string    `json:"tag"`
+	CreatedBy string    `json:"createdBy"`
+	Content   string    `json:"content"`
+	Likes     int       `json:"likes"`
+	Comments  []Comment `gorm:"foreignKey:postId"`
+	//Attachments []string  `json:"attachemnts"`
+	Tag string `json:"tag"`
 }
 
 type Comment struct {
