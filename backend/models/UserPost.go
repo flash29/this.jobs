@@ -15,5 +15,7 @@ type UserPost struct {
 
 type Comment struct {
 	gorm.Model
-	Comment string `json:"comment"`
+	CommentData string `json:"commentData"`
+	CreatedBy   string `json:"createdBy"`
+	PostID      string `json:"postId"`
 }

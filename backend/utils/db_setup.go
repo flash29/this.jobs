@@ -15,7 +15,8 @@ func ConnectDatabase() {
 		panic("Failed to connect to database!")
 	}
 
-	database.AutoMigrate(&models.UserPost{})
+	database.AutoMigrate(models.UserPost{}, models.Comment{})
+	database.Model(&models.Comment{}).AddForeignKey("postId", "userposts(id)", "CASCADE", "RESTRICT")
 
 	DB = database
 }
