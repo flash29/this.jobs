@@ -9,13 +9,14 @@ type UserPost struct {
 	CreatedBy   string    `json:"createdBy"`
 	Content     string    `json:"content"`
 	Likes       []string  `json:"likes"`
-	Comments    []Comment `json:"comments"`
+	Comments    []Comment `gorm:"foreignKey:postId"`
 	Attachments []string  `json:"attachemnts"`
+	Tag         string    `json:"tag"`
 }
 
 type Comment struct {
 	gorm.Model
 	CommentData string `json:"commentData"`
 	CreatedBy   string `json:"createdBy"`
-	PostID      string `json:"postId"`
+	PostID      uint   `json:"postId"`
 }
