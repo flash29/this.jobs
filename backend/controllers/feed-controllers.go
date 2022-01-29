@@ -11,7 +11,7 @@ import (
 func DeletePost(c *gin.Context) {
 	id := c.Params.ByName("id")
 	var post models.UserPost
-	d := utils.DB.Where("id = ?", id).Delete(&post)
+	d := utils.DB.Where("post_id = ?", id).Delete(&post)
 	fmt.Println(d)
 	c.JSON(200, gin.H{"id #" + id: "deleted"})
 }
@@ -48,10 +48,12 @@ func GetPost(c *gin.Context) {
 
 func GetPosts(c *gin.Context) {
 	var people []models.UserPost
-	if err := utils.DB.Find(&people).Error; err != nil {
+	var comments []models.Comment
+	if err := utils.DB.Preloads(&comments).Find(&people).Error; err != nil {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
 	} else {
+
 		c.JSON(200, people)
 	}
 }

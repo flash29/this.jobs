@@ -1,22 +1,19 @@
 package models
 
-import "github.com/jinzhu/gorm"
-
 type UserPost struct {
-	// ID        string    `json:"id,primary_key"`
-
-	gorm.Model
+	//gorm.Model
+	PostID    int       `gorm:"primary_key" json:"postId"`
 	CreatedBy string    `json:"createdBy"`
 	Content   string    `json:"content"`
 	Likes     int       `json:"likes"`
-	Comments  []Comment `gorm:"foreignKey:postId"`
-	//Attachments []string  `json:"attachemnts"`
-	Tag string `json:"tag"`
+	Comments  []Comment `gorm:"ForeignKey:PostID" json:"comments"`
+	Tag       string    `json:"tag"`
 }
 
 type Comment struct {
-	gorm.Model
+	//gorm.Model
+	CommentID   int    `gorm:"primary_key" json:"commentId"`
 	CommentData string `json:"commentData"`
 	CreatedBy   string `json:"createdBy"`
-	PostID      uint   `json:"postId"`
+	PostID      uint   `json:"post_id"`
 }
