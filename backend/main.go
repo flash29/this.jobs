@@ -14,7 +14,9 @@ func main() {
 	router.GET("/feed", controllers.GetPosts)
 	router.GET("/post/:id", controllers.GetPost)
 	router.POST("/post", controllers.CreatePost)
+	router.POST("/postcomment", controllers.PostComment)
 	router.PUT("/post/:id", controllers.UpdatePost)
+	router.PUT("/updatelikes/:post_id/:liked", controllers.UpdateLikes)
 	router.DELETE("/post/:id", controllers.DeletePost)
 
 	router.Run(":8080")
