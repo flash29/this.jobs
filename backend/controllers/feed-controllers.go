@@ -16,6 +16,20 @@ func DeletePost(c *gin.Context) {
 	c.JSON(200, gin.H{"id #" + id: "deleted"})
 }
 
+func PostComment(c *gin.Context) {
+	var comment models.Comment
+	c.BindJSON(&comment)
+	var post models.UserPost
+	result := utils.DB.Where("post_id = ?", comment.PostID).First(&post)
+
+	if result != nil && result.RowsAffected == 1 {
+		utils.DB.Create(&comment)
+		c.JSON(200, comment)
+	} else {
+		c.JSON(400, gin.H{"error": "Unable to add comment"})
+	}
+}
+
 func UpdateLikes(c *gin.Context) {
 	var post models.UserPost
 	post_id := c.Params.ByName("post_id")
