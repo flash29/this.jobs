@@ -16,6 +16,27 @@ func DeletePost(c *gin.Context) {
 	c.JSON(200, gin.H{"id #" + id: "deleted"})
 }
 
+func UpdateLikes(c *gin.Context) {
+	var post models.UserPost
+	post_id := c.Params.ByName("post_id")
+
+	liked := c.Params.ByName("liked")
+
+	result := utils.DB.Where("post_id = ?", post_id).First(&post)
+
+	if result != nil && result.RowsAffected == 1 {
+		if liked == "true" {
+			post.Likes = post.Likes + 1
+		} else {
+			post.Likes = post.Likes - 1
+		}
+		utils.DB.Save(&post)
+		c.JSON(200, gin.H{"message": "likes updated"})
+	} else {
+		c.JSON(400, gin.H{"error": "Unable to update likes"})
+	}
+}
+
 func UpdatePost(c *gin.Context) {
 	var post models.UserPost
 	id := c.Params.ByName("id")
