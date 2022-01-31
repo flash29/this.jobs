@@ -1,5 +1,12 @@
 import './NavBar.css';
 import SearchBar from '../SearchBar/SearchBar'
+import { Link} from "react-router-dom";
+import work from '../../images/work_white_1.png'
+import house from '../../images/house_white_1.png'
+import logout from '../../images/logout_white_1.png'
+import people from '../../images/people_white_1.png'
+import settings from '../../images/settings_white_1.png'
+
 
 function NavBar() {
   return (
@@ -12,7 +19,36 @@ function NavBar() {
           <SearchBar />
        </div>
        <div className="iconsHolder">
-          Icons will be placed here
+          <Link to="/" className='linkDisplay'> 
+            <div className='iconsDisplay'>
+              <img className='iconsImages' src={house} alt="Home"/>
+              <p className='iconLabel'>Home</p>
+            </div>
+          </Link>
+          <Link to="/connections" className='linkDisplay' > 
+            <div className='iconsDisplay'>
+              <img className='iconsImages' src={people} alt="Home"/>
+              <p className='iconLabel'>Connections</p>
+            </div>
+          </Link>
+          <Link to="/jobs" className='linkDisplay' > 
+            <div className='iconsDisplay'>
+              <img className='iconsImages' src={work} alt="Home"/>
+              <p className='iconLabel'>Jobs</p>
+            </div>
+          </Link>
+          <Link to="/settings" className='linkDisplay'> 
+            <div className='iconsDisplay'>
+              <img className='iconsImages' src={settings} alt="Home"/>
+              <p className='iconLabel'>Settings</p>
+            </div>
+          </Link>
+          <Link to="/login" className='linkDisplay'> 
+            <div className='iconsDisplay'>
+              <img className='iconsImages' src={logout} alt="Home"/>
+              <p className='iconLabel'>Logout</p>
+            </div>
+          </Link>
        </div>
       
      </div>
