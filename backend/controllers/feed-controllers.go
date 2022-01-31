@@ -33,22 +33,56 @@ func PostComment(c *gin.Context) {
 	}
 }
 
-func UpdateLikes(c *gin.Context) {
-	var post models.UserPost
-	post_id := c.Params.ByName("post_id")
+func containsUserID(s []string, str string) int {
+	for idx, v := range s {
+		if v == str {
+			return idx
+		}
+	}
 
-	liked := c.Params.ByName("liked")
+	return -1
+}
+
+func RemoveUserID(s []string, index int) []string {
+	return append(s[:index], s[index+1:]...)
+}
+
+func UpdateLikes(c *gin.Context) {
+
+	var post models.UserPost
+	var likes models.Likes
+
+	c.BindJSON(&likes)
+
+	post_id := likes.PostID
+
+	liked := likes.Liked
 
 	result := utils.DB.Where("post_id = ?", post_id).First(&post)
 
 	if result != nil && result.RowsAffected == 1 {
-		if liked == "true" {
-			post.Likes = post.Likes + 1
+		if liked {
+			if containsUserID(post.LikesList, likes.UserID) == -1 {
+				post.LikesList = append(post.LikesList, likes.UserID)
+				post.Likes = post.Likes + 1
+				utils.DB.Save(&post)
+				c.JSON(200, gin.H{"message": "likes updated"})
+			} else {
+				fmt.Println("idx true")
+				c.JSON(400, gin.H{"error": "You already liked this post"})
+			}
 		} else {
-			post.Likes = post.Likes - 1
+			idx := containsUserID(post.LikesList, likes.UserID)
+			if idx != -1 {
+				post.Likes = post.Likes - 1
+				post.LikesList = RemoveUserID(post.LikesList, idx)
+				utils.DB.Save(&post)
+				c.JSON(200, gin.H{"message": "likes updated"})
+			} else {
+				fmt.Println("idx false")
+				c.JSON(400, gin.H{"error": "You cannot dislike this post"})
+			}
 		}
-		utils.DB.Save(&post)
-		c.JSON(200, gin.H{"message": "likes updated"})
 	} else {
 		c.JSON(400, gin.H{"error": "Unable to update likes"})
 	}

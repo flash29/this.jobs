@@ -16,7 +16,7 @@ func main() {
 	router.POST("/post", controllers.CreatePost)
 	router.POST("/postcomment", controllers.PostComment)
 	router.PUT("/post/:id", controllers.UpdatePost)
-	router.PUT("/updatelikes/:post_id/:liked", controllers.UpdateLikes)
+	router.PUT("/updatelikes", controllers.UpdateLikes)
 	router.DELETE("/post/:id", controllers.DeletePost)
 
 	router.Run(":8080")
