@@ -2,10 +2,12 @@ package controllers
 
 import (
 	"fmt"
+	"time"
 
 	"com.uf/src/models"
 	"com.uf/src/utils"
 	"github.com/gin-gonic/gin"
+	"github.com/jinzhu/gorm"
 )
 
 func DeletePost(c *gin.Context) {
@@ -23,6 +25,7 @@ func PostComment(c *gin.Context) {
 	result := utils.DB.Where("post_id = ?", comment.PostID).First(&post)
 
 	if result != nil && result.RowsAffected == 1 {
+		comment.CreatedAt = time.Now().Unix()
 		utils.DB.Create(&comment)
 		c.JSON(200, comment)
 	} else {
@@ -59,6 +62,7 @@ func UpdatePost(c *gin.Context) {
 		fmt.Println(err)
 	}
 	c.BindJSON(&post)
+	post.UpdatedAt = time.Now().Unix()
 	utils.DB.Save(&post)
 	c.JSON(200, post)
 }
@@ -66,6 +70,7 @@ func UpdatePost(c *gin.Context) {
 func CreatePost(c *gin.Context) {
 	var post models.UserPost
 	c.BindJSON(&post)
+	post.CreatedAt = time.Now().Unix()
 	utils.DB.Create(&post)
 	c.JSON(200, post)
 }
@@ -82,13 +87,14 @@ func GetPost(c *gin.Context) {
 }
 
 func GetPosts(c *gin.Context) {
-	var people []models.UserPost
-	var comments []models.Comment
-	if err := utils.DB.Preloads(&comments).Find(&people).Error; err != nil {
-		c.AbortWithStatus(404)
-		fmt.Println(err)
+	var userposts []models.UserPost
+	result := utils.DB.Preload("Comments", func(db *gorm.DB) *gorm.DB {
+		db = db.Order("created_at desc")
+		return db
+	}).Order("created_at desc").Find(&userposts)
+	if result.Error != nil {
+		c.JSON(400, gin.H{"error": "Unable to retrieve feed posts"})
 	} else {
-
-		c.JSON(200, people)
+		c.JSON(200, userposts)
 	}
 }
