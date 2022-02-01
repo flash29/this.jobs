@@ -10,6 +10,8 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
+var Tags = []string{"Job-Recuritment", "Knowledge Sharing", "Inspiration", "Others"}
+
 func DeletePost(c *gin.Context) {
 	id := c.Params.ByName("id")
 	var post models.UserPost
@@ -33,7 +35,7 @@ func PostComment(c *gin.Context) {
 	}
 }
 
-func containsUserID(s []string, str string) int {
+func contains(s []string, str string) int {
 	for idx, v := range s {
 		if v == str {
 			return idx
@@ -62,7 +64,7 @@ func UpdateLikes(c *gin.Context) {
 
 	if result != nil && result.RowsAffected == 1 {
 		if liked {
-			if containsUserID(post.LikesList, likes.UserID) == -1 {
+			if contains(post.LikesList, likes.UserID) == -1 {
 				post.LikesList = append(post.LikesList, likes.UserID)
 				post.Likes = post.Likes + 1
 				utils.DB.Save(&post)
@@ -72,7 +74,7 @@ func UpdateLikes(c *gin.Context) {
 				c.JSON(400, gin.H{"error": "You already liked this post"})
 			}
 		} else {
-			idx := containsUserID(post.LikesList, likes.UserID)
+			idx := contains(post.LikesList, likes.UserID)
 			if idx != -1 {
 				post.Likes = post.Likes - 1
 				post.LikesList = RemoveUserID(post.LikesList, idx)
@@ -104,9 +106,13 @@ func UpdatePost(c *gin.Context) {
 func CreatePost(c *gin.Context) {
 	var post models.UserPost
 	c.BindJSON(&post)
-	post.CreatedAt = time.Now().Unix()
-	utils.DB.Create(&post)
-	c.JSON(200, post)
+	if post.CreatedBy == "" || post.Content == "" || post.Tag == "" || contains(Tags, post.Tag) == -1 {
+		c.JSON(400, gin.H{"error": "Unable to create post"})
+	} else {
+		post.CreatedAt = time.Now().Unix()
+		utils.DB.Create(&post)
+		c.JSON(200, post)
+	}
 }
 
 func GetPost(c *gin.Context) {
@@ -125,7 +131,7 @@ func GetPosts(c *gin.Context) {
 	result := utils.DB.Preload("Comments", func(db *gorm.DB) *gorm.DB {
 		db = db.Order("created_at desc")
 		return db
-	}).Order("created_at desc").Find(&userposts)
+	}).Order("CASE WHEN tag = 'Job-Recuritment' THEN 1 ELSE 2 END, created_at desc").Find(&userposts)
 	if result.Error != nil {
 		c.JSON(400, gin.H{"error": "Unable to retrieve feed posts"})
 	} else {
