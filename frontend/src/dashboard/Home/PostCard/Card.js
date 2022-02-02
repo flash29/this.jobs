@@ -1,5 +1,6 @@
 import './Card.css';
 import React, { useState, useEffect } from 'react';
+import CommentCard from '../CommentCard/CommentCard';
 
 function Card(props) {
 
@@ -154,7 +155,19 @@ function Card(props) {
             {
                 commentChecker 
                 ?
-                <>hi</>
+                <>
+                 {
+                    comments.map((comment, i)=>{
+                        console.log('comments', comment);
+                        return (
+                          <CommentCard 
+                            key ={i}
+                            commentContent = {comment}
+                          />
+                        );
+                      })
+                }
+                </>
                 :
                 <></>
             }

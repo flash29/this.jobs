@@ -8,7 +8,7 @@
     justify-content: center;
     flex-direction: column;
     border-style: solid;   
-    width: 20rem;
+    width: 25rem;
     border-radius: 10%;
     border: 0.4em solid rgb(243, 242, 242);
     border-radius: 16px;
@@ -17,13 +17,11 @@
 
 .topCard{
     display: flex;
-    width: 20rem;
     justify-content: space-between;
 }
 
 .Content{
     display: flex;
-    width: 20rem;
     justify-content: space-between;
     flex-direction: column;
 }
@@ -41,6 +39,8 @@
 
 .usernameDisplay:hover{
     cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.5s;
 }
 
 .timeDisplay{
@@ -67,7 +67,7 @@
 
 .likeBox{
     background-color: rgb(243, 242, 242);
-    width: 10em;
+    width: 12em;
     height: 1.8em;
     font-weight: bold;
     padding-top: 0.5em;
@@ -76,11 +76,13 @@
 .likeBox:hover{
     cursor: pointer;
     text-decoration: underline;
+    transform: scale(1.05);
+    transition: 1s;
 }
 
 .commentBox{
     background-color: rgb(243, 242, 242);
-    width: 10em;
+    width: 12em;
     height: 1.8em;
     font-weight: bold;
     padding-top: 0.5em;
@@ -88,16 +90,19 @@
 .commentBox:hover{
     cursor: pointer;
     text-decoration: underline;
+    transform: scale(1.05);
+    transition: 1s;
 }
 
 .AddComment{
     display: flex;
     padding-top: 1em;
+    justify-content: space-between;
 }
 
 .CommentAddBox{
     display: flex;
-    width: 16em;
+    width: 22em;
     height: 2em;
     border: 0.4em solid rgb(243, 242, 242);
     border-radius: 16px;
