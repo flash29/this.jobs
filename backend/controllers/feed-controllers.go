@@ -118,7 +118,7 @@ func CreatePost(c *gin.Context) {
 func GetPost(c *gin.Context) {
 	id := c.Params.ByName("id")
 	var post models.UserPost
-	if err := utils.DB.Where("id = ?", id).First(&post).Error; err != nil {
+	if err := utils.DB.Where("post_id = ?", id).First(&post).Error; err != nil {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
 	} else {
