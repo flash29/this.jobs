@@ -1,19 +1,19 @@
 import React from 'react';
 import { Container, Button, Dropdown, DropdownButton} from "react-bootstrap";
-// import Dropdown from 'react-bootstrap/Dropdown'
 import "./PostBox.css";
 import picon from "../../images/camera-outline.svg";
 import ficon from "../../images/document-attach-outline.svg";
 import licon from "../../images/link-outline.svg";
 import sicon from "../../images/send-outline.svg";
-
+import FileBase from 'react-file-base64';
+import axios from 'axios';
 
 
 function PostBox(){
     return(
         <Container className = "PostBox">
             <div >
-                <input className = "commentBox"placeHolder = "What's on your mind?" />
+                <input className = "commentBox" placeHolder = "What's on your mind?" />
             </div>    
             <div className = "buttons">
                 <Button className = "icon"> 
