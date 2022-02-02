@@ -88,3 +88,29 @@
 .commentBox:hover{
     cursor: pointer;
 }
+
+.AddComment{
+    display: flex;
+    padding-top: 1em;
+}
+
+.CommentAddBox{
+    display: flex;
+    width: 16em;
+    height: 2em;
+    border: 0.4em solid rgb(243, 242, 242);
+    border-radius: 16px;
+}
+
+.CommentAddButton{
+    background-color: rgb(243, 242, 242);
+    font-weight: bold ;
+    text-align: center;
+    padding-top: 8px;
+    border: 0.2em solid rgb(5, 2, 0);
+    border-radius: 2em;
+}
+
+.CommentAddButton:hover{
+    cursor: pointer;
+}

@@ -102,7 +102,15 @@ function Card(props) {
                 <div className='likeBox' 
                 style={{backgroundColor:  color}}
                 onClick={likeClicked}>Like</div>
-                <div className='commentBox'>Comment</div>
+                <div className='commentBox'>Comments</div>
+            </div>
+            <div className='AddComment'>
+                <input 
+                type="text"
+                placeholder = "Add a comment..."
+                className='CommentAddBox'
+                />
+                <div className='CommentAddButton'> Comment </div>
             </div>
       </div>
       </div>  
