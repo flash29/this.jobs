@@ -1,5 +1,6 @@
 import './App.css';
 import Home from './dashboard/Home/Home'
+import Search from './dashboard/Search/Search'
 import Connections from './dashboard/Connections/Connections'
 import Jobs from './dashboard/Jobs/Jobs'
 import Settings from './dashboard/Settings/Settings'
@@ -12,7 +13,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/connections" element={<Connections />} />
+        <Route path = "/search" element = {<Home/>} />
+        <Route path="/connections" element={<Search />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/login" element={<Login />} />
