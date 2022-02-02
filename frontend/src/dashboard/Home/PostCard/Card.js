@@ -6,6 +6,7 @@ function Card(props) {
     const [color, setColor] = useState('rgba(243, 242, 242)');
     const [likeChecker, setLikeChecker] = useState(false);
     const [commentContent, setCommentContent] = useState('');
+    const [commentChecker, setCommentChecker] = useState(false);
 
     const {
         postId,
@@ -93,8 +94,31 @@ function Card(props) {
     
     function commentClicked(){
         console.log(commentContent);
+        fetch('/postcomment',{
+            method:'post',
+            headers:{'Content-type':'application/json'},
+            body:JSON.stringify({
+                    commentData : commentContent,
+                    createdBy : createdBy,
+                    post_id: postId
+            })
+        })
+        .then(response=>response.json())
+        .then(data=>{
+            console.log(data);
+            setCommentContent('');
+        })
+        .catch(error => console.log('error', error))
     }
 
+    function onCommentDisplayClicked(){
+        if(!commentChecker){
+            setCommentChecker(true);
+        }
+        else{
+            setCommentChecker(false);
+        }
+    }
 
     return (
       <div className='CardType'>
@@ -125,14 +149,22 @@ function Card(props) {
                 <div className='likeBox' 
                 style={{backgroundColor:  color}}
                 onClick={likeClicked}>Like</div>
-                <div className='commentBox'>Comments</div>
+                <div className='commentBox' onClick={onCommentDisplayClicked}>Comments</div>
             </div>
+            {
+                commentChecker 
+                ?
+                <>hi</>
+                :
+                <></>
+            }
             <div className='AddComment'>
                 <input 
                 type="text"
                 placeholder = "Add a comment..."
                 className='CommentAddBox'
                 onChange={(e)=> onCommentContentChange(e) }
+                value={commentContent}
                 />
                 <div className='CommentAddButton' onClick={()=>commentClicked()}> Comment </div>
             </div>
