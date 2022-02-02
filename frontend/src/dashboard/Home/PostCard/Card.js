@@ -5,6 +5,7 @@ function Card(props) {
 
     const [color, setColor] = useState('rgba(243, 242, 242)');
     const [likeChecker, setLikeChecker] = useState(false);
+    const [commentContent, setCommentContent] = useState('');
 
     const {
         postId,
@@ -20,15 +21,9 @@ function Card(props) {
     } = props.postContent;
 
     console.log('postid', postId);
-  //  console.log('tag', tag);
-  //  console.log('updatedAt', updatedAt);
- //   console.log('likes', likes);
-  //  console.log('createdBy', createdBy);
-  //  console.log('createdAt', createdAt);
-  //  console.log('content', content);
+
     console.log('comments', comments);
- //   console.log('attachments', attachments);
-   // console.log('LikesList', LikesList);
+
 
     let timeOfPost = '';
 
@@ -52,24 +47,52 @@ function Card(props) {
             likesUsers = "A user has liked your post"
         }
         else{
-            likesUsers = {likes} +"users have liked this post."
+            likesUsers = likes +" users have liked this post."
         }
     }
     createLikeDisplay();
     createDate();
 
+    const onLikeClicked = (likeValue) =>{
+        fetch('/updatelikes',{
+            method:'put',
+            headers:{'Content-type':'application/json'},
+            body:JSON.stringify({
+                postId: postId,
+                user_id: createdBy,
+                liked: likeValue
+            })
+        })
+        .then(response=>response.json())
+        .then(data=>{
+            console.log(data);
+        })
+        .catch(error => console.log('error', error))
+    }
+
     function likeClicked(){
         if(!likeChecker){
             setColor('rgba(255, 188, 170, 1)');
             setLikeChecker(true);
+            onLikeClicked(true);
             console.log('post liked');
         }
         else{
             setColor('rgba(243, 242, 242)');
             setLikeChecker(false);
+            onLikeClicked(false);
             console.log('post unliked');
         }
         
+    }
+
+    function onCommentContentChange(event){
+        setCommentContent(event.target.value);
+
+    }
+    
+    function commentClicked(){
+        console.log(commentContent);
     }
 
 
@@ -109,8 +132,9 @@ function Card(props) {
                 type="text"
                 placeholder = "Add a comment..."
                 className='CommentAddBox'
+                onChange={(e)=> onCommentContentChange(e) }
                 />
-                <div className='CommentAddButton'> Comment </div>
+                <div className='CommentAddButton' onClick={()=>commentClicked()}> Comment </div>
             </div>
       </div>
       </div>  
