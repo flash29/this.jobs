@@ -33,7 +33,8 @@ function Card(props) {
         let  currentTime= Math.floor(Date.now()/1000);
         let differenceDate = (currentTime - createdAt)/(60*60*24) ;
         if(differenceDate<1){
-            differenceDate = differenceDate *12;
+            // console.log('check proper time here', differenceDate*24 );
+            differenceDate = differenceDate *24;
             // eslint-disable-next-line no-useless-concat
             timeOfPost = Math.floor(differenceDate) + ' ' + 'Hours Ago';
         }
