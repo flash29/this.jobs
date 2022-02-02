@@ -4,7 +4,7 @@ function Search() {
     return (
       <div className="App">
           <NavBar />
-          SearchBar under construction
+          SearchBar under construction!
       </div>
     );
   }
