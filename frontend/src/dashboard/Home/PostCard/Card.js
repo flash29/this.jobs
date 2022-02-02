@@ -1,6 +1,11 @@
-import './Card.css'
+import './Card.css';
+import React, { useState, useEffect } from 'react';
 
 function Card(props) {
+
+    const [color, setColor] = useState('rgba(243, 242, 242)');
+    const [likeChecker, setLikeChecker] = useState(false);
+
     const {
         postId,
         tag,
@@ -15,7 +20,7 @@ function Card(props) {
     } = props.postContent;
 
     console.log('postid', postId);
-    console.log('tag', tag);
+  //  console.log('tag', tag);
   //  console.log('updatedAt', updatedAt);
  //   console.log('likes', likes);
   //  console.log('createdBy', createdBy);
@@ -53,6 +58,20 @@ function Card(props) {
     createLikeDisplay();
     createDate();
 
+    function likeClicked(){
+        if(!likeChecker){
+            setColor('rgba(255, 188, 170, 1)');
+            setLikeChecker(true);
+            console.log('post liked');
+        }
+        else{
+            setColor('rgba(243, 242, 242)');
+            setLikeChecker(false);
+            console.log('post unliked');
+        }
+        
+    }
+
 
     return (
       <div className='CardType'>
@@ -78,6 +97,12 @@ function Card(props) {
             </div>
             <div className='likesCountDisplay'>
                 {likesUsers}
+            </div>
+            <div className='likeAndCommentBoxes'>
+                <div className='likeBox' 
+                style={{backgroundColor:  color}}
+                onClick={likeClicked}>Like</div>
+                <div className='commentBox'>Comment</div>
             </div>
       </div>
       </div>  

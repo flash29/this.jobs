@@ -10,8 +10,8 @@
     border-style: solid;   
     width: 20rem;
     border-radius: 10%;
-    border: 0.3em solid antiquewhite;
-    border-radius: 12px;
+    border: 0.4em solid rgb(243, 242, 242);
+    border-radius: 16px;
     padding: 5px;
 }
 
@@ -58,4 +58,33 @@
     font-size: 0.9em;
     background-color: rgba(255, 188, 170, 1);
     width: 9em;
+}
+
+.likeAndCommentBoxes{
+    display: flex;
+    justify-content: space-around;
+}
+
+.likeBox{
+    background-color: rgb(243, 242, 242);
+    width: 10em;
+    height: 1.8em;
+    font-weight: bold;
+    padding-top: 0.5em;
+}
+
+.likeBox:hover{
+    cursor: pointer;
+    background-color: rgba(255, 188, 170, 1);
+}
+
+.commentBox{
+    background-color: rgb(243, 242, 242);
+    width: 10em;
+    height: 1.8em;
+    font-weight: bold;
+    padding-top: 0.5em;
+}
+.commentBox:hover{
+    cursor: pointer;
 }
