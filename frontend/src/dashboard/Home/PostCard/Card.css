@@ -1,0 +1,53 @@
+.CardType{
+    display: flex;
+    justify-content: center;
+}
+
+.fullClass{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-style: solid;   
+    width: 20rem;
+    border-radius: 10%;
+    border: 0.3em solid antiquewhite;
+    border-radius: 12px;
+    padding: 5px;
+}
+
+.topCard{
+    display: flex;
+    width: 20rem;
+    justify-content: space-between;
+}
+
+.Content{
+    display: flex;
+    width: 20rem;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.textPost{
+    display: flex;
+    
+}
+
+.usernameDisplay{
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.usernameDisplay:hover{
+    cursor: pointer;
+}
+
+.timeDisplay{
+    font-weight: lighter;
+    font-size: 0.8em;
+}
+
+.likesCountDisplay{
+    display: flex;
+}
