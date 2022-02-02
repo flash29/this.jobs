@@ -44,7 +44,7 @@ function Card(props) {
     let likesUsers = '';
     function createLikeDisplay(){
         if (likes===1){
-            likesUsers = "A user has like your post"
+            likesUsers = "A user has liked your post"
         }
         else{
             likesUsers = {likes} +"users have liked this post."
@@ -61,6 +61,7 @@ function Card(props) {
                 <div className='usernameDisplay' >{createdBy}</div> 
                 <div className='timeDisplay'  >{timeOfPost}</div> 
             </div>
+            <div className='PostTag'>#{tag}</div>
             <div className='Content'>
                 <div className='textPost'>{content}</div>
                 {

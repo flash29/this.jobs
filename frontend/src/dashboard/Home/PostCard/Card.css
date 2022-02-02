@@ -51,3 +51,11 @@
 .likesCountDisplay{
     display: flex;
 }
+
+.PostTag{
+    display: flex;
+    font-weight:bold;
+    font-size: 0.9em;
+    background-color: rgba(255, 188, 170, 1);
+    width: 9em;
+}
