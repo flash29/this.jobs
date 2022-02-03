@@ -4,10 +4,20 @@ import (
 	"com.uf/src/controllers"
 	"com.uf/src/utils"
 	"github.com/gin-gonic/gin"
+	"fmt"
 )
+
+func Cors() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Writer.Header().Add("Access-Control-Allow-Origin", "*")
+		fmt.Println("Here!")
+		c.Next()
+	}
+}
 
 func main() {
 	router := gin.Default()
+	router.Use(Cors())
 
 	utils.ConnectDatabase() // new
 
@@ -16,7 +26,7 @@ func main() {
 	router.POST("/post", controllers.CreatePost)
 	router.POST("/postcomment", controllers.PostComment)
 	router.PUT("/post/:id", controllers.UpdatePost)
-	router.PUT("/updatelikes/:post_id/:liked", controllers.UpdateLikes)
+	router.PUT("/updatelikes", controllers.UpdateLikes)
 	router.DELETE("/post/:id", controllers.DeletePost)
 
 	router.Run(":8080")

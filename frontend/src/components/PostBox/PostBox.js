@@ -22,7 +22,7 @@ const Button1 = styled.button`
 
 function PostBox(props){
 
-        const [postData, setPostData] = useState({ createdBy : '1', content : '', tag : '', attachments : ''});  
+        const [postData, setPostData] = useState({ createdBy : 'user1', content : '', tag : '', attachments : ''});  
 
         const getBase64 = async (e) => {
             const file = e.target.files[0];
@@ -50,20 +50,21 @@ function PostBox(props){
         };
 
         function handleSubmit(){
-            fetch('http://localhost:8080/post', {
-                method : 'post', 
+            console.log(postData);
+            fetch('/post', {
+                method : 'POST', 
                 headers:{'Content-type':'application/json'},
                 body:JSON.stringify({postData})
             }).then(response => response.json()).then(data => {
                 console.log(data);
-                setPostData({ createdBy : '1', content : '', tag : '', attachments : ''});
+                setPostData({ createdBy : 'user1', content : '', tag : '', attachments : ''});
             }).catch(error => console.log('error', error))
         }
 
         return(
             <Container className = "PostBox">
                 <div >
-                    <input className = "commentBox" placeholder = "What's on your mind?"  onClick = { (e) => setPostData({...postData, content : e.target.value})}/>
+                    <input className = "commentBox" placeholder = "What's on your mind?"  onChange = { (e) => setPostData({...postData, content : e.target.value})}/>
                 </div>    
                 <div className = "buttons">
                     <div className ="dropdown">

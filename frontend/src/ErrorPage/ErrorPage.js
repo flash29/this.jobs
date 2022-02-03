@@ -1,9 +1,9 @@
-
+import './ServerLost.css';
 
 function ErrorPage() {
   return (
-    <div className="App">
-        Error : Page Doesnot Exist!!!
+    <div className="displayError">
+        <p>Error : Page Doesnot Exist!!!</p>
     </div>
   );
 }
