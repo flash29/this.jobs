@@ -27,7 +27,7 @@ function PostBox(props){
         const getBase64 = async (e) => {
             const file = e.target.files[0];
             const base64 = await convertBase64(file);
-            return base64;
+            return JSON.stringify(base64);
           }
         
         const convertBase64  = (file) => {
@@ -54,7 +54,7 @@ function PostBox(props){
             fetch('/post', {
                 method : 'POST', 
                 headers:{'Content-type':'application/json'},
-                body:JSON.stringify({postData})
+                body:JSON.stringify(postData)
             }).then(response => response.json()).then(data => {
                 console.log(data);
                 setPostData({ createdBy : 'user1', content : '', tag : '', attachments : ''});
@@ -68,7 +68,7 @@ function PostBox(props){
                 </div>    
                 <div className = "buttons">
                     <div className ="dropdown">
-                            <select className = "dropbtn" onClick = {(e) => setPostData({...postData, tag : e.target.value})}>
+                            <select className = "dropbtn" onChange = {(e) => setPostData({...postData, tag : e.target.value})}>
                                 <option value = "1">Select Tag</option> 
                                 <option value = "Job-Recruitment">Job-Recruitment</option>
                                 <option value = "Knowledge Sharing">Knowledge Sharing</option>
@@ -85,7 +85,7 @@ function PostBox(props){
                             type="file"
                             ref = {hiddenFileInput}
                             style={{display: 'none'}}
-                            onChange = { (e) => setPostData({...postData, attachments : getBase64(e)})}/>
+                            onChange = { (e) => setPostData({...postData, attachments : JSON.stringify(getBase64(e))})}/>
                     </>
 
 
@@ -96,7 +96,7 @@ function PostBox(props){
                         <input
                             type="file"
                             ref={hiddenFileInput}
-                            onChange = { (e) => setPostData({...postData, attachments : getBase64(e)})}
+                            onChange = { (e) => setPostData({...postData, attachments : JSON.stringify(getBase64(e))})}
                             style={{display: 'none'}}
                         />
                     </>
@@ -107,7 +107,7 @@ function PostBox(props){
                         <input
                             type="file"
                             ref={hiddenFileInput}
-                            onChange = { (e) => setPostData({...postData, attachments : getBase64(e)})}
+                            onChange = { (e) => setPostData({...postData, attachments : JSON.stringify(getBase64(e))})}
                             style={{display: 'none'}}
                         />
                     </>
