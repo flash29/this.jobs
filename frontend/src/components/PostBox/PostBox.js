@@ -50,7 +50,7 @@ function PostBox(props){
         };
 
         function handleSubmit(){
-            fetch('localhost:8080/post', {
+            fetch('http://localhost:8080/post', {
                 method : 'post', 
                 headers:{'Content-type':'application/json'},
                 body:JSON.stringify({postData})
