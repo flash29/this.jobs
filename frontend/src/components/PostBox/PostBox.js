@@ -1,52 +1,59 @@
 import React from 'react';
 import { Container, Button, Dropdown, DropdownButton} from "react-bootstrap";
 import "./PostBox.css";
-import picon from "../../images/camera-outline.svg";
-import ficon from "../../images/document-attach-outline.svg";
-import licon from "../../images/link-outline.svg";
+import PhotoUploader from '../FileUploader/PhotoUploader';
+import PdfUploader from '../FileUploader/PdfUploader';
+import LinkUploader from '../FileUploader/LinkUploader';
+import { useState, useEffect } from 'react';
 import sicon from "../../images/send-outline.svg";
 import FileBase from 'react-file-base64';
 import axios from 'axios';
 
 
-function PostBox(){
-    return(
-        <Container className = "PostBox">
-            <div >
-                <input className = "commentBox" placeHolder = "What's on your mind?" />
-            </div>    
-            <div className = "buttons">
-                <Button className = "icon"> 
-                        <img src = {picon} className = "images" alt = ""/>
-                        {/* <span>photo</span> */}
-                </Button>
-                <Button className = "icon">
-                    <img src = {ficon} className = "images" alt = ""/>
-                    {/* <span>pdf</span> */}
-                </Button>
-                <Button className = "icon">
-                    <img src = {licon} className = "images" alt = ""/>
-                    {/* <span>link</span> */}
-                </Button>
-                <Button className = "icon">
-                    <img src = {sicon} className = "images" alt = "" />
-                    {/* <span>post</span> */}
-                </Button>
-                
-                <div class="dropdown">
-                    <button class = "dropbtn">Tag</button>
-                    <div class = "dropdown-content">
-                    <a href = "#">Job-Recruitment</a>
-                    <a href = "#">Knowledge Sharing</a>
-                    <a href ="#">Inspiration</a>
-                    <a href = "#">Others</a>
-                    </div>
-                </div>
+function PostBox(props){
 
-            </div>         
-            
-        </Container>    
-    );    
-}
+        const [postData, setPostData] = useState({ content : '', tag : '', attachments : ''});
+
+        const onPostClick = () => {
+
+        }   
+
+        const dropSelect = (e) => {
+            var val = e.target.value;
+            if(val == null){
+                console.log("error! Tag Mandatory!");
+            }
+            else{
+                return val;
+            }
+        }
+
+        return(
+            <Container className = "PostBox">
+                <div >
+                    <input className = "commentBox" placeholder = "What's on your mind?"  onChange = { (e) => setPostData({...postData, content : e.target.value})}/>
+                </div>    
+                <div className = "buttons">
+                    <div className ="dropdown">
+                            <select className = "dropbtn">
+                                <option value = "Job-Recruitment">Job-Recruitment</option>
+                                <option value = "Knowledge Sharing">Knowledge Sharing</option>
+                                <option value = "Inspiration">Inspiration</option>
+                                <option value = "Others">Others</option>
+                                <option value = "Select Tag" selected >Select Tag</option>
+                            </select>
+                    </div>
+                    <PhotoUploader type="file" multiple={false} onDone={ props => console.log(props.base64)} />
+                    <PdfUploader type="file" multiple={false} onDone={ props => console.log(props.base64)} />
+                    <LinkUploader type="file" multiple={false} onDone={ props => console.log(props.base64)} />
+
+                    <Button className = "icon">
+                        <img src = {sicon} className = "images" alt = "" />
+                        {/* <span>post</span> */}
+                    </Button>  
+                </div>         
+            </Container>    
+        );    
+    }
 
 export default PostBox;
