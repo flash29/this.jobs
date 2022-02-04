@@ -1,9 +1,11 @@
 # this.jobs - sprint 1
 ### Group Members
-Vishnuvardhan Reddy Jammula\
-Ranjeet Mallipeddi\
-Syama Vangmayi Vydyula\
-Sai Sneha Paruchuri
+Ranjeet Mallipeddi (Frontend)\
+Syama Vangmayi Vydyula (Frontend)\
+Vishnuvardhan Reddy Jammula (Backend)\
+Sai Sneha Paruchuri (Backend)
+
+Github repository link: [https://github.com/flash29/this.jobs](https://github.com/flash29/this.jobs)
 ### Outline
   
   this.jobs is a platform where people can build their profile, connect with other users who share similar interests in careers and find/ apply or post new jobs
@@ -11,25 +13,16 @@ Sai Sneha Paruchuri
 ### Demo
   [Video link](link here)
 
-### Pre-requisites:
-Nodejs\
-Go lang\
-Gcc compiler
-### Language used: 
-React\
-Go lang
+Technical stack, their pre-requisites and how to setup and run both frontend and backend can be found at this [wiki](https://github.com/flash29/this.jobs/wiki/Installation)
 
-### Steps to compile and run:
+### Backend accomplishments
+- Created REST API's to create post, retrieve all posts, comment on a post, like/dislike a post. Api's accept json as data input and produces json responses
+- Post creation supports attaching images when encoded in Base64 format.
+- Defined the data models for post creation, comment and likes. GORM is used to automigrate the model schema to SQLite tables.
+- All the data is persisted and fetched from SQLite tables related to the application.
+- More about REST api's documentation can be found at this [wiki](https://github.com/flash29/this.jobs/wiki/REST-API-Documentation)
 
-1) Navigate to the backend folder
-2) Run the following command in terminal to start Server:
-```
-go run main.go
-```
-On first run all the required packages will be installed and  the APIs will be exposed on `localhost:8080`
-
-In-memory SQLite3 database is used with GORM and the data which is posted will be stored in `jobs.db`
-### REST APIs
+### REST API
 
 #### Create Post
 The end point
