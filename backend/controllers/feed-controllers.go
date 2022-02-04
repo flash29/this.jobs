@@ -10,7 +10,7 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-var Tags = []string{"Job-Recuritment", "Knowledge Sharing", "Inspiration", "Others"}
+var Tags = []string{"Job-Recruitment", "Knowledge Sharing", "Inspiration", "Others"}
 
 func DeletePost(c *gin.Context) {
 	id := c.Params.ByName("id")
