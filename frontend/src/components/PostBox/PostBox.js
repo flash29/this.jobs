@@ -23,25 +23,23 @@ const Button1 = styled.button`
 function PostBox(props){
 
         const [postData, setPostData] = useState({ createdBy : 'user1', content : '', tag : '', attachments : ''});  
+        const [base64File, setBase64URL] = useState('');
 
-        const getBase64 = async (e) => {
-            const file = e.target.files[0];
-            const base64 = await convertBase64(file);
-            return JSON.stringify(base64);
-          }
-        
-        const convertBase64  = (file) => {
-            return new Promise((resolve, reject) =>{
-              const fileReader = new FileReader();
-              fileReader.readAsDataURL(file);
-              fileReader.onload = () => {
-                resolve(fileReader.result);
-              };
-              fileReader.onerror = (error) => {
-                console.log(error);
-              };
-            });
-          }
+        const handleFileInputChange = e => {
+            console.log(e.target.files[0]);
+            const reader = new FileReader();
+            reader.onload = function() {
+                setBase64URL(reader.result);
+                setPostData({...postData, attachments : reader.result })
+            console.log('result', reader.result);
+            console.log("file result", base64File);
+            }
+            if(e.target.files[0]){
+            reader.readAsDataURL(e.target.files[0]);
+            console.log('reader',reader);
+            }
+            
+        };
 
         const hiddenFileInput = React.useRef(null);
 
@@ -68,7 +66,7 @@ function PostBox(props){
                 </div>    
                 <div className = "buttons">
                     <div className ="dropdown">
-                            <select className = "dropbtn" onChange = {(e) => setPostData({...postData, tag : e.target.value})}>
+                            <select className = "dropbtn" onChange = {(e) => setPostData({...postData, tag : e.target.value}) }>
                                 <option value = "1">Select Tag</option> 
                                 <option value = "Job-Recruitment">Job-Recruitment</option>
                                 <option value = "Knowledge Sharing">Knowledge Sharing</option>
@@ -85,7 +83,7 @@ function PostBox(props){
                             type="file"
                             ref = {hiddenFileInput}
                             style={{display: 'none'}}
-                            onChange = { (e) => setPostData({...postData, attachments : JSON.stringify(getBase64(e))})}/>
+                            onChange = {handleFileInputChange}/>
                     </>
 
 
@@ -96,7 +94,7 @@ function PostBox(props){
                         <input
                             type="file"
                             ref={hiddenFileInput}
-                            onChange = { (e) => setPostData({...postData, attachments : JSON.stringify(getBase64(e))})}
+                            onChange = {handleFileInputChange}
                             style={{display: 'none'}}
                         />
                     </>
@@ -107,7 +105,7 @@ function PostBox(props){
                         <input
                             type="file"
                             ref={hiddenFileInput}
-                            onChange = { (e) => setPostData({...postData, attachments : JSON.stringify(getBase64(e))})}
+                            onChange = {handleFileInputChange}
                             style={{display: 'none'}}
                         />
                     </>
