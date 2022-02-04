@@ -10,7 +10,7 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-var Tags = []string{"Job-Recuritment", "Knowledge Sharing", "Inspiration", "Others"}
+var Tags = []string{"Job-Recruitment", "Knowledge Sharing", "Inspiration", "Others"}
 
 func DeletePost(c *gin.Context) {
 	id := c.Params.ByName("id")
@@ -106,7 +106,7 @@ func UpdatePost(c *gin.Context) {
 func CreatePost(c *gin.Context) {
 	var post models.UserPost
 	c.BindJSON(&post)
-	fmt.Printf("%+v\n", post);
+	fmt.Printf("%+v\n", post)
 	if post.CreatedBy == "" || post.Content == "" || post.Tag == "" || contains(Tags, post.Tag) == -1 {
 		c.JSON(400, gin.H{"error": "Unable to create post"})
 	} else {

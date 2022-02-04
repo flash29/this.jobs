@@ -27,7 +27,10 @@ function PostBox(props){
         const getBase64 = async (e) => {
             const file = e.target.files[0];
             const base64 = await convertBase64(file);
-            return JSON.stringify(base64);
+            console.log(base64);
+            postData.attachments = base64;
+            console.log(postData);
+            return base64;
           }
         
         const convertBase64  = (file) => {
@@ -85,7 +88,7 @@ function PostBox(props){
                             type="file"
                             ref = {hiddenFileInput}
                             style={{display: 'none'}}
-                            onChange = { (e) => setPostData({...postData, attachments : JSON.stringify(getBase64(e))})}/>
+                            onChange = { (e) => getBase64(e)}/>
                     </>
 
 
