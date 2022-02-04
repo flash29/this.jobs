@@ -136,7 +136,7 @@ function Card(props) {
                     attachments 
                     ?
                     <>
-                        <img src={'data:image/png;base64,'+attachments} alt={"Loading..."} />
+                        <img src={attachments} alt={"Loading..."} />
                     </>
                     :
                     <>

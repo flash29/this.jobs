@@ -4,11 +4,13 @@ import (
 	"com.uf/src/controllers"
 	"com.uf/src/utils"
 	"github.com/gin-gonic/gin"
+	"fmt"
 )
 
 func Cors() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.Writer.Header().Add("Access-Control-Allow-Origin", "*")
+		fmt.Println("Here!")
 		c.Next()
 	}
 }
