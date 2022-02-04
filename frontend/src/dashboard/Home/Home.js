@@ -25,7 +25,6 @@ function Home() {
     <div className="App">
       <NavBar />
       <PostBox />
-      This is the home page
       <PostCard posts={posts}/>
     </div>
   );
