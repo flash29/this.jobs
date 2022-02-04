@@ -37,7 +37,7 @@ The end point
 http://localhost:8080/post
 ```
 is used to create new posts and the json data structure of UserPost structure is mentioned below
-![](.\assets\createPost.png)
+![](./assets/createPost.png)
 
 `createdBy` , `content` and `tag` are mandatory fields to create a new post.
 `attachments` can be any file which is base64 encoded
