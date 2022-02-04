@@ -52,10 +52,11 @@ function PostBox(props){
             fetch('/post', {
                 method : 'POST', 
                 headers:{'Content-type':'application/json'},
-                body:JSON.stringify(postData)
+                body:JSON.stringify(postData),
             }).then(response => response.json()).then(data => {
                 console.log(data);
                 setPostData({ createdBy : 'user1', content : '', tag : '', attachments : ''});
+                window.location.reload(false)
             }).catch(error => console.log('error', error))
         }
 
