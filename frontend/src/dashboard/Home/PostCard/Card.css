@@ -1,0 +1,136 @@
+.CardType{
+    display: flex;
+    justify-content: center;
+}
+
+.fullClass{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-style: solid;   
+    width: 25rem;
+    border-radius: 10%;
+    border: 0.4em solid rgb(243, 242, 242);
+    border-radius: 16px;
+    margin: 0.2em;
+    padding: 0.2em;
+}
+
+.topCard{
+    display: flex;
+    justify-content: space-between;
+    margin: 0.2em;
+}
+
+.Content{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 0.4em;
+}
+
+.textPost{
+    display: flex;
+    
+}
+
+.usernameDisplay{
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.usernameDisplay:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.timeDisplay{
+    font-weight: lighter;
+    font-size: 0.8em;
+}
+
+.likesCountDisplay{
+    display: flex;
+    opacity: 0.3;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin: 0.2em;
+}
+
+.PostTag{
+    display: flex;
+    font-weight:bold;
+    font-size: 0.9em;
+    background-color: rgba(255, 188, 170, 1);
+    width: 9em;
+    margin: 0.3em;
+}
+
+.likeAndCommentBoxes{
+    display: flex;
+    justify-content: space-around;
+}
+
+.likeBox{
+    background-color: rgb(243, 242, 242);
+    width: 12em;
+    height: 1.8em;
+    font-weight: bold;
+    padding-top: 0.5em;
+}
+
+.likeBox:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    transform: scale(1.05);
+    transition: 1s;
+}
+
+.commentBox{
+    background-color: rgb(243, 242, 242);
+    width: 12em;
+    height: 1.8em;
+    font-weight: bold;
+    padding-top: 0.5em;
+}
+.commentBox:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    transform: scale(1.05);
+    transition: 1s;
+}
+
+.AddComment{
+    display: flex;
+    padding-top: 1em;
+    justify-content: space-between;
+}
+
+.CommentAddBox{
+    display: flex;
+    width: 22em;
+    height: 2em;
+    border: 0.4em solid rgb(243, 242, 242);
+    border-radius: 16px;
+}
+
+.CommentAddBox:focus{
+    outline: none;
+    border: 0.4em solid rgb(0, 0, 0);
+}
+
+.CommentAddButton{
+    background-color: rgb(243, 242, 242);
+    font-weight: bold ;
+    text-align: center;
+    padding-top: 8px;
+    border: 0.2em solid rgb(5, 2, 0);
+    border-radius: 2em;
+}
+
+.CommentAddButton:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}

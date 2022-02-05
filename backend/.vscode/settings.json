@@ -1,0 +1,16 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "local",
+            "database": "${workspaceFolder:backend}/jobs.db"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "test1",
+            "database": "${workspaceFolder:backend}/jobs.db"
+        }
+    ]
+}
