@@ -80,3 +80,18 @@ is used to create new posts, it is a `POST` method and the json data of Like str
 The success response will be the comment data with status `200`.
 
 Incase of error the status will be `400` with the error message "Unable to add comment"
+
+
+### Frontend accomplishments
+- Created the homepage of the application
+- Created the navigation bar and routes to the various links on the navigation bar - home, jobs, connections, settings
+- Created a searchBar which allows a user to perform search operations. (currently routes to a different page which is to be developed in further sprints)
+- Created a postBox which allows users to create a post with multimedia content - photos, pdfs and links. Further, the mandatory comment and tag fields are a part of the post-box. Tags help users to search for relevant content that they are looking for. Each time a user creates a post, the post gets updated on the user's feed. This component appears on the home page of the application.
+- Created a PostCard which automatically gets loaded onto a user's feed when he/she posts something. This feature has like and comment options which were also developed. Further, in the user's feed, the posts are displayed in the order of relevance.
+- More about frontend documentation can be found at this [wiki](https://github.com/flash29/this.jobs/wiki/File-Structure)
+
+
+### Frontend HomePage
+
+![](./assets/HomePage.png)
+
