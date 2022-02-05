@@ -11,7 +11,7 @@ Github repository link: [https://github.com/flash29/this.jobs](https://github.co
   this.jobs is a platform where people can build their profile, connect with other users who share similar interests in careers and find/ apply or post new jobs
 
 ### Demo
-  [Video link](link here)
+  Frontend and backend demos are found [here](https://uflorida-my.sharepoint.com/:f:/g/personal/paruchuri_s_ufl_edu/Ev2hMziLa7RNrNQRXXqQfCsBay5cqiyI4PzIYHDim50fQw?e=oTwPau)
 
 Technical stack, their pre-requisites and how to setup and run both frontend and backend can be found at this [wiki](https://github.com/flash29/this.jobs/wiki/Installation)
 
