@@ -93,5 +93,5 @@ Incase of error the status will be `400` with the error message "Unable to add c
 
 ### Frontend HomePage
 
-![](./assets/HomePage.png)
+![](./assets/HomePage.PNG)
 
