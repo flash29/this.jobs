@@ -1,0 +1,4 @@
+*.session.sql
+/backend/*.db
+/backend/.vscode
+/backend/*.exe
