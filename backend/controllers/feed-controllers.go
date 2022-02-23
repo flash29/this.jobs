@@ -132,7 +132,7 @@ func GetPosts(c *gin.Context) {
 	result := utils.DB.Preload("Comments", func(db *gorm.DB) *gorm.DB {
 		db = db.Order("created_at desc")
 		return db
-	}).Order("CASE WHEN tag = 'Job-Recuritment' THEN 1 ELSE 2 END, created_at desc").Find(&userposts)
+	}).Order("CASE WHEN tag = 'Job-Recruitment' THEN 1 ELSE 2 END, created_at desc").Find(&userposts)
 	if result.Error != nil {
 		c.JSON(400, gin.H{"error": "Unable to retrieve feed posts"})
 	} else {
