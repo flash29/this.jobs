@@ -25,9 +25,10 @@ func main() {
 
 	public := router.Group("/auth")
 	public.POST("/login", controllers.Login)
+	public.POST("/register", controllers.UserRegistration)
 
 	protected := router.Group("")
-	protected.POST("/register", controllers.UserRegistration)
+
 	protected.Use(middleware.JwtAuthMiddleware())
 	protected.GET("/feed", controllers.GetPosts)
 	protected.GET("/post/:id", controllers.GetPost)

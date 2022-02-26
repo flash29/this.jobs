@@ -1,6 +1,11 @@
 package utils
 
-import "golang.org/x/crypto/bcrypt"
+import (
+	"com.uf/src/models"
+	"golang.org/x/crypto/bcrypt"
+
+	"fmt"
+)
 
 func VerifyPassword(password, hashedPassword string) error {
 	return bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
@@ -8,21 +13,30 @@ func VerifyPassword(password, hashedPassword string) error {
 
 func LoginCheck(username string, password string) (string, error) {
 
-	// var err error
+	var err error
 
-	// u := UserLogin{}
+	//var u models.UserLogin{}
 
-	// err = DB.Model(User{}).Where("username = ?", username).Take(&u).Error
+	//err = DB.Model(User{}).Where("username = ?", username).Take(&u).Error
 
-	// if err != nil {
-	// 	return "", err
-	// }
+	if err != nil {
+		return "", err
+	}
 
-	// err = VerifyPassword(password, u.Password)
+	var user models.User
 
-	// if err != nil && err == bcrypt.ErrMismatchedHashAndPassword {
-	// 	return "", err
-	// }
+	if err := DB.Where("user_email = ?", username).First(&user).Error; err != nil {
+		//c.AbortWithStatus(404)
+		fmt.Println(err)
+	} else {
+		fmt.Println("verifying password " + password + " " + user.Password)
+		err = VerifyPassword(password, user.Password)
+		fmt.Println("err: " + err.Error())
+	}
+
+	if err != nil && err == bcrypt.ErrMismatchedHashAndPassword {
+		return "", err
+	}
 
 	token, err := GenerateToken(1) //todo
 
