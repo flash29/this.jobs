@@ -31,7 +31,9 @@ func LoginCheck(username string, password string) (string, error) {
 	} else {
 		fmt.Println("verifying password " + password + " " + user.Password)
 		err = VerifyPassword(password, user.Password)
-		fmt.Println("err: " + err.Error())
+		if err != nil {
+			fmt.Println("err: " + err.Error())
+		}
 	}
 
 	if err != nil && err == bcrypt.ErrMismatchedHashAndPassword {
