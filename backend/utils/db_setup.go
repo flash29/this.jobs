@@ -16,7 +16,7 @@ func ConnectDatabase() {
 	}
 
 	//database.Model(&models.UserPost{}).Related(&models.Comment{})
-	database.AutoMigrate(models.UserPost{}, models.Comment{})
+	database.AutoMigrate(models.UserPost{}, models.Comment{}, models.User{})
 	database.Model(&models.Comment{}).AddForeignKey("post_id", "user_posts(id)", "CASCADE", "CASCADE")
 	//database.AutoMigrate(models.Comment{})
 
