@@ -1,6 +1,6 @@
 package models
 
 type UserLogin struct {
-	Username string `json:"username" binding:"required"`
-	Password string `json:"password" binding:"required"`
+	UserEmail string `json:"useremail" binding:"required"`
+	Password  string `json:"password" binding:"required"`
 }
