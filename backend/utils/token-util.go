@@ -1,44 +1,67 @@
 package utils
 
 import (
-	"fmt"
 	"strings"
 	"time"
 
+	"com.uf/src/models"
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 )
 
-func GenerateToken(user_id uint) (string, error) {
+var jwtSecretKey = []byte("this.jobs")
 
-	//token_lifespan, err := strconv.Atoi(os.Getenv("TOKEN_HOUR_LIFESPAN"))
+// type JwtClaims struct {
+// 	username  string
+// 	useremail string
+// 	userid    int
+// 	jwt.StandardClaims
+// }
 
-	// if err != nil {
-	// 	return "", err
+func GenerateToken(user models.User) (string, error) {
+	user.Password = ""
+	tokenExpirationTime := time.Now().Add(24 * time.Hour)
+	// jwtClaim := &JwtClaims{
+	// 	username:  user.UserName,
+	// 	useremail: user.UserEmail,
+	// 	userid:    user.UserID,
+	// 	StandardClaims: jwt.StandardClaims{
+	// 		ExpiresAt: tokenExpirationTime.Unix(),
+	// 		IssuedAt:  time.Now().Unix(),
+	// 		Issuer:    "this.jobs",
+	// 		Subject:   "Token for this.jobs frontend",
+	// 	},
 	// }
 
-	claims := jwt.MapClaims{}
-	claims["authorized"] = true
-	claims["user_id"] = user_id
-	claims["exp"] = time.Now().Add(time.Hour * time.Duration(1)).Unix()
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	claim := jwt.MapClaims{}
+	claim["authorized"] = true
+	claim["username"] = user.UserName
+	claim["useremail"] = user.UserEmail
+	claim["userid"] = user.UserID
+	claim["ExpiresAt"] = tokenExpirationTime.Unix()
+	claim["IssuedAt"] = time.Now().Unix()
+	claim["Issuer"] = "this.jobs"
+	claim["Subject"] = "Token for this.jobs frontend"
 
-	return token.SignedString([]byte("this.jobs")) //todo
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claim)
+
+	return token.SignedString(jwtSecretKey) //todo
 
 }
 
-func TokenValid(c *gin.Context) error {
+func TokenValid(c *gin.Context) (*jwt.Token, error) {
+	// tokenString := ExtractToken(c)
+	// claims := &JwtClaims{}
+
+	// token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (i interface{}, err error) {
+	// 	return jwtSecretKey, nil
+	// })
+	// return token, claims, err
 	tokenString := ExtractToken(c)
-	_, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
-		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
-		}
-		return []byte("this.jobs"), nil
+	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		return jwtSecretKey, nil
 	})
-	if err != nil {
-		return err
-	}
-	return nil
+	return token, err
 }
 
 func ExtractToken(c *gin.Context) string {
