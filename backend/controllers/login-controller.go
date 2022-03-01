@@ -19,16 +19,16 @@ func Login(c *gin.Context) {
 
 	u := models.UserLogin{}
 
-	u.Username = input.Username
+	u.UserEmail = input.UserEmail
 	u.Password = input.Password
 
-	token, err := utils.LoginCheck(u.Username, u.Password)
+	result, err := utils.LoginCheck(u.UserEmail, u.Password)
 
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "username or password is incorrect."})
+		c.JSON(http.StatusBadRequest, gin.H{"error": result})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"token": token})
+	c.JSON(http.StatusOK, gin.H{"token": result})
 
 }

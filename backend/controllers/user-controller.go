@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"fmt"
+	"net/http"
 	"time"
 
 	"com.uf/src/models"
@@ -21,16 +22,33 @@ func getHash(pwd []byte) string {
 func UserRegistration(c *gin.Context) {
 
 	var user models.User
-	c.BindJSON(&user)
-	user.Password = getHash([]byte(user.Password))
-	// if err := c.ShouldBindJSON(&user); err != nil {
-	// 	c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-	// 	return
-	// }
 
+	if err := c.BindJSON(&user); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to bind user"})
+		return
+	}
+
+	UserEmail := user.UserEmail
+	Password := user.Password
+
+	if isUserExist(UserEmail) || UserEmail == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "User already exists"})
+		return
+	}
+
+	user.Password = getHash([]byte(Password))
 	user.CreatedAt = time.Now().Unix()
-	utils.DB.Create(&user)
-	user.Password = ""
-	c.JSON(200, user)
 
+	utils.DB.Create(&user)
+
+	user.Password = ""
+
+	c.JSON(http.StatusAccepted, user)
+
+}
+
+func isUserExist(UserEmail string) bool {
+	var user models.User
+	err := utils.DB.Where("user_email = ?", UserEmail).First(&user).Error
+	return err == nil
 }
