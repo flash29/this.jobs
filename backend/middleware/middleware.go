@@ -15,10 +15,6 @@ func JwtAuthMiddleware() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-		//claims.user
-		//var user models.User
-		//utils.DB.First(&user)
-
 		c.Next()
 	}
 }
