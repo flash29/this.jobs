@@ -43,7 +43,7 @@ func UserRegistration(c *gin.Context) {
 
 	user.Password = ""
 
-	c.JSON(http.StatusAccepted, user)
+	c.JSON(http.StatusCreated, user)
 
 }
 

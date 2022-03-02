@@ -8,58 +8,38 @@ import (
 
 	"com.uf/src/utils"
 	"github.com/gin-gonic/gin"
+	"github.com/stretchr/testify/assert"
 )
 
-func TestLogin(t *testing.T) {
+func setUp(data []byte) (*httptest.ResponseRecorder, *gin.Context, *gin.Engine) {
 	w := httptest.NewRecorder()
 	c, r := gin.CreateTestContext(w)
 	utils.MockConnectDatabase()
 	r.POST("/auth/login", Login)
+	c.Request, _ = http.NewRequest(http.MethodPost, "/auth/login", bytes.NewBuffer(data))
+	c.Request.Header.Add("Content-Type", "application/json")
+	return w, c, r
+}
+
+// run this test after the user registration test.
+func TestLoginWithValidCredentials(t *testing.T) {
 
 	var jsonData = []byte(`{
 		"useremail" : "firstuser123@ufl.edu",
 		"password": "abc123"
 	}`)
-
-	c.Request, _ = http.NewRequest(http.MethodPost, "/auth/login", bytes.NewBuffer(jsonData))
-	//c.Request.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	w, c, r := setUp(jsonData)
 	r.ServeHTTP(w, c.Request)
-
-	if w.Code != http.StatusOK {
-		t.Errorf("Expected status %d, got %d", http.StatusOK, w.Code)
-	}
+	assert.Equal(t, http.StatusOK, w.Code)
 }
 
-/*
-func TestLogin(t *testing.T) {
-	type args struct {
-		c *gin.Context
-	}
-	var user *models.UserLogin
-	user = new(models.UserLogin)
-	user.UserEmail = "firstuser@ufl.edu"
-	user.Password = "abc123"
-	var con *gin.Context
-	con = new(gin.Context)
-	con.ShouldBindJSON(user)
-	var a args
-	//a = new(args)
-	a.c = con
-	tests := []struct {
-		name string
-		args args
-	}{
-		// TODO: Add test cases.
-		{
-			name: "login1",
-			args: a,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			utils.ConnectDatabase()
-			Login(tt.args.c)
-		})
-	}
+func TestLoginWithInValidCredentials(t *testing.T) {
+
+	var jsonData = []byte(`{
+		"useremail" : "firstuser123@ufl.edu",
+		"password": "abc12"
+	}`)
+	w, c, r := setUp(jsonData)
+	r.ServeHTTP(w, c.Request)
+	assert.Equal(t, http.StatusBadRequest, w.Code)
 }
-*/
