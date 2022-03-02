@@ -1,0 +1,48 @@
+
+.SettingsItemDisplayBox{
+    background-color: rgba(157, 143, 143, 0.4);
+    display: flex;
+    text-align: center;
+    padding: 0.4em;
+    width: 10rem;
+    border-style: solid;
+    border-color: black;
+    border-width: thin;
+}
+
+.SettingsItemDisplayBox:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.settingsPageBoxInfo{
+    margin-left: 3em;
+    margin-top: 3em;
+    margin-right: 3em;
+    width: 11em;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.settingsLayout{
+    display: flex;
+}
+
+
+.contentBoxSettings{
+    text-align: center;
+    border-style: solid;
+    border-color: black;
+    width: 40em;
+    height: 40em;
+    display: flex;
+    margin-top: 3em;
+}
+
+.linkDisplay{
+    text-decoration: none;
+    text-decoration-color:black;
+    color: black;
+}
+
