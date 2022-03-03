@@ -2,3 +2,6 @@
 /backend/*.db
 /backend/.vscode
 /backend/*.exe
+/node_modules
+/package-lock.json
+/package.json

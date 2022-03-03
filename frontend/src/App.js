@@ -5,9 +5,10 @@ import Jobs from './dashboard/Jobs/Jobs'
 import Settings from './dashboard/Settings/Settings'
 import Search from './dashboard/Search/Search'
 import ErrorPage from './ErrorPage/ErrorPage'
-import Login from './Login/Login'
 import {BrowserRouter , Routes, Route} from "react-router-dom";
-import LoginPage from './components/LoginPage/LoginPage';
+import LoginPage from './dashboard/LoginPage/LoginPage';
+import Registration from './dashboard/Registration/Registration';
+
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path = "/registration" element = {<Registration />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes> 
     </BrowserRouter>
