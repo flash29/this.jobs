@@ -3,6 +3,7 @@ import '../Settings.css';
 import  { useParams } from "react-router-dom";
 import SettingsCard from '../SettingsCard';
 import { useState, useEffect } from 'react';
+import dp from './dp1.jpg';
 
 function Settings() {
 
@@ -22,6 +23,8 @@ function Settings() {
     const [changedTracker, setChangedTracker] = useState(false);
 
     const [updateEducation, setUpdateEducation] = useState();
+
+    const [bioTracker, setBioTracker] = useState(false);
 
     const [clickedAddEducation, setClickedAddEducation] = useState(false);
 
@@ -194,6 +197,22 @@ function Settings() {
       /********************/
       // Add update option here for education
     }
+    const [newbio, setNewBio ] = useState(userData.userBio);
+
+    const updateBio = () => {
+      console.log('new Bio', newbio);
+      setBioTracker(false);
+      setTimeout(3000);
+      setUserData({...userData, userBio: newbio });
+      console.log('after update', userData.userBio);
+    }
+    const updateBioInfo = (e) => {
+      setBioTracker(true);
+      setNewBio(e.currentTarget.textContent) ;
+      console.log('newBio', newbio);
+
+
+    }
     
 
     return (
@@ -208,16 +227,32 @@ function Settings() {
               <div className='dpAndName'>
 
                   <div className='displayPicture'>
-                        <img src='' alt='user DP' />
+                        <img src= {dp}
+                        alt='user DP' 
+                        className='profilePicture'
+                        />
                     </div>
                     <div className='UserNameProfile'>
-                        Ranjeet Mallipeddi
+                       <p> Ranjeet Mallipeddi </p> 
                     </div>
               </div>
 
-              <div className='userBio'>
+              <div
+               className='updateButton'
+               onClick={ updateBio }
+               Style= { `display: ${!bioTracker ? 'none' : 'inline'}`  }
+               >
+                 Update
+               </div>
 
-                    Bio: {userData.userBio}
+              <div 
+              className='userBio'
+              contentEditable="true"
+              onInput={e => updateBioInfo(e) } 
+              suppressContentEditableWarning={true}
+              >
+
+                    {userData.userBio}
               </div>
                
                {/* <div className='userResume'>
