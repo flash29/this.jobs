@@ -156,36 +156,49 @@ func TestGetPosts(t *testing.T) {
 	assert.Equal(t, "user01", userposts[0].CreatedBy)
 }
 
-func TestUpdateLikes(t *testing.T) {
-	type args struct {
-		c *gin.Context
-	}
-	tests := []struct {
-		name string
-		args args
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			UpdateLikes(tt.args.c)
-		})
-	}
+func TestPostComment(t *testing.T) {
+	var jsonData = []byte(`{
+		"commentData": "first comment",
+		"createdBy": "user01",
+		"post_id": 1
+	}`)
+	w, c, _ := setUpFeedController(jsonData, "/postcomment", "POST", GetPosts)
+	PostComment(c)
+	var comment models.Comment
+	err := json.Unmarshal(w.Body.Bytes(), &comment)
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusOK, w.Code)
+	assert.Equal(t, "first comment", comment.CommentData)
+	assert.Equal(t, "user01", comment.CreatedBy)
 }
 
-func TestPostComment(t *testing.T) {
-	type args struct {
-		c *gin.Context
-	}
-	tests := []struct {
-		name string
-		args args
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			PostComment(tt.args.c)
-		})
-	}
+func TestPostCommentWithInValidData(t *testing.T) {
+	var jsonData = []byte(`{
+		"commentData": "first comment",
+		"createdBy": "user01",
+		"post_id": 11
+	}`)
+	w, c, _ := setUpFeedController(jsonData, "/postcomment", "POST", GetPosts)
+	PostComment(c)
+	assert.Equal(t, http.StatusBadRequest, w.Code)
+}
+
+func TestUpdateLikes(t *testing.T) {
+	var jsonData = []byte(`{
+		"postId": 1,
+		"liked": true
+	}`)
+	w, c, _ := setUpFeedController(jsonData, "/updatelikes", "PUT", UpdateLikes)
+	UpdateLikes(c)
+	assert.Equal(t, http.StatusOK, w.Code)
+}
+
+func TestUpdateLikesWithInValidData(t *testing.T) {
+	var jsonData = []byte(`{
+		"postId": 11,
+		"liked": true
+	}`)
+	w, c, _ := setUpFeedController(jsonData, "/updatelikes", "PUT", UpdateLikes)
+	UpdateLikes(c)
+	assert.Equal(t, http.StatusBadRequest, w.Code)
 }
