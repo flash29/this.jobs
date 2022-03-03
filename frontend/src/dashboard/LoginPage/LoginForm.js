@@ -13,7 +13,7 @@ function LoginForm(props) {
 
     const handleLoginClick = () =>{
         console.log(postData);
-        fetch('http://localhost:8080/auth/login', {
+        fetch('/auth/login', {
             method : 'POST', 
             headers:{'Content-type':'application/json'},
             body:JSON.stringify(postData),
