@@ -22,14 +22,14 @@ function RegForm(props) {
             console.log(data);
             setPostData({ userName: '', userEmail : '', password : ''});
             //window.location.reload(false)
-            let path = "/login";
+            let path = "/";
             navigate(path);
         }).catch(error => console.log('error', error))
     }
 
     
     const handleLoginClick = () => {
-        let path = "/login";
+        let path = "/";
         navigate(path);
     }
 

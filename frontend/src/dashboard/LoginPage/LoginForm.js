@@ -9,20 +9,20 @@ import './LoginPage.css'
 
 function LoginForm(props) {
 
-    const [postData, setPostData] = useState({ email : '', password : ''});
+    const [postData, setPostData] = useState({ useremail : '', password : ''});
 
     const handleLoginClick = () =>{
         console.log(postData);
-        fetch('/auth/login', {
+        fetch('http://localhost:8080/auth/login', {
             method : 'POST', 
             headers:{'Content-type':'application/json'},
             body:JSON.stringify(postData),
         }).then(response => response.json()).then(data => {
             console.log(data);
-            sessionStorage.setItem(data.email, data.password);
-            setPostData({ email : '', password : ''});
+            sessionStorage.setItem(data.userEmail, data.password);
+            setPostData({ useremail : '', password : ''});
             //window.location.reload(false)
-            let path = "/";
+            let path = "/home";
             navigate(path);
         }).catch(error => console.log('error', error))
     }
@@ -38,7 +38,7 @@ function LoginForm(props) {
             <H className = "title"> this.jobs</H>
             <Form className="LoginForm" id="loginForm">
                 <FormGroup controlId="formEmail" className = "FormComp w-50">
-                    <FormControl type="email" placeholder="Email Address" className = "inpBox" onChange={(e) => setPostData({...postData, email : e.target.value}) }/>
+                    <FormControl type="email" placeholder="Email Address" className = "inpBox" onChange={(e) => setPostData({...postData, useremail : e.target.value}) }/>
                 </FormGroup>
                 <FormGroup controlId="formPassword" className = "FormComp w-50" onChange = {(e) => setPostData({...postData, password : e.target.value})}>
                     <FormControl type="password" className = "FormComp" placeholder="Password" className = "inpBox"/>

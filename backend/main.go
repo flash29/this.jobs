@@ -24,6 +24,7 @@ func main() {
 	utils.ConnectDatabase() // new
 
 	public := router.Group("/auth")
+	router.Use(Cors())
 	public.POST("/login", controllers.Login)
 	public.POST("/register", controllers.UserRegistration)
 
