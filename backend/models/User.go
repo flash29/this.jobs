@@ -15,13 +15,13 @@ type User struct {
 	UpdatedAt      int64          `json:"updatedAt"`
 	Bio            string         `gorm:"type:text" json:"bio"`
 	EducationList  []Education    `gorm:"ForeignKey:UserID" json:"education"`
-	PorjectList    []Project      `gorm:"ForeignKey:UserID" json:"projects"`
+	ProjectList    []Project      `gorm:"ForeignKey:UserID" json:"projects"`
 	JobHistoryList []JobHistory   `gorm:"ForeignKey:UserID" json:"jobhistory"`
 }
 
 type Education struct {
 	EducationId int    `gorm:"primary_key" json:"educationId"`
-	InsName     string `json:"InsName"`
+	InsName     string `json:"insName"`
 	Timeline    string `json:"timeline"`
 	Gpa         string `json:"gpa"`
 	UserID      uint   `json:"userId"`
