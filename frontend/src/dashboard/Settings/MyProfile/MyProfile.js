@@ -84,6 +84,7 @@ function Settings() {
     const clickUpdateEducation = () => {
       setUserData({...userData, education: updateEducation });
       console.log('userDataEducation', userData.education);
+      setChangedTracker(false);
       /********************/
       // Add update option here for education
     }
@@ -126,7 +127,7 @@ function Settings() {
     const changeEducationDescription = (e) => {
       setNewEducationDescription(e.target.value);
       console.log('description', newEducationDescription );
-      setChangedTracker(false);
+      
     }
 
     
