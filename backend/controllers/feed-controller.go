@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"fmt"
+	"net/http"
 	"time"
 
 	"com.uf/src/models"
@@ -16,8 +17,11 @@ func DeletePost(c *gin.Context) {
 	id := c.Params.ByName("id")
 	var post models.UserPost
 	d := utils.DB.Where("post_id = ?", id).Delete(&post)
-	fmt.Println(d)
-	c.JSON(200, gin.H{"id #" + id: "deleted"})
+	if d.Error != nil {
+		c.JSON(404, gin.H{"post with id " + id: "not found"})
+	} else {
+		c.JSON(200, gin.H{"post with id " + id: "deleted"})
+	}
 }
 
 func PostComment(c *gin.Context) {
@@ -93,20 +97,20 @@ func UpdateLikes(c *gin.Context) {
 func UpdatePost(c *gin.Context) {
 	var post models.UserPost
 	id := c.Params.ByName("id")
-	if err := utils.DB.Where("id = ?", id).First(&post).Error; err != nil {
-		c.AbortWithStatus(404)
-		fmt.Println(err)
+	if err := utils.DB.Where("post_id = ?", id).First(&post).Error; err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Unable to update post"})
+	} else {
+		c.BindJSON(&post)
+		post.UpdatedAt = time.Now().Unix()
+		utils.DB.Save(&post)
+		c.JSON(200, post)
 	}
-	c.BindJSON(&post)
-	post.UpdatedAt = time.Now().Unix()
-	utils.DB.Save(&post)
-	c.JSON(200, post)
 }
 
 func CreatePost(c *gin.Context) {
 	var post models.UserPost
 	c.BindJSON(&post)
-	fmt.Printf("%+v\n", post);
+	fmt.Printf("%+v\n", post)
 	if post.CreatedBy == "" || post.Content == "" || post.Tag == "" || contains(Tags, post.Tag) == -1 {
 		c.JSON(400, gin.H{"error": "Unable to create post"})
 	} else {
