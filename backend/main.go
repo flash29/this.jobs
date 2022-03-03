@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
+
 	"com.uf/src/controllers"
+	"com.uf/src/middleware"
 	"com.uf/src/utils"
 	"github.com/gin-gonic/gin"
-	"fmt"
 )
 
 func Cors() gin.HandlerFunc {
@@ -21,13 +23,20 @@ func main() {
 
 	utils.ConnectDatabase() // new
 
-	router.GET("/feed", controllers.GetPosts)
-	router.GET("/post/:id", controllers.GetPost)
-	router.POST("/post", controllers.CreatePost)
-	router.POST("/postcomment", controllers.PostComment)
-	router.PUT("/post/:id", controllers.UpdatePost)
-	router.PUT("/updatelikes", controllers.UpdateLikes)
-	router.DELETE("/post/:id", controllers.DeletePost)
+	public := router.Group("/auth")
+	public.POST("/login", controllers.Login)
+	public.POST("/register", controllers.UserRegistration)
+
+	protected := router.Group("")
+
+	protected.Use(middleware.JwtAuthMiddleware())
+	protected.GET("/feed", controllers.GetPosts)
+	protected.GET("/post/:id", controllers.GetPost)
+	protected.POST("/post", controllers.CreatePost)
+	protected.POST("/postcomment", controllers.PostComment)
+	protected.PUT("/post/:id", controllers.UpdatePost)
+	protected.PUT("/updatelikes", controllers.UpdateLikes)
+	protected.DELETE("/post/:id", controllers.DeletePost)
 
 	router.Run(":8080")
 }
