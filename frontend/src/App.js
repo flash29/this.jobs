@@ -7,6 +7,7 @@ import Search from './dashboard/Search/Search'
 import ErrorPage from './ErrorPage/ErrorPage'
 import Login from './Login/Login'
 import {BrowserRouter , Routes, Route} from "react-router-dom";
+import LoginPage from './components/LoginPage/LoginPage';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Route path="/connections" element={<Connections />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes> 
     </BrowserRouter>
