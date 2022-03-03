@@ -40,6 +40,13 @@ function Settings() {
     const [newExperienceDates, setNewExperienceDates ] = useState('');
     const [newExperienceDescription, setNewExperienceDescription ] = useState('');
 
+    const [changedTrackerProjects , setChangedTrackerProjects ] = useState(false);
+    const [updateProjects, setUpdateProjects ] = useState();
+    const [clickedAddProjects, setClickedAddProjects ] = useState(false);
+    const [newProjectsName, setNewProjectsName] = useState('');
+    const [newProjectsDates, setNewProjectsDates ] = useState('');
+    const [newProjectsDescription, setNewProjectsDescription ] = useState('');
+
 
 
     // setUserData();
@@ -70,6 +77,16 @@ function Settings() {
           'dates': 'May 2023 - Present',
           'description': 'Software Engineer'
         }
+      ],
+      projects: [
+        {
+          'name': 'Twitter Clone',
+          'description': 'Made Twitter using AKKA'
+        }, 
+        {
+          'name': 'Reddit',
+          'description': 'Made Reddit frontend in react'
+        }
       ]
     
     }
@@ -78,6 +95,7 @@ function Settings() {
 
       setUpdateEducation(userData.education);
       setUpdateExperience(userData.experience);
+      setUpdateProjects(userData.projects);
 
     }, []);
 
@@ -139,6 +157,7 @@ function Settings() {
         newData['description'] = newEducationDescription;
         educationData.push(newData);
         setUserData({...userData, education:  educationData });
+        setClickedAddEducation(false);
         console.log('new education');
 
     }
@@ -169,6 +188,7 @@ function Settings() {
         newData['description'] = newExperienceDescription;
         educationData.push(newData);
         setUserData({...userData, experience:  educationData });
+        setClickedAddExperience(false);
         console.log('new work experience');
 
     }
@@ -198,6 +218,61 @@ function Settings() {
       /********************/
       // Add update option here for education
     }
+
+    const changeProjectName = (e) => {
+      setNewProjectsName(e.target.value);
+      console.log('name', newProjectsName);
+    }
+
+    const changeProjectDescription = (e) => {
+      setNewProjectsDescription(e.target.value);
+      console.log('description', newProjectsDescription );
+    }
+
+    const addProject = () => {
+      console.log('clicked on add');
+      setClickedAddProjects(true);
+    }
+
+    const addUpdateProject = () => {
+        let newData = {};
+        let educationData = userData.projects;
+        newData['name'] = newProjectsName;
+        newData['description'] = newProjectsDescription;
+        educationData.push(newData);
+        setUserData({...userData, projects:  educationData });
+        setClickedAddProjects(false);
+        console.log('new work experience');
+
+    }
+    const upDateProjectJson = (tar, i, e) => {
+      
+      let education = userData.projects;
+        // console.log('here i is', i);
+        // console.log('target is', e.currentTarget.textContent);
+        // console.log(userData.experience[i][tar]);
+        // console.log('education', education);
+        education[i][tar] = e.currentTarget.textContent;
+        // console.log('updated education', education);
+        setChangedTrackerProjects(true);
+      //  setChangedTracker(true);
+        setUpdateProjects(education);
+
+        // setUserData({...userData, education: education });
+
+        // console.log('userDataEducation', userData.education);
+
+    }
+
+    const clickUpdateProject = () => {
+
+      setUserData({...userData, projects: updateProjects });
+      console.log('userDataEducation', userData.projects);
+      setChangedTrackerProjects(false);
+      /********************/
+      // Add update option here for education
+    }
+
     const [newbio, setNewBio ] = useState(userData.userBio);
 
     const updateBio = () => {
@@ -474,6 +549,95 @@ function Settings() {
                         className='EduDescription' 
                         contentEditable="true"
                         onInput={e => upDateExperienceJson('description', i, e) } 
+                        suppressContentEditableWarning={true}
+                        >
+                         {education.description}
+                        </div>
+                      </>
+                    );
+                  })
+                }
+              </div>
+
+              </div>
+
+              <div
+               className='updateButton'
+               onClick={ clickUpdateProject }
+               Style= { `display: ${!changedTrackerProjects ? 'none' : 'inline'}`  }
+               >
+                 Update
+               </div>
+
+              <div className='Education' >
+
+                  <div className='headerAndAdd'>
+
+                      <div className='headingSegment'>
+                          Projects 
+                          
+                      </div>
+
+                      <div 
+                      className='addbutton'
+                      onClick={addProject }
+                      >
+                          Add
+                      </div>
+                  </div> 
+             
+                  <div 
+                  className='addEducation' 
+                  Style= { `display: ${!clickedAddProjects ? 'none' : 'flex'}`  }
+                  >
+                      <div className='addItems'> 
+                        Project Name: 
+                        <input 
+                        type="text" 
+                        name="name" 
+                        className='newNameEducation' 
+                        onChange={ (e) => changeProjectName(e) }
+                        /> 
+                      </div>
+
+                      <div className='addItems addDescription' > 
+                        Description
+                        <input 
+                        type="text" 
+                        name="description" 
+                        className='newDescriptionEducation'
+                        onChange={ (e) => changeProjectDescription(e) }
+                        /> 
+                      </div>
+
+                      <div 
+                      className='addItems updateAddButton' 
+                      onClick = { addUpdateProject }
+                      > 
+                        Update
+                      </div>
+
+                  </div>
+
+
+              <div>
+                {
+                  userData.projects.map((education, i)=>{
+                    return(
+                      <>
+                        <div 
+                        className='EduHeader' 
+                        contentEditable="true"
+                        onInput={e => upDateProjectJson('name', i, e) } 
+                        suppressContentEditableWarning={true}
+                        >
+                            {education.name}
+                        </div>
+
+                        <div 
+                        className='EduDescription' 
+                        contentEditable="true"
+                        onInput={e => upDateProjectJson('description', i, e) } 
                         suppressContentEditableWarning={true}
                         >
                          {education.description}
