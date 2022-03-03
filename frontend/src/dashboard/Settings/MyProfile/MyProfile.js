@@ -23,11 +23,20 @@ function Settings() {
 
     const [updateEducation, setUpdateEducation] = useState();
 
-    const [clickedAdd, setClickedAdd] = useState(false);
+    const [clickedAddEducation, setClickedAddEducation] = useState(false);
 
     const [newEducationName, setNewEducationName] = useState('');
     const [newEducationDates, setNewEducationDates ] = useState('');
     const [newEducationDescription, setNewEducationDescription ] = useState('');
+
+
+    const [changedTrackerExperience, setChangedTrackerExperience ] = useState(false);
+    const [updateExperience, setUpdateExperience ] = useState();
+    const [clickedAddExperience, setClickedAddExperience ] = useState(false);
+    const [newExperienceName, setNewExperienceName] = useState('');
+    const [newExperienceDates, setNewExperienceDates ] = useState('');
+    const [newExperienceDescription, setNewExperienceDescription ] = useState('');
+
 
 
     // setUserData();
@@ -46,11 +55,26 @@ function Settings() {
           'description': 'GPA : 7.89/ 10'
         }
       ], 
-      userBio: 'Actively Looking for Summer Internships || Ex-Quantium ' 
+      userBio: 'Actively Looking for Summer Internships || Ex-Quantium ' ,
+      experience: [
+        {
+          'name': 'Quantium',
+          'dates': 'Jan 2020 - July 2020',
+          'description': 'Data Analyst - Intern'
+        }, 
+        {
+          'name': 'Meta',
+          'dates': 'May 2023 - Present',
+          'description': 'Software Engineer'
+        }
+      ]
     
     }
       
       )
+
+      setUpdateEducation(userData.education);
+      setUpdateExperience(userData.experience);
 
     }, []);
 
@@ -63,7 +87,7 @@ function Settings() {
 
     const addEducation = () => {
       console.log('clicked on add');
-      setClickedAdd(true);
+      setClickedAddEducation(true);
     }
 
 
@@ -99,8 +123,10 @@ function Settings() {
     const changeEducationDescription = (e) => {
       setNewEducationDescription(e.target.value);
       console.log('description', newEducationDescription );
+      setChangedTracker(false);
     }
 
+    
     const addUpdateEducation= () => {
         let newData = {};
         let educationData = userData.education;
@@ -113,6 +139,61 @@ function Settings() {
 
     }
 
+    const changeExperiencenName = (e) => {
+      setNewExperienceName(e.target.value);
+      console.log('name', newExperienceName);
+    }
+
+    const changeExperienceDates = (e) => {
+      setNewExperienceDates(e.target.value);
+      console.log('dates', newExperienceDates );
+    }
+
+    const changeExperienceDescription = (e) => {
+      setNewExperienceDescription(e.target.value);
+      console.log('description', newExperienceDescription );
+    }
+    const addExperience = () => {
+      console.log('clicked on add');
+      setClickedAddExperience(true);
+    }
+    const addUpdateExperience = () => {
+        let newData = {};
+        let educationData = userData.experience;
+        newData['name'] = newExperienceName;
+        newData['dates'] = newExperienceDates;
+        newData['description'] = newExperienceDescription;
+        educationData.push(newData);
+        setUserData({...userData, experience:  educationData });
+        console.log('new work experience');
+
+    }
+    const upDateExperienceJson= (tar, i, e) => {
+      
+      let education = userData.experience;
+        // console.log('here i is', i);
+        // console.log('target is', e.currentTarget.textContent);
+        // console.log(userData.experience[i][tar]);
+        // console.log('education', education);
+        education[i][tar] = e.currentTarget.textContent;
+        // console.log('updated education', education);
+        setChangedTrackerExperience(true);
+      //  setChangedTracker(true);
+        setUpdateExperience(education);
+
+        // setUserData({...userData, education: education });
+
+        // console.log('userDataEducation', userData.education);
+
+    }
+
+    const clickUpdateExperience = () => {
+      setUserData({...userData, experience: updateExperience });
+      console.log('userDataEducation', userData.experience);
+      setChangedTrackerExperience(false);
+      /********************/
+      // Add update option here for education
+    }
     
 
     return (
@@ -172,7 +253,7 @@ function Settings() {
 
                       <div 
                       className='addbutton'
-                      onClick={addEducation}
+                      onClick={addEducation }
                       >
                           Add
                       </div>
@@ -180,7 +261,7 @@ function Settings() {
              
                   <div 
                   className='addEducation' 
-                  Style= { `display: ${!clickedAdd ? 'none' : 'flex'}`  }
+                  Style= { `display: ${!clickedAddEducation ? 'none' : 'flex'}`  }
                   >
                       <div className='addItems'> 
                         College/University: 
@@ -249,6 +330,114 @@ function Settings() {
                         className='EduDescription' 
                         contentEditable="true"
                         onInput={e => upDateEduJson('description', i, e) } 
+                        suppressContentEditableWarning={true}
+                        >
+                         {education.description}
+                        </div>
+                      </>
+                    );
+                  })
+                }
+              </div>
+
+              </div>
+
+              <div
+               className='updateButton'
+               onClick={ clickUpdateExperience }
+               Style= { `display: ${!changedTrackerExperience ? 'none' : 'inline'}`  }
+               >
+                 Update
+               </div>
+
+              <div className='Education' >
+
+                  <div className='headerAndAdd'>
+
+                      <div className='headingSegment'>
+                          Work Experience  
+                          
+                      </div>
+
+                      <div 
+                      className='addbutton'
+                      onClick={addExperience }
+                      >
+                          Add
+                      </div>
+                  </div> 
+             
+                  <div 
+                  className='addEducation' 
+                  Style= { `display: ${!clickedAddExperience ? 'none' : 'flex'}`  }
+                  >
+                      <div className='addItems'> 
+                        Organisation: 
+                        <input 
+                        type="text" 
+                        name="name" 
+                        className='newNameEducation' 
+                        onChange={ (e) => changeExperiencenName(e) }
+                        /> 
+                      </div>
+
+                      <div className='addItems' > 
+                        Dates: 
+                        <input 
+                        type="text" 
+                        name="dates" 
+                        className='newDatesEducation'
+                        onChange={ (e) => changeExperienceDates(e) }
+                        /> 
+                      </div>
+
+                      <div className='addItems addDescription' > 
+                        Description
+                        <input 
+                        type="text" 
+                        name="description" 
+                        className='newDescriptionEducation'
+                        onChange={ (e) => changeExperienceDescription(e) }
+                        /> 
+                      </div>
+
+                      <div 
+                      className='addItems updateAddButton' 
+                      onClick = { addUpdateExperience}
+                      > 
+                        Update
+                      </div>
+
+                  </div>
+
+
+              <div>
+                {
+                  userData.experience.map((education, i)=>{
+                    return(
+                      <>
+                        <div 
+                        className='EduHeader' 
+                        contentEditable="true"
+                        onInput={e => upDateExperienceJson('name', i, e) } 
+                        suppressContentEditableWarning={true}
+                        >
+                            {education.name}
+                        </div>
+
+                        <div 
+                        className='EduDates' 
+                        contentEditable="true"
+                        onInput={e => upDateExperienceJson('dates', i, e) } 
+                        suppressContentEditableWarning={true}
+                        >
+                         {education.dates}
+                        </div>
+
+                        <div 
+                        className='EduDescription' 
+                        contentEditable="true"
+                        onInput={e => upDateExperienceJson('description', i, e) } 
                         suppressContentEditableWarning={true}
                         >
                          {education.description}
