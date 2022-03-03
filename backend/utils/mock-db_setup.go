@@ -3,13 +3,10 @@ package utils
 import (
 	"com.uf/src/models"
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
-var DB *gorm.DB
-
-func ConnectDatabase() {
-	database, err := gorm.Open("sqlite3", "jobs.db")
+func MockConnectDatabase() {
+	database, err := gorm.Open("sqlite3", "../mockjobs.db")
 	database.LogMode(true)
 	if err != nil {
 		panic("Failed to connect to database!")
