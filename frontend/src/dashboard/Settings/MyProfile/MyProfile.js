@@ -2,10 +2,118 @@ import NavBar from '../../../components/NavBar/NavBar'
 import '../Settings.css';
 import  { useParams } from "react-router-dom";
 import SettingsCard from '../SettingsCard';
+import { useState, useEffect } from 'react';
 
 function Settings() {
 
-    let params = useParams();
+  //  let params = useParams();
+
+    const [userData, setUserData] = useState({
+      imageData : '',
+      userName : '',
+      userBio: '',
+      projects: [],
+      experience: [],
+      education: [],
+      resume: '',
+      test: ''
+    });
+
+    const [changedTracker, setChangedTracker] = useState(false);
+
+    const [updateEducation, setUpdateEducation] = useState();
+
+    const [clickedAdd, setClickedAdd] = useState(false);
+
+    const [newEducationName, setNewEducationName] = useState('');
+    const [newEducationDates, setNewEducationDates ] = useState('');
+    const [newEducationDescription, setNewEducationDescription ] = useState('');
+
+
+    // setUserData();
+    useEffect(()=>{
+
+      
+      setUserData({...userData, education: [
+        {
+          'name': 'University Of Florida',
+          'dates': 'Aug 2021 - May 2023',
+          'description': 'GPA : 3.89/ 4'
+        },
+        {
+          'name': 'JNTUH',
+          'dates': 'Aug 2016 - May 2021',
+          'description': 'GPA : 7.89/ 10'
+        }
+      ], 
+      userBio: 'Actively Looking for Summer Internships || Ex-Quantium ' 
+    
+    }
+      
+      )
+
+    }, []);
+
+    const clickUpdateEducation = () => {
+      setUserData({...userData, education: updateEducation });
+      console.log('userDataEducation', userData.education);
+      /********************/
+      // Add update option here for education
+    }
+
+    const addEducation = () => {
+      console.log('clicked on add');
+      setClickedAdd(true);
+    }
+
+
+    const upDateEduJson= (tar, i, e) => {
+      
+      let education = userData.education;
+        console.log('here i is', i);
+        console.log('target is', e.currentTarget.textContent);
+        console.log(userData.education[i][tar]);
+        console.log('education', education);
+        education[i][tar] = e.currentTarget.textContent;
+        console.log('updated education', education);
+        setChangedTracker(true);
+        setUpdateEducation(education);
+
+        // setUserData({...userData, education: education });
+
+        // console.log('userDataEducation', userData.education);
+
+    }
+
+
+    const changeEducationName = (e) => {
+      setNewEducationName(e.target.value);
+      console.log('name', newEducationName);
+    }
+
+    const changeEducationDates = (e) => {
+      setNewEducationDates(e.target.value);
+      console.log('dates', newEducationDates );
+    }
+
+    const changeEducationDescription = (e) => {
+      setNewEducationDescription(e.target.value);
+      console.log('description', newEducationDescription );
+    }
+
+    const addUpdateEducation= () => {
+        let newData = {};
+        let educationData = userData.education;
+        newData['name'] = newEducationName;
+        newData['dates'] = newEducationDates;
+        newData['description'] = newEducationDescription;
+        educationData.push(newData);
+        setUserData({...userData, education:  educationData });
+        console.log('new education');
+
+    }
+
+    
 
     return (
       <div className="App">
@@ -16,10 +124,147 @@ function Settings() {
           
               <div className='contentBoxSettings'>
 
-                <div className='displayPicture'>
-                    <img src='' alt='user DP' />
-                </div>
-                this is {params.userid} 
+              <div className='dpAndName'>
+
+                  <div className='displayPicture'>
+                        <img src='' alt='user DP' />
+                    </div>
+                    <div className='UserNameProfile'>
+                        Ranjeet Mallipeddi
+                    </div>
+              </div>
+
+              <div className='userBio'>
+
+                    Bio: {userData.userBio}
+              </div>
+               
+               {/* <div className='userResume'>
+                    {
+                      userData.resume ===''
+                      ?
+                      <>
+                      Please Upload your resume here
+                      </>
+                      :
+                      <>
+                        Here is your
+                      </>
+                    }
+               </div> */}  
+
+               <div
+               className='updateButton'
+               onClick={ clickUpdateEducation }
+               Style= { `display: ${!changedTracker ? 'none' : 'inline'}`  }
+               >
+                 Update
+               </div>
+
+              <div className='Education' >
+
+                  <div className='headerAndAdd'>
+
+                      <div className='headingSegment'>
+                          Education 
+                          
+                      </div>
+
+                      <div 
+                      className='addbutton'
+                      onClick={addEducation}
+                      >
+                          Add
+                      </div>
+                  </div> 
+             
+                  <div 
+                  className='addEducation' 
+                  Style= { `display: ${!clickedAdd ? 'none' : 'flex'}`  }
+                  >
+                      <div className='addItems'> 
+                        College/University: 
+                        <input 
+                        type="text" 
+                        name="name" 
+                        className='newNameEducation' 
+                        onChange={ (e) => changeEducationName(e) }
+                        /> 
+                      </div>
+
+                      <div className='addItems' > 
+                        Dates: 
+                        <input 
+                        type="text" 
+                        name="dates" 
+                        className='newDatesEducation'
+                        onChange={ (e) => changeEducationDates(e) }
+                        /> 
+                      </div>
+
+                      <div className='addItems addDescription' > 
+                        Description
+                        <input 
+                        type="text" 
+                        name="description" 
+                        className='newDescriptionEducation'
+                        onChange={ (e) => changeEducationDescription(e) }
+                        /> 
+                      </div>
+
+                      <div 
+                      className='addItems updateAddButton' 
+                      onClick = { addUpdateEducation}
+                      > 
+                        Update
+                      </div>
+
+                  </div>
+
+
+              <div>
+                {
+                  userData.education.map((education, i)=>{
+                    return(
+                      <>
+                        <div 
+                        className='EduHeader' 
+                        contentEditable="true"
+                        onInput={e => upDateEduJson('name', i, e) } 
+                        suppressContentEditableWarning={true}
+                        >
+                            {education.name}
+                        </div>
+
+                        <div 
+                        className='EduDates' 
+                        contentEditable="true"
+                        onInput={e => upDateEduJson('dates', i, e) } 
+                        suppressContentEditableWarning={true}
+                        >
+                         {education.dates}
+                        </div>
+
+                        <div 
+                        className='EduDescription' 
+                        contentEditable="true"
+                        onInput={e => upDateEduJson('description', i, e) } 
+                        suppressContentEditableWarning={true}
+                        >
+                         {education.description}
+                        </div>
+                      </>
+                    );
+                  })
+                }
+              </div>
+
+              </div>
+
+               
+
+
+                
               </div>
           </div>
           
