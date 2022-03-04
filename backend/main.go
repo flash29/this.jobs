@@ -32,9 +32,23 @@ func main() {
 	protected.Use(middleware.JwtAuthMiddleware())
 	protected.GET("/feed", controllers.GetPosts)
 	protected.GET("/post/:id", controllers.GetPost)
+	protected.GET("/userprofile/:id", controllers.GetUserProfile)
+
+	protected.PUT("/updatepic", controllers.UpdateProfilePic)
 	protected.POST("/post", controllers.CreatePost)
+
+	protected.POST("/addjob", controllers.AddJobDetails)
+	protected.PUT("/updatejob", controllers.UpdateJobDetails)
+
+	protected.POST("/addproject", controllers.AddProjectDetails)
+	protected.PUT("/updateproject", controllers.UpdateProjectDetails)
+
+	protected.PUT("/updatebio", controllers.UpdateBio)
+
 	protected.POST("/postcomment", controllers.PostComment)
+	protected.POST("/addeducation", controllers.AddEducationDetails)
 	protected.PUT("/post/:id", controllers.UpdatePost)
+	protected.PUT("/updateducation", controllers.UpdateEducationDetails)
 	protected.PUT("/updatelikes", controllers.UpdateLikes)
 	protected.DELETE("/post/:id", controllers.DeletePost)
 
