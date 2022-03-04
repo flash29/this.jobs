@@ -10,8 +10,11 @@ function Home() {
   const [posts, setPosts] = useState();
 
   async function getPosts () {
-      fetch('/feed')
-        .then(res => res.json())
+      fetch('/feed', {
+        //headers:{'Content-type':'application/json'},
+        headers:{'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
+        //body:JSON.stringify(postData),
+    }).then(res => res.json())
         .then(res => setPosts(res) )
         .catch(error => console.log('error getting Feed'))
   }
