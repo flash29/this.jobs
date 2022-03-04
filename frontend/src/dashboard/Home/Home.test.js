@@ -34,7 +34,11 @@ test('PostBox rendered right', () => {
     expect(TextInputComponent).toMatchSnapshot();
 });
 
-
-
+test('PostCard rendered right', () => {  
+    const TextInputComponent = renderer.create(<BrowserRouter>
+        <PostCard />
+      </BrowserRouter>).toJSON();
+    expect(TextInputComponent).toMatchSnapshot();
+});
 
 

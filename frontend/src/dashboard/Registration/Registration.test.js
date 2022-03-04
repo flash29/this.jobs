@@ -47,14 +47,14 @@ test("password input field working", () => {
     expect(screen.queryByPlaceholderText(/Password/i)).toBeInTheDocument();
 });
 
-test('Login Button test', () => {
-    const {debug, getByText} = render(<BrowserRouter>
-        <RegPage />
-      </BrowserRouter>);
-    expect(getByText('Login').tagName).toBe('BUTTON')
-    fireEvent.click(getByText('Login'))
-    //debug()
-});
+// test('Login Button test', () => {
+//     const {debug, getByText} = render(<BrowserRouter>
+//         <RegPage />
+//       </BrowserRouter>);
+//     expect(getByText('Login').tagName).toBe('BUTTON')
+//     fireEvent.click(getByText('Login'))
+//     //debug()
+// });
 
 test('Registration Button test', () => {
     const {debug, getByText} = render(<BrowserRouter>
