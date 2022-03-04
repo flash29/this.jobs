@@ -34,7 +34,7 @@ URL: `<base_url>/auth/register`
 
 Request Method: `POST`
 
-![](./assets/register.png)
+![](./assets/register.PNG)
 
 Id associated to the user is an auto-incrementing value and is assigned directly in the database. `userName, userEmail` and `password` are required fields to register any user. All other user related details can be updated later in the profile section.
 Response:
@@ -44,7 +44,7 @@ Possible Response status : `201, 400`
 Example: Response status 201
 The user has been registered and the response with status 201 shows the newly created user details.
 
-![](./assets/register_response.png)
+![](./assets/register_response.PNG)
 
 #### Login
 
@@ -52,7 +52,7 @@ URL: `<base_url>/auth/login`
 
 Request Method: `POST`
 
-![](./assets/login.png)
+![](./assets/login.PNG)
 Both `useremail` and `password` are required. 
 Response:
 
@@ -62,13 +62,13 @@ Example:
 
 Response status : `200`
 
-![](./assets/login_response.png)
+![](./assets/login_response.PNG)
 
 #### Get User Profile
 URL: `<base_url>/userprofile/:id`
 
 Request Method: `GET`
-![](./assets/getprofile.png)
+![](./assets/getprofile.PNG)
 Possible Response status: `200, 404`
 
 Message format: `json`
@@ -77,19 +77,13 @@ Example
 
 Code: 200 OK
 
-![](./assets/getprofile_response.png)
+![](./assets/getprofile_response.PNG)
 #### Update Profile Picture
 URL: `<base_url>/updatepic`
 
 Request Method: `PUT`
 
-Payload: 
-```
-{
-        "userId": 1,
-        "picture": "base64 string"
-}
-```
+![](./assets/updatepicture.PNG)
 All the fields are mandatory
 
 Possible Response status: `200, 400`
@@ -111,7 +105,7 @@ URL: `<base_url>/updatebio`
 
 Request Method: `PUT`
 
-![](./assets/updatebio.png)
+![](./assets/updatebio.PNG)
 All the fields are mandatory
 
 Possible Response status: `200, 400`
@@ -122,21 +116,13 @@ Example
 
 Code: 200 OK
 
-![](./assets/updatebio_response.png)
+![](./assets/updatebio_response.PNG)
 #### Add Education Details
 URL: `<base_url>/addeducation`
 
 Request Method: `POST`
 
-Payload: 
-```
-{
-        "insName": "UF",
-        "timeline": "string format of time",
-        "gpa" : "",
-        "userId" : 1
-}
-```
+![](./assets/addeducation.PNG)
 
 Possible Response status: `201, 400`
 
@@ -160,7 +146,7 @@ URL: `<base_url>/addjob`
 
 Request Method: `POST`
 
-![](./assets/addjob.png)
+![](./assets/addjob.PNG)
 
 Possible Response status: `201, 400`
 
@@ -170,12 +156,12 @@ Example
 
 Code: 200 OK
 
-![](./assets/addjob_response.png)
+![](./assets/addjob_response.PNG)
 
 #### Add Project Details
 URL: `<base_url>/addproject`
 
-![](./assets/addproject.png)
+![](./assets/addproject.PNG)
 
 
 Possible Response status: `201, 400`
@@ -186,23 +172,14 @@ Example
 
 Code: 201 Created
 
-![](./assets/addproject_response.png)
+![](./assets/addproject_response.PNG)
 
 #### Update Education Details
 URL: `<base_url>/updateducation`
 
 Request Method: `PUT`
 
-Payload: 
-```
-{
-        "educationId" : 1,
-        "insName": "UF",
-        "timeline": "string format of time",
-        "gpa" : "",
-        "userId" : 1
-}
-```
+![](./assets/updateeducation.PNG)
 educationId and userId are mandatory
 
 Possible Response status: `201, 400`
@@ -228,7 +205,7 @@ URL: `<base_url>/updatejob`
 
 Request Method: `PUT`
 
-![](./assets/updatejob.png)
+![](./assets/updatejob.PNG)
 jobHistoryId and userId are mandatory
 
 Possible Response status: `201, 400`
@@ -239,7 +216,7 @@ Example
 
 Code: 200 OK
 
-![](./assets/updatejob_response.png)
+![](./assets/updatejob_response.PNG)
 
 
 #### Update Project Details
@@ -247,7 +224,7 @@ URL: `<base_url>/updateproject`
 
 Request Method: `PUT`
 
-![](./assets/updateproject.png)
+![](./assets/updateproject.PNG)
 projectId and userId are mandatory
 
 Possible Response status: `201, 400`
@@ -258,7 +235,7 @@ Example
 
 Code: 200 OK
 
-![](./assets/updateproject_response.png)
+![](./assets/updateproject_response.PNG)
 
 ### Frontend accomplishments
 - Created the homepage of the application
@@ -272,5 +249,5 @@ Frontend demo link is found [here]()
 
 ### Frontend HomePage
 
-![](./assets/HomePage.PNG)
+![](./assets/HomePage.png)
 
