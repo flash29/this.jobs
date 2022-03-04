@@ -40,20 +40,20 @@ func setUpUserProfileController(data []byte, url string, method string, handler 
 
 func TestGetUserProfile(t *testing.T) {
 
-	w, c, _ := setUpUserProfileController([]byte{}, "/userprofile/1", "GET", GetPost)
+	w, c, _ := setUpUserProfileController([]byte{}, "/userprofile/1", "GET", GetUserProfile)
 	c.Params = []gin.Param{
 		{
 			Key:   "id",
 			Value: "1",
 		},
 	}
-	GetPost(c)
+	GetUserProfile(c)
 	var user models.User
 	err := json.Unmarshal(w.Body.Bytes(), &user)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusOK, w.Code)
 	assert.Equal(t, "First User", user.UserName)
-	assert.Equal(t, "firstuser@ufl.edu", user.UserEmail)
+	assert.Equal(t, "firstuser123@ufl.edu", user.UserEmail)
 }
 
 func TestUpdateProfilePic(t *testing.T) {
@@ -116,58 +116,71 @@ func TestUpdateEducationDetails(t *testing.T) {
 	// assert.Equal(t, http.StatusNotFound, w.Code)
 }
 func TestAddJobDetails(t *testing.T) {
-	// w, c, _ := setUpUserProfileController([]byte{}, "/post/1", "GET", GetPost)
-	// c.Params = []gin.Param{
-	// 	{
-	// 		Key:   "id",
-	// 		Value: "1",
-	// 	},
-	// }
-	// GetPost(c)
-	// var post models.UserPost
-	// err := json.Unmarshal(w.Body.Bytes(), &post)
-	// assert.NoError(t, err)
-	// assert.Equal(t, http.StatusOK, w.Code)
-	// assert.Equal(t, "content updation", post.Content)
-	// assert.Equal(t, "user01", post.CreatedBy)
+	var jsonData = []byte(`{
+		"company" : "company 123",
+		"timeline" : "Aug 2021 - May 2023",
+		"position" : "second position",
+		"userId" : 1
+	}`)
+	w, c, _ := setUpUserProfileController(jsonData, "/addjob", "POST", AddJobDetails)
+	AddJobDetails(c)
+	var job models.JobHistory
+	err := json.Unmarshal(w.Body.Bytes(), &job)
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusCreated, w.Code)
+	assert.Equal(t, "Aug 2021 - May 2023", job.Timeline)
+	assert.Equal(t, "company 123", job.Company)
 }
 
 func TestUpdateJobDetails(t *testing.T) {
-	// w, c, _ := setUpUserProfileController([]byte{}, "/post/1", "GET", GetPost)
-	// c.Params = []gin.Param{
-	// 	{
-	// 		Key:   "id",
-	// 		Value: "11",
-	// 	},
-	// }
-	// GetPost(c)
-	// assert.Equal(t, http.StatusNotFound, w.Code)
+	var jsonData = []byte(`{
+		"jobHistoryId" : 1,
+		"company" : "company 123",
+		"timeline" : "Aug 2023 - May 2025",
+		"position" : "second position",
+		"userId" : 1
+	}`)
+	w, c, _ := setUpUserProfileController(jsonData, "/updatejob", "PUT", UpdateJobDetails)
+
+	UpdateJobDetails(c)
+	var job models.JobHistory
+	err := json.Unmarshal(w.Body.Bytes(), &job)
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusOK, w.Code)
+	assert.Equal(t, "Aug 2023 - May 2025", job.Timeline)
 }
 func TestAddProjectDetails(t *testing.T) {
-	// w, c, _ := setUpUserProfileController([]byte{}, "/feed", "GET", GetPosts)
-	// GetPosts(c)
-	// var userposts []models.UserPost
-	// err := json.Unmarshal(w.Body.Bytes(), &userposts)
-	// assert.NoError(t, err)
-	// assert.Equal(t, http.StatusOK, w.Code)
-	// assert.Equal(t, "content updation", userposts[0].Content)
-	// assert.Equal(t, "user01", userposts[0].CreatedBy)
+	var jsonData = []byte(`{
+		"projName" : "proj sample",
+		"description" : "some desc",
+		"userId" : 1
+	}`)
+	w, c, _ := setUpUserProfileController(jsonData, "/addproject", "POST", AddProjectDetails)
+	AddProjectDetails(c)
+	var project models.Project
+	err := json.Unmarshal(w.Body.Bytes(), &project)
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusCreated, w.Code)
+	assert.Equal(t, "proj sample", project.ProjName)
+	assert.Equal(t, uint(1), project.UserID)
 }
 
 func TestUpdateProjectDetails(t *testing.T) {
-	// var jsonData = []byte(`{
-	// 	"commentData": "first comment",
-	// 	"createdBy": "user01",
-	// 	"post_id": 1
-	// }`)
-	// w, c, _ := setUpUserProfileController(jsonData, "/postcomment", "POST", GetPosts)
-	// PostComment(c)
-	// var comment models.Comment
-	// err := json.Unmarshal(w.Body.Bytes(), &comment)
-	// assert.NoError(t, err)
-	// assert.Equal(t, http.StatusOK, w.Code)
-	// assert.Equal(t, "first comment", comment.CommentData)
-	// assert.Equal(t, "user01", comment.CreatedBy)
+	var jsonData = []byte(`{
+		"projectId" : 1,
+		"projName" : "proj sample12",
+		"description" : "some desc12",
+		"userId" : 1
+	}`)
+	w, c, _ := setUpUserProfileController(jsonData, "/updateproject", "PUT", UpdateProjectDetails)
+
+	UpdateProjectDetails(c)
+	var project models.Project
+	err := json.Unmarshal(w.Body.Bytes(), &project)
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusOK, w.Code)
+	assert.Equal(t, "proj sample12", project.ProjName)
+	assert.Equal(t, uint(1), project.UserID)
 }
 
 func TestUpdateBio(t *testing.T) {
