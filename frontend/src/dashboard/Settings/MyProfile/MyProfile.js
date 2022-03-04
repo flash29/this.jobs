@@ -4,13 +4,14 @@ import  { useParams } from "react-router-dom";
 import SettingsCard from '../SettingsCard';
 import { useState, useEffect } from 'react';
 import dp from './dp1.jpg';
+import React from 'react';
 
 function Settings() {
 
   //  let params = useParams();
 
     const [userData, setUserData] = useState({
-      imageData : '',
+      imageData : dp,
       userName : '',
       userBio: '',
       projects: [],
@@ -44,7 +45,6 @@ function Settings() {
     const [updateProjects, setUpdateProjects ] = useState();
     const [clickedAddProjects, setClickedAddProjects ] = useState(false);
     const [newProjectsName, setNewProjectsName] = useState('');
-    const [newProjectsDates, setNewProjectsDates ] = useState('');
     const [newProjectsDescription, setNewProjectsDescription ] = useState('');
 
 
@@ -278,7 +278,7 @@ function Settings() {
     const updateBio = () => {
       console.log('new Bio', newbio);
       setBioTracker(false);
-      setTimeout(3000);
+      setTimeout(10000);
       setUserData({...userData, userBio: newbio });
       console.log('after update', userData.userBio);
     }
@@ -289,6 +289,33 @@ function Settings() {
 
 
     }
+
+    const hiddenFileInput = React.useRef(null);
+
+    const handleClick = event => {
+      hiddenFileInput.current.click();
+  };
+
+  const [base64File, setBase64URL] = useState('');
+
+  const handleFileInputChange = e => {
+      console.log(e.target.files[0]);
+      const reader = new FileReader();
+
+      reader.onload = function() {
+          setBase64URL(reader.result);
+          setUserData({...userData, imageData : reader.result })
+      console.log('result', reader.result);
+      console.log("file result", base64File);
+      console.log('userdata', userData);
+      }
+      if(e.target.files[0]){
+      reader.readAsDataURL(e.target.files[0]);
+      console.log('reader',reader);
+      }
+      
+  };
+
     
 
     return (
@@ -303,7 +330,7 @@ function Settings() {
               <div className='dpAndName'>
 
                   <div className='displayPicture'>
-                        <img src= {dp}
+                        <img src= { userData.imageData }
                         alt='user DP' 
                         className='profilePicture'
                         />
@@ -312,6 +339,16 @@ function Settings() {
                        <p> Ranjeet Mallipeddi </p> 
                     </div>
               </div>
+
+              <div onClick={handleClick} className='changeDP'>
+                  Change Display Picture 
+                  <input
+                  type="file"
+                  ref = {hiddenFileInput}
+                  style={{display: 'none'}}
+                  onChange = {handleFileInputChange}/>
+              </div>
+                        
 
               <div
                className='updateButton'

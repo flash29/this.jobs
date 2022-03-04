@@ -35,7 +35,7 @@
     border-style: solid;
     border-color: black;
     width: 35em;
-    height: 80em;
+    height: 70em;
     display: flex;
     margin-top: 3em;
     flex-direction: column;
@@ -49,11 +49,12 @@
 
 .UserNameProfile{
     font-weight: bold;
+    width: 10em;
 }
 
 .dpAndName{
     display: flex;
-    width: 10em;
+    width: 14em;
     height: 8em;
 }
 
@@ -185,4 +186,19 @@ input:focus {
     width: 8em;
     margin: 0.8em;
     border-radius: 50%;
+}
+
+.changeDP{
+    display: flex;
+    margin-top: 1.4em;
+    margin-left: 0.4em;
+    background-color: black;
+    color: aliceblue;
+    padding: 0.4em;
+    width: 11em;
+}
+
+.changeDP:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
