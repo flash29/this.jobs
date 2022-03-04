@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { useState} from 'react';
 import {Form, FormGroup, FormControl, Button } from 'react-bootstrap';
-import { useNavigate } from "react-router-dom";
+import { Route, useNavigate } from "react-router-dom";
 import {H} from 'react-headings';
+import TestRenderer from 'react-test-renderer';
 import './LoginPage.css'
 
 
@@ -16,10 +17,11 @@ function LoginForm(props) {
         fetch('/auth/login', {
             method : 'POST', 
             headers:{'Content-type':'application/json'},
+            //headers:{'Authorization' : 'Bearer '}
             body:JSON.stringify(postData),
         }).then(response => response.json()).then(data => {
             console.log(data);
-            sessionStorage.setItem(data.userEmail, data.password);
+            sessionStorage.setItem("token", data.token);
             setPostData({ useremail : '', password : ''});
             //window.location.reload(false)
             let path = "/home";
@@ -34,7 +36,7 @@ function LoginForm(props) {
     }
 
     return (
-        <div className = "divStyle">
+        <div className = "divStyle" data-testid={props["data-testid"]}>
             <H className = "title"> this.jobs</H>
             <Form className="LoginForm" id="loginForm">
                 <FormGroup controlId="formEmail" className = "FormComp w-50">
@@ -43,11 +45,11 @@ function LoginForm(props) {
                 <FormGroup controlId="formPassword" className = "FormComp w-50" onChange = {(e) => setPostData({...postData, password : e.target.value})}>
                     <FormControl type="password" className = "FormComp" placeholder="Password" className = "inpBox"/>
                 </FormGroup>
-                <FormGroup controlId="formSubmit" className = "FormComp">
-                    <Button  className = "buttonStyle" onClick={handleLoginClick}>
+                <FormGroup data-testid = "formSubmit" controlId="formSubmit" className = "FormComp" >
+                    <Button  className = "buttonStyle" data-testid = "login" onClick={handleLoginClick}>
                         Login
                     </Button>
-                    <Button  className = "buttonStyle"  onClick={handleRegisterClick}>
+                    <Button  className = "buttonStyle" data-testid = "reg" onClick={handleRegisterClick}>
                         Register
                     </Button>
                 </FormGroup>

@@ -35,7 +35,8 @@ function RegForm(props) {
 
     return (
         <div className = "divStyle">
-            <H className = "title"> this.jobs</H>
+            <H className = "title"> this.jobs </H>
+            <H></H>
             <Form className="LoginForm" id="loginForm">
                 <FormGroup controlId="formEmail" className = "FormComp w-50">
                     <FormControl placeholder="Enter your name" className = "inpBox" onChange={(e) => setPostData({...postData, userName : e.target.value}) }/>

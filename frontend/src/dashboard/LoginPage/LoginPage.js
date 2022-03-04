@@ -5,8 +5,8 @@ import './LoginPage.css';
 class LoginPage extends Component{
     render() {
         return (
-            <div className = "LoginPage">
-                <LoginForm/>
+            <div className = "LoginPage" data-testid = "LoginPage">
+                <LoginForm data-testid = "loginForm"/>
             </div>
         );
     }
