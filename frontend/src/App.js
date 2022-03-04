@@ -24,7 +24,7 @@ function App() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/settings/profile/:userid" element={<MyProfile />} />
         <Route path="/settings/changepassword" element={<ChangePassword />} />
-        <Route path="/login" element={<Login />} />
+        {/* <Route path="/login" element={<Login />} /> */}
 
         <Route path="/home" element={<Home />} />
         <Route path = "/registration" element = {<Registration />} />

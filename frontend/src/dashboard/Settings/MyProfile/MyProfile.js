@@ -21,6 +21,9 @@ function Settings() {
       test: ''
     });
 
+    let token = sessionStorage.getItem('token');
+    let userid = sessionStorage.getItem('userid');
+
     const [changedTracker, setChangedTracker] = useState(false);
 
     const [updateEducation, setUpdateEducation] = useState();
@@ -52,46 +55,66 @@ function Settings() {
     // setUserData();
     useEffect(()=>{
 
+
+      fetch('/userprofile/1', {
+        method : 'GET',
+        headers:{
+          'Content-type':'application/json',
+          'Authorization': 'Bearer ' + token
+        }, 
+        }).then(response => response.json())
+          .then(data => {
+              console.log('here is the data for userProfile', data);
+              setUserData({...userData, 
+                education : data.education,
+                userBio : data.bio,
+                experience: data.jobhistory,
+                projects: data.projects,
+                imageData: data.picture
+
+                });
+          }).catch(error => console.log('error', error))
+
       
-      setUserData({...userData, education: [
-        {
-          'name': 'University Of Florida',
-          'dates': 'Aug 2021 - May 2023',
-          'description': 'GPA : 3.89/ 4'
-        },
-        {
-          'name': 'JNTUH',
-          'dates': 'Aug 2016 - May 2021',
-          'description': 'GPA : 7.89/ 10'
-        }
-      ], 
-      userBio: 'Actively Looking for Summer Internships || Ex-Quantium ' ,
-      experience: [
-        {
-          'name': 'Quantium',
-          'dates': 'Jan 2020 - July 2020',
-          'description': 'Data Analyst - Intern'
-        }, 
-        {
-          'name': 'Meta',
-          'dates': 'May 2023 - Present',
-          'description': 'Software Engineer'
-        }
-      ],
-      projects: [
-        {
-          'name': 'Twitter Clone',
-          'description': 'Made Twitter using AKKA'
-        }, 
-        {
-          'name': 'Reddit',
-          'description': 'Made Reddit frontend in react'
-        }
-      ]
+    //   setUserData({...userData, education: [
+    //     {
+    //       'name': 'University Of Florida',
+    //       'dates': 'Aug 2021 - May 2023',
+    //       'description': 'GPA : 3.89/ 4'
+    //     },
+    //     {
+    //       'name': 'JNTUH',
+    //       'dates': 'Aug 2016 - May 2021',
+    //       'description': 'GPA : 7.89/ 10'
+    //     }
+    //   ], 
+    //   userBio: 'Actively Looking for Summer Internships || Ex-Quantium ' ,
+    //   experience: [
+    //     {
+    //       'name': 'Quantium',
+    //       'dates': 'Jan 2020 - July 2020',
+    //       'description': 'Data Analyst - Intern'
+    //     }, 
+    //     {
+    //       'name': 'Meta',
+    //       'dates': 'May 2023 - Present',
+    //       'description': 'Software Engineer'
+    //     }
+    //   ],
+    //   projects: [
+    //     {
+    //       'name': 'Twitter Clone',
+    //       'description': 'Made Twitter using AKKA'
+    //     }, 
+    //     {
+    //       'name': 'Reddit',
+    //       'description': 'Made Reddit frontend in react'
+    //     }
+    //   ]
     
-    }
+    // }
       
-      )
+    //   )
 
       setUpdateEducation(userData.education);
       setUpdateExperience(userData.experience);
@@ -277,15 +300,37 @@ function Settings() {
 
     const updateBio = () => {
       console.log('new Bio', newbio);
-      setBioTracker(false);
-      setTimeout(10000);
       setUserData({...userData, userBio: newbio });
+      setBioTracker(false);
+      
       console.log('after update', userData.userBio);
+
+      console.log('userid', userid);
+
+      fetch('/updatebio', {
+        method : 'PUT',
+        headers:{
+          'Content-type':'application/json',
+          'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({
+          "userId": Number(userid),
+          "bio": newbio 
+        }) 
+        }).then(response => response.json())
+          .then(data => {
+              console.log('here is the data for updating bio', data);
+          }).catch(error => console.log('error', error))
+
     }
+
+
     const updateBioInfo = (e) => {
       setBioTracker(true);
       setNewBio(e.currentTarget.textContent) ;
       console.log('newBio', newbio);
+
+      
 
 
     }
@@ -305,6 +350,23 @@ function Settings() {
       reader.onload = function() {
           setBase64URL(reader.result);
           setUserData({...userData, imageData : reader.result })
+
+          fetch('/updatepic', {
+            method : 'PUT',
+            headers:{
+              'Content-type':'application/json',
+              'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify({
+              "userId": Number(userid),
+              "picture": reader.result
+            }) 
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('here is the data for updating bio', data);
+              }).catch(error => console.log('error', error))
+
+
       console.log('result', reader.result);
       console.log("file result", base64File);
       console.log('userdata', userData);
