@@ -22,7 +22,11 @@ const Button1 = styled.button`
 
 function PostBox(props){
 
-        const [postData, setPostData] = useState({ createdBy : 'user1', content : '', tag : '', attachments : ''});  
+        const [postData, setPostData] = useState({ 
+            createdBy : 'user1', 
+            content : '', tag : '', 
+            attachments : ''
+        });  
         const [base64File, setBase64URL] = useState('');
 
         const handleFileInputChange = e => {
