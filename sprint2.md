@@ -160,15 +160,7 @@ URL: `<base_url>/addjob`
 
 Request Method: `POST`
 
-Payload: 
-```
-{
-        "company" : "company 123",
-	"timeline" : "some time123",
-	"position" : "second position",
-	"userId" : 2
-}
-```
+![](./assets/addjob.png)
 
 Possible Response status: `201, 400`
 
@@ -178,29 +170,13 @@ Example
 
 Code: 200 OK
 
-```
-{
-        "jobHistoryId" : 1,
-        "company" : "company 123",
-	"timeline" : "some time123",
-	"position" : "second position",
-	"userId" : 2
-}
-```
+![](./assets/addjob_response.png)
 
 #### Add Project Details
 URL: `<base_url>/addproject`
 
-Request Method: `POST`
+![](./assets/addproject.png)
 
-Payload: 
-```
-{
-        "projName" : "proj sample12",
-	"description" : "some desc12",
-	"userId" : 2
-}
-```
 
 Possible Response status: `201, 400`
 
@@ -208,16 +184,9 @@ Message format: `json`
 
 Example
 
-Code: 200 OK
+Code: 201 Created
 
-```
-{
-        "projectId" : 1,
-        "projName" : "proj sample12",
-	"description" : "some desc12",
-	"userId" : 2
-}
-```
+![](./assets/addproject_response.png)
 
 #### Update Education Details
 URL: `<base_url>/updateducation`
@@ -259,16 +228,7 @@ URL: `<base_url>/updatejob`
 
 Request Method: `PUT`
 
-Payload: 
-```
-{
-        "jobHistoryId": 1,
-	"company" : "company 123",
-	"timeline" : "some time123",
-	"position" : "second position",
-	"userId" : 2
-}
-```
+![](./assets/updatejob.png)
 jobHistoryId and userId are mandatory
 
 Possible Response status: `201, 400`
@@ -279,65 +239,15 @@ Example
 
 Code: 200 OK
 
-```
-{
-        "jobHistoryId": 1,
-	"company" : "company 123",
-	"timeline" : "some time123",
-	"position" : "second position",
-	"userId" : 2
-}
-```
+![](./assets/updatejob_response.png)
 
-#### Update Job Details
-URL: `<base_url>/updatjob`
-
-Request Method: `PUT`
-
-Payload: 
-```
-{
-        "jobHistoryId": 1,
-	"company" : "company 123",
-	"timeline" : "some time123",
-	"position" : "second position",
-	"userId" : 2
-}
-```
-jobHistoryId and userId are mandatory
-
-Possible Response status: `201, 400`
-
-Message format: `json`
-
-Example
-
-Code: 200 OK
-
-```
-{
-        "jobHistoryId": 1,
-	"company" : "company 123",
-	"timeline" : "some time123",
-	"position" : "second position",
-	"userId" : 2
-}
-```
 
 #### Update Project Details
 URL: `<base_url>/updateproject`
 
 Request Method: `PUT`
 
-Payload: 
-```
-{
-        "projectId" : 1,
-	"projName" : "proj sample12",
-	"description" : "some desc12",
-	"userId" : 2
-}
-```
+![](./assets/updateproject.png)
 projectId and userId are mandatory
 
 Possible Response status: `201, 400`
@@ -348,14 +258,7 @@ Example
 
 Code: 200 OK
 
-```
-{
-  "projectId" : 1,
-	"projName" : "proj sample12",
-	"description" : "some desc12",
-	"userId" : 2
-}
-```
+![](./assets/updateproject_response.png)
 
 ### Frontend accomplishments
 - Created the homepage of the application
