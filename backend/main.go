@@ -43,6 +43,8 @@ func main() {
 	protected.POST("/addproject", controllers.AddProjectDetails)
 	protected.PUT("/updateproject", controllers.UpdateProjectDetails)
 
+	protected.PUT("/updatebio", controllers.UpdateBio)
+
 	protected.POST("/postcomment", controllers.PostComment)
 	protected.POST("/addeducation", controllers.AddEducationDetails)
 	protected.PUT("/post/:id", controllers.UpdatePost)

@@ -124,3 +124,18 @@ func UpdateProjectDetails(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to update project details"})
 	}
 }
+
+func UpdateBio(c *gin.Context) {
+	var user models.User
+	c.BindJSON(&user)
+
+	var userProfile models.User
+
+	if err := utils.DB.Where("user_id = ?", user.UserID).First(&userProfile).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve user profile"})
+	} else {
+		userProfile.Bio = user.Bio
+		utils.DB.Save(&userProfile)
+		c.JSON(http.StatusOK, gin.H{"message": "Successfully Updated Bio"})
+	}
+}
