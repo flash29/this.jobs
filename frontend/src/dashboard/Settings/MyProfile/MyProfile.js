@@ -21,6 +21,11 @@ function Settings() {
       test: ''
     });
 
+    const [updateEducationTracker , setUpdateEducationTracker] = useState(null);
+    const [updateExperienceTracker , setUpdateExperienceTracker] = useState(null);
+    const [updateProjectTracker , setUpdateProjectTracker] = useState(null);
+
+
     let token = sessionStorage.getItem('token');
     let userid = sessionStorage.getItem('userid');
 
@@ -124,6 +129,27 @@ function Settings() {
 
     const clickUpdateEducation = () => {
       setUserData({...userData, education: updateEducation });
+
+      fetch('/updateducation', {
+        method : 'PUT',
+        headers:{
+          'Content-type':'application/json',
+          'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({
+          "educationId" : userData.education[updateEducationTracker-1].educationId,
+          "insName": userData.education[updateEducationTracker-1].insName ,
+          "timeline": userData.education[updateEducationTracker-1].timeline,
+          "gpa" : userData.education[updateEducationTracker-1].gpa,
+          "userId" : Number(userid)
+        }) 
+        }).then(response => response.json())
+          .then(data => {
+              console.log('here is the data for updating education', data);
+          }).catch(error => console.log('error', error))
+
+
+
       console.log('userDataEducation', userData.education);
       setChangedTracker(false);
       /********************/
@@ -139,20 +165,24 @@ function Settings() {
     const upDateEduJson= (tar, i, e) => {
       
       let education = userData.education;
+
+      
         console.log('here i is', i);
         console.log('target is', e.currentTarget.textContent);
-        console.log(userData.education[i][tar]);
+        console.log( userData.education[i][tar] );
+
+        setUpdateEducationTracker(userData.education[i]['educationId']);
+
+
         console.log('education', education);
         education[i][tar] = e.currentTarget.textContent;
         console.log('updated education', education);
         setChangedTracker(true);
         setUpdateEducation(education);
-
-        // setUserData({...userData, education: education });
-
-        // console.log('userDataEducation', userData.education);
+        console.log('tracker', updateEducationTracker);
 
     }
+
 
 
     const changeEducationName = (e) => {
@@ -175,11 +205,33 @@ function Settings() {
     const addUpdateEducation= () => {
         let newData = {};
         let educationData = userData.education;
-        newData['name'] = newEducationName;
-        newData['dates'] = newEducationDates;
-        newData['description'] = newEducationDescription;
+        newData['insName'] = newEducationName;
+        newData['timeline'] = newEducationDates;
+        newData['gpa'] = newEducationDescription;
         educationData.push(newData);
         setUserData({...userData, education:  educationData });
+
+
+
+        fetch('/addeducation', {
+          method : 'POST',
+          headers:{
+            'Content-type':'application/json',
+            'Authorization': 'Bearer ' + token
+          },
+          body: JSON.stringify({
+            "userId": Number(userid),
+            "insName": newEducationName,
+            "timeline": newEducationDates,
+            "gpa" : newEducationDescription,
+          }) 
+          }).then(response => response.json())
+            .then(data => {
+                console.log('here is the data for updating bio', data);
+            }).catch(error => console.log('error', error))
+
+
+
         setClickedAddEducation(false);
         console.log('new education');
 
@@ -206,13 +258,30 @@ function Settings() {
     const addUpdateExperience = () => {
         let newData = {};
         let educationData = userData.experience;
-        newData['name'] = newExperienceName;
-        newData['dates'] = newExperienceDates;
-        newData['description'] = newExperienceDescription;
+        newData['company'] = newExperienceName;
+        newData['timeline'] = newExperienceDates;
+        newData['position'] = newExperienceDescription;
         educationData.push(newData);
         setUserData({...userData, experience:  educationData });
         setClickedAddExperience(false);
         console.log('new work experience');
+
+        fetch('/addjob', {
+          method : 'POST',
+          headers:{
+            'Content-type':'application/json',
+            'Authorization': 'Bearer ' + token
+          },
+          body: JSON.stringify({
+            "userId": Number(userid),
+            "company": newExperienceName,
+            "timeline": newExperienceDates,
+            "position" : newExperienceDescription,
+          }) 
+          }).then(response => response.json())
+            .then(data => {
+                console.log('here is the data for updating experience', data);
+            }).catch(error => console.log('error', error))
 
     }
     const upDateExperienceJson= (tar, i, e) => {
@@ -228,6 +297,8 @@ function Settings() {
       //  setChangedTracker(true);
         setUpdateExperience(education);
 
+        setUpdateExperienceTracker(userData.experience[i]['jobHistoryId']);
+        console.log('exp tracker', updateExperienceTracker);
         // setUserData({...userData, education: education });
 
         // console.log('userDataEducation', userData.education);
@@ -238,6 +309,26 @@ function Settings() {
       setUserData({...userData, experience: updateExperience });
       console.log('userDataEducation', userData.experience);
       setChangedTrackerExperience(false);
+
+
+      fetch('/updatejob', {
+        method : 'PUT',
+        headers:{
+          'Content-type':'application/json',
+          'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({
+          "jobHistoryId" : userData.experience[updateExperienceTracker-1].jobHistoryId,
+          "company": userData.experience[updateExperienceTracker-1].company ,
+          "timeline": userData.experience[updateExperienceTracker-1].timeline,
+          "position" : userData.experience[updateExperienceTracker-1].position,
+          "userId" : Number(userid)
+        }) 
+        }).then(response => response.json())
+          .then(data => {
+              console.log('here is the data for updating expereince', data);
+          }).catch(error => console.log('error', error))
+
       /********************/
       // Add update option here for education
     }
@@ -260,12 +351,29 @@ function Settings() {
     const addUpdateProject = () => {
         let newData = {};
         let educationData = userData.projects;
-        newData['name'] = newProjectsName;
+        newData['projName'] = newProjectsName;
         newData['description'] = newProjectsDescription;
         educationData.push(newData);
         setUserData({...userData, projects:  educationData });
         setClickedAddProjects(false);
         console.log('new work experience');
+
+        fetch('/addproject', {
+          method : 'POST',
+          headers:{
+            'Content-type':'application/json',
+            'Authorization': 'Bearer ' + token
+          },
+          body: JSON.stringify({
+            "userId": Number(userid),
+            "projName": newProjectsName,
+            "description" : newProjectsDescription,
+          }) 
+          }).then(response => response.json())
+            .then(data => {
+                console.log('here is the data for updating project', data);
+            }).catch(error => console.log('error', error))
+
 
     }
     const upDateProjectJson = (tar, i, e) => {
@@ -281,6 +389,8 @@ function Settings() {
       //  setChangedTracker(true);
         setUpdateProjects(education);
 
+        setUpdateProjectTracker(userData.projects[i]['projectId']);
+
         // setUserData({...userData, education: education });
 
         // console.log('userDataEducation', userData.education);
@@ -294,6 +404,23 @@ function Settings() {
       setChangedTrackerProjects(false);
       /********************/
       // Add update option here for education
+
+      fetch('/updateproject', {
+        method : 'PUT',
+        headers:{
+          'Content-type':'application/json',
+          'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({
+          "projectId" : userData.projects[updateProjectTracker-1].projectId,
+          "projName": userData.projects[updateProjectTracker-1].projName ,
+          "description" : userData.projects[updateProjectTracker-1].description,
+          "userId" : Number(userid)
+        }) 
+        }).then(response => response.json())
+          .then(data => {
+              console.log('here is the data for updating expereince', data);
+          }).catch(error => console.log('error', error))
     }
 
     const [newbio, setNewBio ] = useState(userData.userBio);
@@ -521,28 +648,28 @@ function Settings() {
                         <div 
                         className='EduHeader' 
                         contentEditable="true"
-                        onInput={e => upDateEduJson('name', i, e) } 
+                        onInput={e => upDateEduJson('insName', i, e) } 
                         suppressContentEditableWarning={true}
                         >
-                            {education.name}
+                            {education.insName}
                         </div>
 
                         <div 
                         className='EduDates' 
                         contentEditable="true"
-                        onInput={e => upDateEduJson('dates', i, e) } 
+                        onInput={e => upDateEduJson('timeline', i, e) } 
                         suppressContentEditableWarning={true}
                         >
-                         {education.dates}
+                         {education.timeline}
                         </div>
 
                         <div 
                         className='EduDescription' 
                         contentEditable="true"
-                        onInput={e => upDateEduJson('description', i, e) } 
+                        onInput={e => upDateEduJson('gpa', i, e) } 
                         suppressContentEditableWarning={true}
                         >
-                         {education.description}
+                         {education.gpa}
                         </div>
                       </>
                     );
@@ -629,28 +756,28 @@ function Settings() {
                         <div 
                         className='EduHeader' 
                         contentEditable="true"
-                        onInput={e => upDateExperienceJson('name', i, e) } 
+                        onInput={e => upDateExperienceJson('company', i, e) } 
                         suppressContentEditableWarning={true}
                         >
-                            {education.name}
+                            {education.company}
                         </div>
 
                         <div 
                         className='EduDates' 
                         contentEditable="true"
-                        onInput={e => upDateExperienceJson('dates', i, e) } 
+                        onInput={e => upDateExperienceJson('timeline', i, e) } 
                         suppressContentEditableWarning={true}
                         >
-                         {education.dates}
+                         {education.timeline}
                         </div>
 
                         <div 
                         className='EduDescription' 
                         contentEditable="true"
-                        onInput={e => upDateExperienceJson('description', i, e) } 
+                        onInput={e => upDateExperienceJson('position', i, e) } 
                         suppressContentEditableWarning={true}
                         >
-                         {education.description}
+                         {education.position}
                         </div>
                       </>
                     );
@@ -727,10 +854,10 @@ function Settings() {
                         <div 
                         className='EduHeader' 
                         contentEditable="true"
-                        onInput={e => upDateProjectJson('name', i, e) } 
+                        onInput={e => upDateProjectJson('projName', i, e) } 
                         suppressContentEditableWarning={true}
                         >
-                            {education.name}
+                            {education.projName}
                         </div>
 
                         <div 
