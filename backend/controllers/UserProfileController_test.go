@@ -57,15 +57,51 @@ func TestGetUserProfile(t *testing.T) {
 }
 
 func TestUpdateProfilePic(t *testing.T) {
+	var jsonData = []byte(`{
+		"picture" : "some picture",
+		"userId" : 1
+	}`)
 
+	w, c, _ := setUpUserProfileController(jsonData, "/updatepic", "PUT", UpdateProfilePic)
+	UpdateProfilePic(c)
+	expected := `{"message":"Profile photo uploaded successfully"}`
+	assert.Equal(t, http.StatusOK, w.Code)
+	assert.Equal(t, expected, w.Body.String())
 }
 
 func TestAddEducationDetails(t *testing.T) {
-
+	var jsonData = []byte(`{
+		"insName" : "Meta",
+		"timeline" : "Aug 2021 - May 2023",
+		"gpa" : "4/4",
+		"userId" : 1
+	}`)
+	w, c, _ := setUpUserProfileController(jsonData, "/addeducation", "POST", AddEducationDetails)
+	AddEducationDetails(c)
+	var education models.Education
+	err := json.Unmarshal(w.Body.Bytes(), &education)
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusCreated, w.Code)
+	assert.Equal(t, "Aug 2021 - May 2023", education.Timeline)
+	assert.Equal(t, "4/4", education.Gpa)
 }
 
 func TestUpdateEducationDetails(t *testing.T) {
-
+	var jsonData = []byte(`{
+		"educationId":1,
+		"insName" : "MetaFB",
+		"timeline" : "Aug 2021 - May 2023",
+		"gpa" : "3.9/4",
+		"userId" : 1
+	}`)
+	w, c, _ := setUpUserProfileController(jsonData, "/addeducation", "PUT", UpdateEducationDetails)
+	UpdateEducationDetails(c)
+	var education models.Education
+	err := json.Unmarshal(w.Body.Bytes(), &education)
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusOK, w.Code)
+	assert.Equal(t, "Aug 2021 - May 2023", education.Timeline)
+	assert.Equal(t, "3.9/4", education.Gpa)
 }
 func TestAddJobDetails(t *testing.T) {
 	var jsonData = []byte(`{
