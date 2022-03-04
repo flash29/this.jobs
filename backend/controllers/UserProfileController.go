@@ -64,3 +64,33 @@ func UpdateEducationDetails(c *gin.Context) {
 	}
 
 }
+
+func AddProjectDetails(c *gin.Context) {
+	var project models.Project
+	c.BindJSON(&project)
+
+	var user models.User
+	result := utils.DB.Where("user_id = ?", project.UserID).First(&user)
+
+	if result != nil && result.RowsAffected == 1 {
+		utils.DB.Create(&project)
+		c.JSON(http.StatusCreated, project)
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to add project details"})
+	}
+}
+
+func UpdateProjectDetails(c *gin.Context) {
+	var inpProject models.Project
+	c.BindJSON(&inpProject)
+
+	var project models.Project
+	result := utils.DB.Where(" project_id= ?", inpProject.ProjectId).First(&project)
+
+	if result != nil && result.RowsAffected == 1 {
+		utils.DB.Save(&inpProject)
+		c.JSON(http.StatusOK, inpProject)
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to update project details"})
+	}
+}

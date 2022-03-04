@@ -33,8 +33,13 @@ func main() {
 	protected.GET("/feed", controllers.GetPosts)
 	protected.GET("/post/:id", controllers.GetPost)
 	protected.GET("/userprofile/:id", controllers.GetUserProfile)
+
 	protected.PUT("/updatepic", controllers.UpdateProfilePic)
 	protected.POST("/post", controllers.CreatePost)
+
+	protected.POST("/addproject", controllers.AddProjectDetails)
+	protected.PUT("/updateproject", controllers.UpdateProjectDetails)
+
 	protected.POST("/postcomment", controllers.PostComment)
 	protected.POST("/addeducation", controllers.AddEducationDetails)
 	protected.PUT("/post/:id", controllers.UpdatePost)
