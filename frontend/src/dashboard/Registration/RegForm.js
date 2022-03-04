@@ -50,9 +50,9 @@ function RegForm(props) {
                     <Button  className = "buttonStyle"  onClick={handleRegisterClick}>
                         Register
                     </Button>
-                    <Button  className = "buttonStyle"  onClick={handleLoginClick}>
+                    {/* <Button  className = "buttonStyle"  onClick={handleLoginClick}>
                         Login
-                    </Button>
+                    </Button> */}
                 </FormGroup>
             </Form>
         </div>
