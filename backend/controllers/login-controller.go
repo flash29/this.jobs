@@ -22,13 +22,13 @@ func Login(c *gin.Context) {
 	u.UserEmail = input.UserEmail
 	u.Password = input.Password
 
-	result, err := utils.LoginCheck(u.UserEmail, u.Password)
+	result, err, userId := utils.LoginCheck(u.UserEmail, u.Password)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": result})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"token": result})
+	c.JSON(http.StatusOK, gin.H{"token": result, "userId": userId})
 
 }
