@@ -3,37 +3,33 @@ import { useState} from 'react';
 import {Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import {H} from 'react-headings';
-import './LoginPage.css'
+import './Registration.css'
 
 
 
-function LoginForm(props) {
+function RegForm(props) {
 
-    const [postData, setPostData] = useState({ useremail : '', password : ''});
+    const [postData, setPostData] = useState({ userName : '', userEmail : '', password : ''});
+    let navigate = useNavigate();
 
-    const handleLoginClick = () =>{
+    const handleRegisterClick = () =>{
         console.log(postData);
-        fetch('/auth/login', {
-            method : 'POST',
+        fetch('/auth/register', {
+            method : 'POST', 
             headers:{'Content-type':'application/json'},
             body:JSON.stringify(postData),
         }).then(response => response.json()).then(data => {
             console.log(data);
-            sessionStorage.setItem(data.userEmail, data.password);
-            sessionStorage.setItem('userid', data.userId);
-            sessionStorage.setItem('token', data.token);
-            console.log('stored token', sessionStorage.getItem('token') );
-            console.log('userid stored', sessionStorage.getItem('userid')   );
-            setPostData({ useremail : '', password : ''});
+            setPostData({ userName: '', userEmail : '', password : ''});
             //window.location.reload(false)
-            let path = "/home";
+            let path = "/";
             navigate(path);
         }).catch(error => console.log('error', error))
     }
 
-    let navigate = useNavigate();
-    const handleRegisterClick = () => {
-        let path = "/registration";
+    
+    const handleLoginClick = () => {
+        let path = "/";
         navigate(path);
     }
 
@@ -42,18 +38,21 @@ function LoginForm(props) {
             <H className = "title"> this.jobs</H>
             <Form className="LoginForm" id="loginForm">
                 <FormGroup controlId="formEmail" className = "FormComp w-50">
-                    <FormControl type="email" placeholder="Email Address" className = "inpBox" onChange={(e) => setPostData({...postData, useremail : e.target.value}) }/>
+                    <FormControl placeholder="Enter your name" className = "inpBox" onChange={(e) => setPostData({...postData, userName : e.target.value}) }/>
+                </FormGroup>
+                <FormGroup className = "FormComp w-50">
+                    <FormControl type="email" placeholder="Email Address" className = "inpBox" onChange={(e) => setPostData({...postData, userEmail : e.target.value}) }/>
                 </FormGroup>
                 <FormGroup controlId="formPassword" className = "FormComp w-50" onChange = {(e) => setPostData({...postData, password : e.target.value})}>
                     <FormControl type="password" className = "FormComp" placeholder="Password" className = "inpBox"/>
                 </FormGroup>
                 <FormGroup controlId="formSubmit" className = "FormComp">
-                    <Button  className = "buttonStyle" onClick={handleLoginClick}>
-                        Login
-                    </Button>
                     <Button  className = "buttonStyle"  onClick={handleRegisterClick}>
                         Register
                     </Button>
+                    {/* <Button  className = "buttonStyle"  onClick={handleLoginClick}>
+                        Login
+                    </Button> */}
                 </FormGroup>
             </Form>
         </div>
@@ -61,4 +60,4 @@ function LoginForm(props) {
 }
 
 
-export default LoginForm;
+export default RegForm;
