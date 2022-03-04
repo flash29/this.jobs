@@ -37,6 +37,9 @@ func main() {
 	protected.PUT("/updatepic", controllers.UpdateProfilePic)
 	protected.POST("/post", controllers.CreatePost)
 
+	protected.POST("/addjob", controllers.AddJobDetails)
+	protected.PUT("/updatejob", controllers.UpdateJobDetails)
+
 	protected.POST("/addproject", controllers.AddProjectDetails)
 	protected.PUT("/updateproject", controllers.UpdateProjectDetails)
 

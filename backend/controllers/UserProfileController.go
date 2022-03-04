@@ -65,6 +65,36 @@ func UpdateEducationDetails(c *gin.Context) {
 
 }
 
+func AddJobDetails(c *gin.Context) {
+	var job models.JobHistory
+	c.BindJSON(&job)
+
+	var user models.User
+	result := utils.DB.Where("user_id = ?", job.UserID).First(&user)
+
+	if result != nil && result.RowsAffected == 1 {
+		utils.DB.Create(&job)
+		c.JSON(http.StatusCreated, job)
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to add job details"})
+	}
+}
+
+func UpdateJobDetails(c *gin.Context) {
+	var inpJob models.JobHistory
+	c.BindJSON(&inpJob)
+
+	var job models.JobHistory
+	result := utils.DB.Where(" job_history_id= ?", inpJob.JobHistoryId).First(&job)
+
+	if result != nil && result.RowsAffected == 1 {
+		utils.DB.Save(&inpJob)
+		c.JSON(http.StatusOK, inpJob)
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to update job details"})
+	}
+}
+
 func AddProjectDetails(c *gin.Context) {
 	var project models.Project
 	c.BindJSON(&project)
