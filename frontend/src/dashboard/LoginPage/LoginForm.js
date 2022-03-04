@@ -13,7 +13,7 @@ function LoginForm(props) {
     const [postData, setPostData] = useState({ useremail : '', password : ''});
 
     const handleLoginClick = () =>{
-        console.log(postData);
+        //console.log(postData);
         fetch('/auth/login', {
             method : 'POST', 
             headers:{'Content-type':'application/json'},

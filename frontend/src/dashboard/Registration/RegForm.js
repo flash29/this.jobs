@@ -13,13 +13,13 @@ function RegForm(props) {
     let navigate = useNavigate();
 
     const handleRegisterClick = () =>{
-        console.log(postData);
+        //console.log(postData);
         fetch('/auth/register', {
             method : 'POST', 
             headers:{'Content-type':'application/json'},
             body:JSON.stringify(postData),
         }).then(response => response.json()).then(data => {
-            console.log(data);
+            //console.log(data);
             setPostData({ userName: '', userEmail : '', password : ''});
             //window.location.reload(false)
             let path = "/";
