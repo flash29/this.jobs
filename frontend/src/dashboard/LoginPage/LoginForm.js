@@ -20,6 +20,10 @@ function LoginForm(props) {
         }).then(response => response.json()).then(data => {
             console.log(data);
             sessionStorage.setItem(data.userEmail, data.password);
+            sessionStorage.setItem('userid', data.userId);
+            sessionStorage.setItem('token', data.token);
+            console.log('stored token', sessionStorage.getItem('token') );
+            console.log('userid stored', sessionStorage.getItem('userid')   );
             setPostData({ useremail : '', password : ''});
             //window.location.reload(false)
             let path = "/home";
