@@ -57,63 +57,15 @@ func TestGetUserProfile(t *testing.T) {
 }
 
 func TestUpdateProfilePic(t *testing.T) {
-	// var jsonData = []byte(`{
-	// 	"content": "abc123",
-	// 	"createdBy": "user01",
-	// 	"tag": ""
-	// }`)
 
-	// w, c, r := setUpUserProfileController(jsonData, "/post", "POST", CreatePost)
-	// r.ServeHTTP(w, c.Request)
-	// assert.Equal(t, http.StatusBadRequest, w.Code)
-
-	// expected := `{"error":"Unable to create post"}`
-	// assert.Equal(t, expected, w.Body.String())
 }
 
 func TestAddEducationDetails(t *testing.T) {
-	// var jsonData = []byte(`{
-	// 	"content": "content updation",
-	// 	"createdBy": "user01",
-	// 	"tag": "Job-Recruitment"
-	// }`)
-	// w, c, _ := setUpUserProfileController(jsonData, "/post/1", "PUT", UpdatePost)
-	// c.Params = []gin.Param{
-	// 	{
-	// 		Key:   "id",
-	// 		Value: "1",
-	// 	},
-	// }
-	// //r.ServeHTTP(w, c.Request)
-	// UpdatePost(c)
-	// var post models.UserPost
-	// err := json.Unmarshal(w.Body.Bytes(), &post)
-	// assert.NoError(t, err)
 
-	// assert.Equal(t, http.StatusOK, w.Code)
-	// assert.Equal(t, "content updation", post.Content)
-	// assert.Equal(t, "user01", post.CreatedBy)
 }
 
 func TestUpdateEducationDetails(t *testing.T) {
-	// var jsonData = []byte(`{
-	// 	"content": "content updation",
-	// 	"createdBy": "user01",
-	// 	"tag": "Job-Recruitment"
-	// }`)
-	// w, c, _ := setUpUserProfileController(jsonData, "/post/11", "PUT", UpdatePost)
-	// c.Params = []gin.Param{
-	// 	{
-	// 		Key:   "id",
-	// 		Value: "11",
-	// 	},
-	// }
-	// //r.ServeHTTP(w, c.Request)
-	// UpdatePost(c)
-	// var post models.UserPost
-	// err := json.Unmarshal(w.Body.Bytes(), &post)
-	// assert.NoError(t, err)
-	// assert.Equal(t, http.StatusNotFound, w.Code)
+
 }
 func TestAddJobDetails(t *testing.T) {
 	var jsonData = []byte(`{
@@ -184,12 +136,15 @@ func TestUpdateProjectDetails(t *testing.T) {
 }
 
 func TestUpdateBio(t *testing.T) {
-	// var jsonData = []byte(`{
-	// 	"commentData": "first comment",
-	// 	"createdBy": "user01",
-	// 	"post_id": 11
-	// }`)
-	// w, c, _ := setUpUserProfileController(jsonData, "/postcomment", "POST", GetPosts)
-	// PostComment(c)
-	// assert.Equal(t, http.StatusBadRequest, w.Code)
+	var jsonData = []byte(`{
+		"bio" : "some bio",
+		"userId" : 1
+	}`)
+	w, c, _ := setUpUserProfileController(jsonData, "/updatebio", "PUT", UpdateBio)
+
+	UpdateBio(c)
+	var user models.User
+	err := json.Unmarshal(w.Body.Bytes(), &user)
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusOK, w.Code)
 }
