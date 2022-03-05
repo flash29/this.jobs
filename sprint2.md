@@ -242,24 +242,28 @@ Code: 200 OK
 
 #### Unit Tests
 
-A mock database will be created and unit tests will be performed on the data from mock DB.
+A mock database is created and unit tests are performed on the data from mock DB. The below sections show the unit testing output along with their coverage
 #### User Registration
 
 Test cases include User registartion with valid and invalid details and also registering the same user twice.
 
-![](./assets/register_test.PNG)
+![](./assets/registration_unit_tests.png)
 
 #### User Login
 
 Test cases include user login with valid and invalid credentials
 
-![](./assets/login_test.PNG)
+![](./assets/login_unit_tests.png)
 
 #### User Proflie
 
 Test cases are included to check the addition and updation of education details, projects and jobs along with bio and display picture updation.
-![](./assets/userprofile_test.PNG)
+![](./assets/user_profile_unit_tests.png)
 
+#### Feed
+
+Test cases are included to check the retrieval of feed, posting of new feed, comments ,likes etc.
+![](./assets/feed-unit-tests.png)
 
 ### Frontend accomplishments
 Main (Goals reached): 
