@@ -13,7 +13,7 @@ function LoginForm(props) {
     const [postData, setPostData] = useState({ useremail : '', password : ''});
 
     const handleLoginClick = () =>{
-        console.log(postData);
+        //console.log(postData);
         fetch('/auth/login', {
             method : 'POST',
             headers:{'Content-type':'application/json'},
@@ -21,15 +21,11 @@ function LoginForm(props) {
             body:JSON.stringify(postData),
         }).then(response => response.json()).then(data => {
             console.log(data);
-<<<<<<< HEAD
-            sessionStorage.setItem("token", data.token);
-=======
             sessionStorage.setItem(data.userEmail, data.password);
             sessionStorage.setItem('userid', data.userId);
             sessionStorage.setItem('token', data.token);
             console.log('stored token', sessionStorage.getItem('token') );
             console.log('userid stored', sessionStorage.getItem('userid')   );
->>>>>>> 3e9a4c0e330fc0830126ae1b88e80dcae4c136fc
             setPostData({ useremail : '', password : ''});
             //window.location.reload(false)
             let path = "/home";
@@ -51,7 +47,7 @@ function LoginForm(props) {
                     <FormControl type="email" placeholder="Email Address" className = "inpBox" onChange={(e) => setPostData({...postData, useremail : e.target.value}) }/>
                 </FormGroup>
                 <FormGroup controlId="formPassword" className = "FormComp w-50" onChange = {(e) => setPostData({...postData, password : e.target.value})}>
-                    <FormControl type="password" className = "FormComp" placeholder="Password" className = "inpBox"/>
+                    <FormControl type="password" className = "FormComp inpBox" placeholder="Password"/>
                 </FormGroup>
                 <FormGroup data-testid = "formSubmit" controlId="formSubmit" className = "FormComp" >
                     <Button  className = "buttonStyle" data-testid = "login" onClick={handleLoginClick}>

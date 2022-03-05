@@ -97,4 +97,6 @@ Frontend demo link is found [here](https://uflorida-my.sharepoint.com/personal/p
 ### Frontend HomePage
 
 ![](./assets/HomePage.PNG)
-
+![](./assets/LoginPage.PNG)
+![](./assets/RegPage.PNG)
+[Must add home page with profile option and the profile page screenshots]

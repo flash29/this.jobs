@@ -13,13 +13,11 @@
     "@testing-library/user-event": "^13.5.0",
     "adapter": "^1.0.0-beta.10",
     "cors": "^2.8.5",
-<<<<<<< HEAD
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-15": "^1.4.3",
     "enzyme-adapter-react-16": "^1.15.6",
-=======
     "cypress": "^9.5.1",
->>>>>>> 3e9a4c0e330fc0830126ae1b88e80dcae4c136fc
+    "history": "^5.3.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.2",
     "react-dom": "^17.0.2",
