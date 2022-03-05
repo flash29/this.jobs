@@ -1,10 +1,16 @@
 import NavBar from '../../components/NavBar/NavBar'
+import './Settings.css';
+import SettingsCard from './SettingsCard';
+
 
 function Settings() {
+
+    
     return (
       <div className="App">
           <NavBar />
-          This is the Settings page
+         
+          <SettingsCard />
       </div>
     );
   }
