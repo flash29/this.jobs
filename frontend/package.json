@@ -11,10 +11,17 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "adapter": "^1.0.0-beta.10",
     "cors": "^2.8.5",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-15": "^1.4.3",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "cypress": "^9.5.1",
+    "history": "^5.3.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.2",
     "react-dom": "^17.0.2",
+    "react-headings": "^3.0.24",
     "react-router-dom": "^6.2.1",
     "react-scripts": "^5.0.0",
     "styled-components": "^5.3.3",
@@ -23,7 +30,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -44,5 +51,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://127.0.0.1:8080"
+  "proxy": "http://127.0.0.1:8080",
+  "devDependencies": {
+    "cypress": "^9.5.1"
+  }
 }
