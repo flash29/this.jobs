@@ -1,4 +1,4 @@
-# this.jobs - sprint 1
+# this.jobs - sprint 2
 ### Group Members
 Ranjeet Mallipeddi (Frontend)\
 Syama Vangmayi Vydyula (Frontend)\
@@ -267,4 +267,7 @@ Frontend demo link is found [here]()
 ### Frontend HomePage
 
 ![](./assets/HomePage.png)
-
+![](./assets/LoginPage.png)
+![](./assets/RegPage.png)
+![](./assets/ProfilePage.png)
+![](./assets/ProfilePage2.png)
