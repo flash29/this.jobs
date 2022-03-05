@@ -240,7 +240,11 @@ Code: 200 OK
 ### Frontend accomplishments
 Main (Goals reached): 
 > Integrated front-end and back-end
+
+
 > Created Tests using Cypress
+
+
 > Created Unit Tests using jest
 
 Details :
