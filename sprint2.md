@@ -12,6 +12,9 @@ Github repository link: [https://github.com/flash29/this.jobs](https://github.co
 
 ### Demo
   Combined demo link is found [here]()
+  
+  Frontend demo link is found [here](https://uflorida-my.sharepoint.com/:v:/g/personal/paruchuri_s_ufl_edu/EVFS-O8gn85Ctbjocb98rmIB1zLLNx-wRiKfuXkstvbBHg?e=SUtDBM)
+
 
 Technical stack, their pre-requisites and how to setup and run both frontend and backend can be found at this [wiki](https://github.com/flash29/this.jobs/wiki/Installation)
 
