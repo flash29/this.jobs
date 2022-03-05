@@ -237,6 +237,27 @@ Code: 200 OK
 
 ![](./assets/updateproject_response.PNG)
 
+#### Unit Tests
+
+A mock database will be created and unit tests will be performed on the data from mock DB.
+#### User Registration
+
+Test cases include User registartion with valid and invalid details and also registering the same user twice.
+
+![](./assets/register_test.PNG)
+
+#### User Login
+
+Test cases include user login with valid and invalid credentials
+
+![](./assets/login_test.PNG)
+
+#### User Proflie
+
+Test cases are included to check the addition and updation of education details, projects and jobs along with bio and display picture updation.
+![](./assets/userprofile_test.PNG)
+
+
 ### Frontend accomplishments
 - Created the homepage of the application
 - Created the navigation bar and routes to the various links on the navigation bar - home, jobs, connections, settings
