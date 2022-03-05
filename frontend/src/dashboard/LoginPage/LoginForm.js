@@ -49,17 +49,12 @@ function LoginForm(props) {
                 </FormGroup>
                 <FormGroup controlId="formPassword" className = "FormComp w-50" onChange = {(e) => setPostData({...postData, password : e.target.value})}>
                     <FormControl type="password" className = "FormComp inpBox" placeholder="Password"/>
-                </FormGroup>
-                <FormGroup data-testid = "formSubmit" controlId="formSubmit" className = "FormComp" >
-                    <Button  className = "buttonStyle" data-testid = "login" onClick={handleLoginClick}>
+                </FormGroup>     
+                <FormGroup controlId="formSubmit" data-testid = "formSubmit"  className = "FormComp">
+                    <Button  className = "buttonStyle" data-testid = "login" onClick={handleLoginClick} id="loginButton" >
                         Login
                     </Button>
-                    <Button  className = "buttonStyle" data-testid = "reg" onClick={handleRegisterClick}>
-                <FormGroup controlId="formSubmit" className = "FormComp">
-                    <Button  className = "buttonStyle" onClick={handleLoginClick} id="loginButton" >
-                        Login
-                    </Button>
-                    <Button  className = "buttonStyle"  onClick={handleRegisterClick} id="registrationButton" >
+                    <Button  className = "buttonStyle" data-testid = "reg" onClick={handleRegisterClick} id="registrationButton" >
                         Register
                     </Button>
                 </FormGroup>

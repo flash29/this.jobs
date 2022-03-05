@@ -19,6 +19,7 @@ function NavBar() {
           <SearchBar />
        </div>
        <div className="iconsHolder">
+
           <Link to="/home" className='linkDisplay home' > 
             <div className='iconsDisplay'>
               <img className='iconsImages' src={house} alt="Home"/>

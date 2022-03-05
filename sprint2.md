@@ -1,4 +1,4 @@
-# this.jobs - sprint 1
+# this.jobs - sprint 2
 ### Group Members
 Ranjeet Mallipeddi (Frontend)\
 Syama Vangmayi Vydyula (Frontend)\
@@ -238,16 +238,72 @@ Code: 200 OK
 ![](./assets/updateproject_response.PNG)
 
 ### Frontend accomplishments
-- Created the homepage of the application
-- Created the navigation bar and routes to the various links on the navigation bar - home, jobs, connections, settings
-- Created a searchBar which allows a user to perform search operations. (currently routes to a different page which is to be developed in further sprints)
-- Created a postBox which allows users to create a post with multimedia content - photos, pdfs and links. Further, the mandatory comment and tag fields are a part of the post-box. Tags help users to search for relevant content that they are looking for. Each time a user creates a post, the post gets updated on the user's feed. This component appears on the home page of the application.
-- Created a PostCard which automatically gets loaded onto a user's feed when he/she posts something. This feature has like and comment options which were also developed. Further, in the user's feed, the posts are displayed in the order of relevance.
-- More about frontend documentation can be found at this [wiki](https://github.com/flash29/this.jobs/wiki/File-Structure)
+Main (Goals reached): 
+> Integrated front-end and back-end
+
+
+> Created Tests using Cypress
+
+
+> Created Unit Tests using jest
+
+Details :
+- Created the login page where the user can login to their account if it already exists or click the register button to go to the registration page
+- Created the registration page where the user can register. They have to enter their name, email and password. An already existing user cannot register again.
+- Created the myProfile page which contains all the details that the user can update at any point. This page would consist of User's name, display picture, Education, Work Experience and projects. Each of these sections further contain more details which the user can update whenever they want. 
+- Created unit tests for the Login Page using jest - 
+  1. LoginPage title shows 
+  2. Input fields -  email, password
+  3. Buttons - login, registration
+  4. Component rendering - LoginPage, LoginForm (snapshot tests)     
+  5. Routes - /auth/login, /registration
+- Created unit tests for the registration page using jest- 
+  1. Title
+  2. Input fields - name, email, password
+  3. component rendering - RegPage, RegForm (snapshot tests)
+  4. Routes - /auth/login, /auth/register, /
+- Created unit tests for the home page using jest - 
+  1. component rendering (snapshot tests) - Home, NavBar, PostBox, PostCard
+  2. Routes from home - /feed
+  3. NavBar tests :
+     * title
+     * Routes - /home, /connections, /jobs, /settings, /login
+  4. PostBox commentBox working
+- Cypress tests : For integration testing
+- Here is the output of the cypress tests:
+![](./assets/cypress.png)
+
+- More details about frontend documentation can be found at -> [wiki](https://github.com/flash29/this.jobs/wiki/File-Structure)
 
 Frontend demo link is found [here]()
 
 ### Frontend HomePage
-
 ![](./assets/HomePage.png)
+
+### Login Page
+![](./assets/LoginPage.png)
+
+### Registration Page
+![](./assets/RegPage.png)
+
+### Profile Page
+![](./assets/ProfilePage.png)
+![](./assets/ProfilePage2.png)
+
+## Testing Results - 
+
+### Login Page Tests :
+![image](https://user-images.githubusercontent.com/35343343/156863688-6220d983-cfb0-4353-aa6b-0a131c3c3049.png)
+
+### Registration Page Tests :
+![image](https://user-images.githubusercontent.com/35343343/156863759-99145d05-e59f-4434-a97b-b9d5b3fff6d8.png)
+
+### Home Page Tests :
+![image](https://user-images.githubusercontent.com/35343343/156863804-064d449d-b2e8-414b-9bcb-a17ce585560e.png)
+
+### App page basic test :
+![image](https://user-images.githubusercontent.com/35343343/156863893-7ee68059-4073-4bad-b927-769a327265df.png)
+
+
+
 
