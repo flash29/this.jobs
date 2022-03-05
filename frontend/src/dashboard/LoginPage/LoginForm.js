@@ -55,6 +55,11 @@ function LoginForm(props) {
                         Login
                     </Button>
                     <Button  className = "buttonStyle" data-testid = "reg" onClick={handleRegisterClick}>
+                <FormGroup controlId="formSubmit" className = "FormComp">
+                    <Button  className = "buttonStyle" onClick={handleLoginClick} id="loginButton" >
+                        Login
+                    </Button>
+                    <Button  className = "buttonStyle"  onClick={handleRegisterClick} id="registrationButton" >
                         Register
                     </Button>
                 </FormGroup>

@@ -75,7 +75,9 @@ function Settings() {
                 userBio : data.bio,
                 experience: data.jobhistory,
                 projects: data.projects,
-                imageData: data.picture
+                imageData: data.picture,
+                userName: data.username,
+                userEmail: data.useremail
 
                 });
           }).catch(error => console.log('error', error))
@@ -525,7 +527,7 @@ function Settings() {
                         />
                     </div>
                     <div className='UserNameProfile'>
-                       <p> Ranjeet Mallipeddi </p> 
+                       <p> {userData.userName}   {userData.userEmail} </p> 
                     </div>
               </div>
 
@@ -554,7 +556,13 @@ function Settings() {
               suppressContentEditableWarning={true}
               >
 
-                    {userData.userBio}
+                    {
+                    userData.userBio === ''
+                    ? 
+                    <>Bio Goes here</>
+                    :
+                    <>{userData.userBio} </>
+                    }
               </div>
                
                {/* <div className='userResume'>

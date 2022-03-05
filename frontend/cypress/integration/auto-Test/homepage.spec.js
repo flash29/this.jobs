@@ -1,123 +1,113 @@
 <reference types="cypress" />
 import React from 'react';
 
-describe('Test Suite for Home Page', ()=>{
+
+
+describe('Test Suite for login page', ()=>{
+  beforeEach(() => {
+    cy.visit('/')
+  })
+
+  it('Check Display for login Page', ()=>{ 
+    cy
+    .get('#formEmail')
+    .should('be.visible');
+
+
+    cy
+    .get('#formPassword')
+    .should('be.visible');
+
+    cy
+    .get('#loginButton')
+    .click();
+
+    
+    cy.go('back');
+    
+
+    cy
+    .get('#registrationButton')
+    .contains('Register');
+
+  });
+
+  const emailId =  'tester1@email.com';
+  const password = "123"
+
+  it('Login Check for the user', ()=>{
+    
+
+      cy.request('POST', 'http://localhost:8080/auth/login', {
+          useremail : emailId, 
+            password : password
+        })
+        .should(( response ) => {
+           expect(response.status).to.eq(200);
+
+          window.localStorage.setItem('token', response.token);
+          window.localStorage.setItem('userid', response.userId);
+
+
+        })
+
+  })
+
+
+})
+
+describe('Test Suite for Navigation Page', ()=>{
     beforeEach(() => {
-        cy.visit('/')
+        cy.visit('/connections')
       })
 
-      
+      it('Navigation Bar vists settings page', ()=> {
 
-      it('Check Home Page elements visibility and buttons', () => {
-
-        cy
-          .get('.NavBar')
-          .should('be.visible');
-
-          cy
-          .get('.title')
-          .should('be.visible');
-
-          cy
-          .get('.SearchBar')
-          .should('be.visible');
-
-          cy
-          .get('.iconsHolder')
-          .should('be.visible');
-
-
-          cy
-          .get('.PostBox')
-          .should('be.visible');
-
-          cy
-          .get('.commentBox')
-          .should('be.visible');
-
-          cy
-          .get('.CardType')
-          .should('be.visible');
-
-          cy
-          .get('.CardType')
-          .contains('Like')
-
-          cy
-          .get('.CardType')
-          .contains('Comment')
-
-          cy
-          .get('.dropdown')
-          .click()
-
-          cy
-          .get('.icon')
-          .click()
-
-          cy
-          .get('.likeBox')
-          .click()
-
-          cy
-          .get('.commentBox')
-          .click({ multiple: true })
-
-          cy
-          .get('.CommentAddButton')
-          .click()
-
-
-        
-
-
-      })
-
-      it('Checking Navigation in home page', ()=>{
-        const pages = ['connections', 'jobs', 'settings', 'login']
-
-        // cy.get('a').each(page => {
-        //  cy.request(page.prop('href'))
-        //   })
-
-        // cy.get('connections').click()
-        // cy.location('pathname').should('eq', '/blog' )
-        //   cy.go('back')
-      
-        // pages.forEach(page => {
-      
-        //   cy.contains(page).click()
-        //   cy.location('pathname').should('eq', `/${page}`)
-        //   cy.go('back')
-      
+        // cy.get('a')
+        // .should('have.attr', 'href').and('include', 'contact')
+        // .then((href) => {
+        //   cy.visit(href)
         // })
+
+        cy.get('.settings').click({force: true})
+        cy.url().should('include', '/settings')
       });
 
-      it('Feed Data Test', ()=>{
-        cy.request('http://localhost:8080/feed')
-        .should((response) => {
-          expect(response.status).to.eq(200)
-        })
+      it('Navigation Bar visits jobs page', ()=> {
 
+        // cy.get('a')
+        // .should('have.attr', 'href').and('include', 'contact')
+        // .then((href) => {
+        //   cy.visit(href)
+        // })
+
+        cy.get('.jobs').click({force: true})
+        cy.url().should('include', '/jobs')
       });
 
-      it('Post Test', ()=>{
+      it('Navigation Bar visits logout page', ()=> {
 
-        cy.request('POST', 'http://localhost:8080/post', {
-          createdBy : 'user1', 
-            content : 'jbk', 
-            tag : 'Knowledge Sharing', 
-            attachments : ''
-        })
-        .should((response) => {
-          expect(response.status).to.eq(200)
-        })
+        // cy.get('a')
+        // .should('have.attr', 'href').and('include', 'contact')
+        // .then((href) => {
+        //   cy.visit(href)
+        // })
 
+        cy.get('.logout').click({force: true})
+        cy.url().should('include', '/')
       });
 
+      it('Navigation Bar visits home page', ()=> {
 
+        // cy.get('a')
+        // .should('have.attr', 'href').and('include', 'contact')
+        // .then((href) => {
+        //   cy.visit(href)
+        // })
 
-    //  cy.get('.todo-list li').should('have.length', 2)
+        cy.get('.home').click({force: true})
+        cy.url().should('include', '/home')
+      });
       
 })
 
