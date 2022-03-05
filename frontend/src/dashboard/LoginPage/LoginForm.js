@@ -13,7 +13,7 @@ function LoginForm(props) {
     const [postData, setPostData] = useState({ useremail : '', password : ''});
 
     const handleLoginClick = () =>{
-        console.log(postData);
+        //console.log(postData);
         fetch('/auth/login', {
             method : 'POST',
             headers:{'Content-type':'application/json'},
@@ -48,7 +48,7 @@ function LoginForm(props) {
                     <FormControl type="email" placeholder="Email Address" className = "inpBox" onChange={(e) => setPostData({...postData, useremail : e.target.value}) }/>
                 </FormGroup>
                 <FormGroup controlId="formPassword" className = "FormComp w-50" onChange = {(e) => setPostData({...postData, password : e.target.value})}>
-                    <FormControl type="password" className = "FormComp" placeholder="Password" className = "inpBox"/>
+                    <FormControl type="password" className = "FormComp inpBox" placeholder="Password"/>
                 </FormGroup>
                 <FormGroup data-testid = "formSubmit" controlId="formSubmit" className = "FormComp" >
                     <Button  className = "buttonStyle" data-testid = "login" onClick={handleLoginClick}>
