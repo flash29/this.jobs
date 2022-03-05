@@ -9,7 +9,7 @@ import './Registration.css'
 
 function RegForm(props) {
 
-    const [postData, setPostData] = useState({ userName : '', userEmail : '', password : ''});
+    const [postData, setPostData] = useState({ userName : '', userEmail : '', password : '' });
     let navigate = useNavigate();
 
     const handleRegisterClick = () =>{

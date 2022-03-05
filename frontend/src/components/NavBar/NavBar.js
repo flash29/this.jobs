@@ -19,31 +19,32 @@ function NavBar() {
           <SearchBar />
        </div>
        <div className="iconsHolder">
-          <Link to="/home" className='linkDisplay'> 
+
+          <Link to="/home" className='linkDisplay home' > 
             <div className='iconsDisplay'>
               <img className='iconsImages' src={house} alt="Home"/>
               <p className='iconLabel'>Home</p>
             </div>
           </Link>
-          <Link to="/connections" className='linkDisplay' > 
+          <Link to="/connections" className='linkDisplay connections ' > 
             <div className='iconsDisplay'>
               <img className='iconsImages' src={people} alt="Home"/>
               <p className='iconLabel'>Connections</p>
             </div>
           </Link>
-          <Link to="/jobs" className='linkDisplay' > 
+          <Link to="/jobs" className='linkDisplay jobs' > 
             <div className='iconsDisplay'>
               <img className='iconsImages' src={work} alt="Home"/>
               <p className='iconLabel'>Jobs</p>
             </div>
           </Link>
-          <Link to="/settings" className='linkDisplay'> 
+          <Link to="/settings" className='linkDisplay settings'> 
             <div className='iconsDisplay'>
               <img className='iconsImages' src={settings} alt="Home"/>
               <p className='iconLabel'>Settings</p>
             </div>
           </Link>
-          <Link to="/login" className='linkDisplay'> 
+          <Link to="/" className='linkDisplay logout'> 
             <div className='iconsDisplay'>
               <img className='iconsImages' src={logout} alt="Home"/>
               <p className='iconLabel'>Logout</p>

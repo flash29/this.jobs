@@ -21,6 +21,7 @@ function LoginForm(props) {
             body:JSON.stringify(postData),
         }).then(response => response.json()).then(data => {
             console.log(data);
+            sessionStorage.setItem("token", data.token);
             sessionStorage.setItem(data.userEmail, data.password);
             sessionStorage.setItem('userid', data.userId);
             sessionStorage.setItem('token', data.token);
@@ -48,12 +49,12 @@ function LoginForm(props) {
                 </FormGroup>
                 <FormGroup controlId="formPassword" className = "FormComp w-50" onChange = {(e) => setPostData({...postData, password : e.target.value})}>
                     <FormControl type="password" className = "FormComp inpBox" placeholder="Password"/>
-                </FormGroup>
-                <FormGroup data-testid = "formSubmit" controlId="formSubmit" className = "FormComp" >
-                    <Button  className = "buttonStyle" data-testid = "login" onClick={handleLoginClick}>
+                </FormGroup>     
+                <FormGroup controlId="formSubmit" data-testid = "formSubmit"  className = "FormComp">
+                    <Button  className = "buttonStyle" data-testid = "login" onClick={handleLoginClick} id="loginButton" >
                         Login
                     </Button>
-                    <Button  className = "buttonStyle" data-testid = "reg" onClick={handleRegisterClick}>
+                    <Button  className = "buttonStyle" data-testid = "reg" onClick={handleRegisterClick} id="registrationButton" >
                         Register
                     </Button>
                 </FormGroup>
