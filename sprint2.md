@@ -259,7 +259,10 @@ Code: 200 OK
      * title
      * Routes - /home, /connections, /jobs, /settings, /login
   4. PostBox commentBox working
-- Cypress tests (TO BE UPDATED)
+- Cypress tests :
+- Here is the output of the cypress tests:
+![](./assets/cypress.png)
+
 - More details about frontend documentation can be found at -> [wiki](https://github.com/flash29/this.jobs/wiki/File-Structure)
 
 Frontend demo link is found [here]()
