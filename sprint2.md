@@ -296,7 +296,7 @@ Details :
 
 - More details about frontend documentation can be found at -> [wiki](https://github.com/flash29/this.jobs/wiki/File-Structure)
 
-Frontend demo link is found [here]()
+Frontend demo link is found [here](https://uflorida-my.sharepoint.com/:v:/g/personal/paruchuri_s_ufl_edu/EVFS-O8gn85Ctbjocb98rmIB1zLLNx-wRiKfuXkstvbBHg?e=SUtDBM)
 
 ### Frontend HomePage
 ![](./assets/HomePage.png)
