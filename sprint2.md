@@ -270,7 +270,31 @@ Frontend demo link is found [here]()
 ### Frontend HomePage
 
 ![](./assets/HomePage.png)
+
+### Login Page
 ![](./assets/LoginPage.png)
+
+### Registration Page
 ![](./assets/RegPage.png)
+
+### Profile Page
 ![](./assets/ProfilePage.png)
 ![](./assets/ProfilePage2.png)
+
+## Testing Results - 
+
+### Login Page Tests :
+![image](https://user-images.githubusercontent.com/35343343/156863688-6220d983-cfb0-4353-aa6b-0a131c3c3049.png)
+
+### Registration Page Tests :
+![image](https://user-images.githubusercontent.com/35343343/156863759-99145d05-e59f-4434-a97b-b9d5b3fff6d8.png)
+
+### Home Page Tests :
+![image](https://user-images.githubusercontent.com/35343343/156863804-064d449d-b2e8-414b-9bcb-a17ce585560e.png)
+
+### App page basic test :
+![image](https://user-images.githubusercontent.com/35343343/156863893-7ee68059-4073-4bad-b927-769a327265df.png)
+
+
+
+
