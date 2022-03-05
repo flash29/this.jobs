@@ -238,6 +238,12 @@ Code: 200 OK
 ![](./assets/updateproject_response.PNG)
 
 ### Frontend accomplishments
+Main (Goals reached): 
+> Integrated front-end and back-end
+> Created Tests using Cypress
+> Created Unit Tests using jest
+
+Details :
 - Created the login page where the user can login to their account if it already exists or click the register button to go to the registration page
 - Created the registration page where the user can register. They have to enter their name, email and password. An already existing user cannot register again.
 - Created the myProfile page which contains all the details that the user can update at any point. This page would consist of User's name, display picture, Education, Work Experience and projects. Each of these sections further contain more details which the user can update whenever they want. 
@@ -259,7 +265,7 @@ Code: 200 OK
      * title
      * Routes - /home, /connections, /jobs, /settings, /login
   4. PostBox commentBox working
-- Cypress tests :
+- Cypress tests : For integration testing
 - Here is the output of the cypress tests:
 ![](./assets/cypress.png)
 
@@ -268,7 +274,6 @@ Code: 200 OK
 Frontend demo link is found [here]()
 
 ### Frontend HomePage
-
 ![](./assets/HomePage.png)
 
 ### Login Page
