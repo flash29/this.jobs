@@ -48,10 +48,10 @@ function LoginForm(props) {
                     <FormControl type="password" className = "FormComp" placeholder="Password" className = "inpBox"/>
                 </FormGroup>
                 <FormGroup controlId="formSubmit" className = "FormComp">
-                    <Button  className = "buttonStyle" onClick={handleLoginClick}>
+                    <Button  className = "buttonStyle" onClick={handleLoginClick} id="loginButton" >
                         Login
                     </Button>
-                    <Button  className = "buttonStyle"  onClick={handleRegisterClick}>
+                    <Button  className = "buttonStyle"  onClick={handleRegisterClick} id="registrationButton" >
                         Register
                     </Button>
                 </FormGroup>
