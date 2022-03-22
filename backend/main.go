@@ -52,5 +52,8 @@ func main() {
 	protected.PUT("/updatelikes", controllers.UpdateLikes)
 	protected.DELETE("/post/:id", controllers.DeletePost)
 
+	protected.POST("/jobpost", controllers.CreateJobPost)
+	protected.PUT("/jobpost/:id", controllers.UpdateJobPost)
+
 	router.Run(":8080")
 }
