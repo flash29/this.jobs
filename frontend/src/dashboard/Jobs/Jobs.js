@@ -20,12 +20,12 @@ function DisplayProp(props) {
 }
 
 function Jobs() {
-  const [value, setValue] = React.useState();
+  const [value, setValue] = React.useState(1);
     return (
       <div className="App">
           <NavBar />
           <Paper square>
-            <Tabs className = 'tabs' value={value} textColor="primary" indicatorColor="primary" onChange={(event, newValue) => {setValue(newValue); }}>
+            <Tabs className = 'tabs' value={value} textColor = "primary" indicatorColor = "primary" onChange={(event, newValue) => {setValue(newValue); }}>
               <Tab label = "Jobs" value = {1}/>
               <Tab label = "My applications" value = {2}/>
               <Tab label = "Posted Jobs" value = {3} />
