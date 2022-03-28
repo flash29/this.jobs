@@ -8,10 +8,10 @@
     justify-content: center;
     flex-direction: column;
     border-style: solid;   
-    width: 25rem;
+    width: 50rem;
     border-radius: 10%;
     border: 0.2em solid black;
-    border-radius: 16px;
+    border-radius: 6px;
     margin: 0.2em;
     padding: 0.2em;
 }
@@ -32,6 +32,6 @@
     font-weight:bold;
     font-size: 0.9em;
     background-color: white;
-    width: 9em;
+    width: 20em;
     margin: 0.3em;
 }

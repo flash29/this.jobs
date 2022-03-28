@@ -10,15 +10,14 @@ function AppCard() {
     // } = props.AppContent;
 
 
-    const arr = {
-        jobId: 1,
-        createdBy: "User1",
+    const arr = {jobId: 2,
+        createdBy: "User2",
         content: "Backend developer II",
         createdAt: 1648487349,
         updatedAt: 1648487629,
         appliedUsersList: null,
-        attachments: ""
-    }
+        attachments: ""}
+
 
 
     console.log('jobId', arr.jobId);
@@ -43,7 +42,8 @@ function AppCard() {
     return (
       <div className = 'CardType'>
             <div className='fullClass'>
-                <div className='PostTag'>{arr.jobId}</div>
+                <div className='PostTag'>{arr.jobId}  {arr.content}</div>
+                {/* <div className='PostTag'>{arr.content}</div> */}
                 <div className="topCard">
                     <div className='timeDisplay'  >{timeOfApplication}</div> 
                 </div>
