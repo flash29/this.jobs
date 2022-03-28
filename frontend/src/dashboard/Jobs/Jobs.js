@@ -2,6 +2,7 @@ import React from 'react'
 import NavBar from '../../components/NavBar/NavBar'
 import './jobs.css'
 import MyApps from './MyApps/MyApps'
+import PostedJobs from './PostedJobs/PostedJobs'
 import Paper from "@material-ui/core/Paper";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
@@ -12,7 +13,7 @@ function DisplayProp(props) {
     return (<MyApps />);
   }
   else if(val == 3){
-    return (<div>Posted Jobs!</div>);
+    return (<PostedJobs />);
   }
   else{
     return (<div>Jobs!</div>);
