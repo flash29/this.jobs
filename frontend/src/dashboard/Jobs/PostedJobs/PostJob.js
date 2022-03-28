@@ -75,7 +75,7 @@ function PostBox(props){
                 </div>    
                 <div className = "buttons">
                     <div className ="dropdown">
-                            <input className = "dropbtn" placeHolder = "JobId" onChange = {(e) => setPostData({...postData, jobId : e.target.value}) }/>  
+                            <input className = "dropbtn" placeHolder = "Job-Id" onChange = {(e) => setPostData({...postData, jobId : e.target.value}) }/>  
                     </div>
                     <div className ="dropdown">
                             <input className = "dropbtn" placeHolder = "Last date to apply" onChange = {(e) => setPostData({...postData, validTill : e.target.value}) }/>  
