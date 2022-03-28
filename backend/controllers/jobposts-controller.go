@@ -35,3 +35,14 @@ func UpdateJobPost(c *gin.Context) {
 		c.JSON(200, post)
 	}
 }
+
+func DeleteJobPost(c *gin.Context) {
+	id := c.Params.ByName("id")
+	var post models.JobPost
+	d := utils.DB.Where("post_id = ?", id).Delete(&post)
+	if d.Error != nil {
+		c.JSON(404, gin.H{"message:": "Did not find any post with id " + id})
+	} else {
+		c.JSON(200, gin.H{"message:": "deleted post with id " + id})
+	}
+}
