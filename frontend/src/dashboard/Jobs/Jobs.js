@@ -28,7 +28,7 @@ function Jobs() {
             <Tabs className = 'tabs' value={value} textColor = "primary" indicatorColor = "primary" onChange={(event, newValue) => {setValue(newValue); }}>
               <Tab label = "Jobs" value = {1}/>
               <Tab label = "My applications" value = {2}/>
-              <Tab label = "Posted Jobs" value = {3} />
+              <Tab label = "Employer View" value = {3} />
             </Tabs> 
           </Paper>
           <div>
