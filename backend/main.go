@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"net/http"
 
 	"com.uf/src/controllers"
 	"com.uf/src/middleware"
@@ -12,7 +12,6 @@ import (
 func Cors() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.Writer.Header().Add("Access-Control-Allow-Origin", "*")
-		fmt.Println("Here!")
 		c.Next()
 	}
 }
@@ -20,7 +19,7 @@ func Cors() gin.HandlerFunc {
 func main() {
 	router := gin.Default()
 	router.Use(Cors())
-
+	router.StaticFS("/file", http.Dir("public"))
 	utils.ConnectDatabase() // new
 
 	public := router.Group("/auth")
@@ -51,11 +50,11 @@ func main() {
 	protected.PUT("/updateducation", controllers.UpdateEducationDetails)
 	protected.PUT("/updatelikes", controllers.UpdateLikes)
 	protected.DELETE("/post/:id", controllers.DeletePost)
-
 	protected.POST("/jobpost", controllers.CreateJobPost)
 	protected.PUT("/jobpost/:id", controllers.UpdateJobPost)
 	protected.DELETE("/jobpost/:id", controllers.DeleteJobPost)
-
 	protected.POST("/apply", controllers.ApplyToJob)
+	protected.POST("/resumeupload/:id", controllers.UploadResume)
+
 	router.Run(":8080")
 }
