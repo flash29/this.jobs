@@ -160,7 +160,7 @@
     height: 3em;
 }
 
-input:focus {
+inputBoxes:focus {
     outline: 1px solid transparent;
     outline-color: black;
     width: 10em;
