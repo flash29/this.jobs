@@ -1,9 +1,9 @@
 package models
 
 type JobApplication struct {
-	ApplicationID int    `gorm:"primary_key" json:"applicationId"`
-	userID        string `json:"userId"`
-	JobID         uint   `json:"jobId"`
-	CreatedAt     int64  `json:"createdAt"`
-	UpdatedAt     int64  `json:"updatedAt"`
+	ApplicationID int   `gorm:"primary_key" json:"applicationId"`
+	UserID        int   `json:"userId"`
+	JobID         uint  `json:"jobId"`
+	CreatedAt     int64 `json:"createdAt"`
+	UpdatedAt     int64 `json:"updatedAt"`
 }
