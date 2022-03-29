@@ -55,5 +55,7 @@ func main() {
 	protected.POST("/jobpost", controllers.CreateJobPost)
 	protected.PUT("/jobpost/:id", controllers.UpdateJobPost)
 	protected.DELETE("/jobpost/:id", controllers.DeleteJobPost)
+
+	protected.POST("/apply", controllers.ApplyToJob)
 	router.Run(":8080")
 }

@@ -1,15 +1,16 @@
 package models
 
 import (
-	"github.com/lib/pq"
+	"time"
 )
 
 type JobPost struct {
-	PostID           int            `gorm:"primary_key" json:"postId"`
-	CreatedBy        string         `json:"createdBy"`
-	Content          string         `json:"content"`
-	CreatedAt        int64          `json:"createdAt"`
-	UpdatedAt        int64          `json:"updatedAt"`
-	AppliedUsersList pq.StringArray `gorm:"type:text[]" json:"appliedUsersList"`
-	Attachments      string         `gorm:"type:text" json:"attachments"`
+	JobID            int              `gorm:"primary_key" json:"jobId"`
+	CreatedBy        string           `json:"createdBy"`
+	Content          string           `json:"content"`
+	CreatedAt        int64            `json:"createdAt"`
+	UpdatedAt        int64            `json:"updatedAt"`
+	AppliedUsersList []JobApplication `gorm:"ForeignKey:JobID" json:"appliedUsersList"`
+	Attachments      string           `gorm:"type:text" json:"attachments"`
+	ValidTill        time.Time        `json:"validTill"`
 }
