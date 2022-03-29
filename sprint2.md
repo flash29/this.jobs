@@ -11,7 +11,12 @@ Github repository link: [https://github.com/flash29/this.jobs](https://github.co
   this.jobs is a platform where people can build their profile, connect with other users who share similar interests in careers and find/ apply or post new jobs
 
 ### Demo
-  Combined demo link is found [here]()
+  Complete demo is [here](https://uflorida-my.sharepoint.com/:v:/g/personal/paruchuri_s_ufl_edu/Ebq6MqNzeB1JvOP0E6BgQWcBRGUettYrvuitUOY5-hlpIg?e=kz5735)
+  
+  Backend demo can be found [here](https://uflorida-my.sharepoint.com/:v:/g/personal/paruchuri_s_ufl_edu/ESe2aRQV1EJBql33SgX3aKwByNG2kP7luArSH2HwE4rezQ?e=bmgvYP) 
+
+  Frontend demo can be found [here](https://uflorida-my.sharepoint.com/:v:/g/personal/paruchuri_s_ufl_edu/EVFS-O8gn85Ctbjocb98rmIB1zLLNx-wRiKfuXkstvbBHg?e=SUtDBM)
+
 
 Technical stack, their pre-requisites and how to setup and run both frontend and backend can be found at this [wiki](https://github.com/flash29/this.jobs/wiki/Installation)
 
@@ -24,7 +29,7 @@ Technical stack, their pre-requisites and how to setup and run both frontend and
 - Unitests are created for all the APIs in the appropriate controller files.
 - More about REST api's documentation can be found at this [wiki](https://github.com/flash29/this.jobs/wiki/REST-API-Documentation)
 
-Backend demo link is found [here]()
+
 
 ### REST API
 
@@ -237,6 +242,31 @@ Code: 200 OK
 
 ![](./assets/updateproject_response.PNG)
 
+#### Unit Tests
+
+A mock database is created and unit tests are performed on the data from mock DB. The below sections show the unit testing output along with their coverage
+#### User Registration
+
+Test cases include User registartion with valid and invalid details and also registering the same user twice.
+
+![](./assets/registration_unit_tests.png)
+
+#### User Login
+
+Test cases include user login with valid and invalid credentials
+
+![](./assets/login_unit_tests.png)
+
+#### User Proflie
+
+Test cases are included to check the addition and updation of education details, projects and jobs along with bio and display picture updation.
+![](./assets/user_profile_unit_tests.png)
+
+#### Feed
+
+Test cases are included to check the retrieval of feed, posting of new feed, comments ,likes etc.
+![](./assets/feed-unit-tests.png)
+
 ### Frontend accomplishments
 Main (Goals reached): 
 > Integrated front-end and back-end
@@ -275,7 +305,6 @@ Details :
 
 - More details about frontend documentation can be found at -> [wiki](https://github.com/flash29/this.jobs/wiki/File-Structure)
 
-Frontend demo link is found [here]()
 
 ### Frontend HomePage
 ![](./assets/HomePage.png)
