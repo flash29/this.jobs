@@ -1,11 +1,14 @@
 package controllers
 
 import (
+	"log"
 	"net/http"
+	"path/filepath"
 
 	"com.uf/src/models"
 	"com.uf/src/utils"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 )
 
 func GetUserProfile(c *gin.Context) {
@@ -137,5 +140,38 @@ func UpdateBio(c *gin.Context) {
 		userProfile.Bio = user.Bio
 		utils.DB.Save(&userProfile)
 		c.JSON(http.StatusOK, gin.H{"message": "Successfully Updated Bio"})
+	}
+}
+
+func UploadResume(c *gin.Context) {
+	file, err := c.FormFile("file")
+	id := c.Params.ByName("id")
+	var userProfile models.User
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "unable to upload resume"})
+		return
+	}
+
+	if err := utils.DB.Where("user_id = ?", id).First(&userProfile).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve user profile"})
+		return
+	} else {
+		extension := filepath.Ext(file.Filename)
+		filename := uuid.New().String() + extension
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		if err := c.SaveUploadedFile(file, "./public/"+filename); err != nil {
+			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+				"error": "Unable to save the resume",
+			})
+			return
+		}
+		filepath := "file/" + filename
+		userProfile.ResumePath = filepath
+		utils.DB.Save(userProfile)
+		c.JSON(http.StatusOK, gin.H{"filepath": filepath})
 	}
 }
