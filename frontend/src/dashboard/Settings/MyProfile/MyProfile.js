@@ -614,6 +614,7 @@ function Settings() {
                         type="text" 
                         name="name" 
                         className='newNameEducation' 
+                        id = "inputBoxes"
                         onChange={ (e) => changeEducationName(e) }
                         /> 
                       </div>
@@ -624,6 +625,7 @@ function Settings() {
                         type="text" 
                         name="dates" 
                         className='newDatesEducation'
+                        id = "inputBoxes"
                         onChange={ (e) => changeEducationDates(e) }
                         /> 
                       </div>
@@ -722,6 +724,7 @@ function Settings() {
                         type="text" 
                         name="name" 
                         className='newNameEducation' 
+                        id = "inputBoxes"
                         onChange={ (e) => changeExperiencenName(e) }
                         /> 
                       </div>
@@ -732,6 +735,7 @@ function Settings() {
                         type="text" 
                         name="dates" 
                         className='newDatesEducation'
+                        id = "inputBoxes"
                         onChange={ (e) => changeExperienceDates(e) }
                         /> 
                       </div>
@@ -742,6 +746,7 @@ function Settings() {
                         type="text" 
                         name="description" 
                         className='newDescriptionEducation'
+                        id = "inputBoxes"
                         onChange={ (e) => changeExperienceDescription(e) }
                         /> 
                       </div>
@@ -830,6 +835,7 @@ function Settings() {
                         type="text" 
                         name="name" 
                         className='newNameEducation' 
+                        id = "inputBoxes"
                         onChange={ (e) => changeProjectName(e) }
                         /> 
                       </div>
@@ -840,6 +846,7 @@ function Settings() {
                         type="text" 
                         name="description" 
                         className='newDescriptionEducation'
+                        id = "inputBoxes"
                         onChange={ (e) => changeProjectDescription(e) }
                         /> 
                       </div>
