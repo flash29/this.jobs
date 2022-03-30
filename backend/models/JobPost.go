@@ -6,7 +6,7 @@ import (
 
 type JobPost struct {
 	JobID            int              `gorm:"primary_key" json:"jobId"`
-	CreatedBy        string           `json:"createdBy"`
+	UserID           int              `json:"userId"`
 	Content          string           `json:"content"`
 	CreatedAt        int64            `json:"createdAt"`
 	UpdatedAt        int64            `json:"updatedAt"`
