@@ -13,6 +13,11 @@ import (
 func RetrieveAllJobPostsById(c *gin.Context) {
 	var jobposts []models.JobPost
 	id := c.Params.ByName("id")
+	var userProfile models.User
+	if err := utils.DB.Where("user_id = ?", id).First(&userProfile).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve user"})
+		return
+	}
 	result := utils.DB.Preload("AppliedUsersList", func(db *gorm.DB) *gorm.DB {
 		db = db.Order("created_at asc")
 		return db
