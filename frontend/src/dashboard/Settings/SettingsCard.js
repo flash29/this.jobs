@@ -7,11 +7,12 @@ function SettingsCard(){
 
     //update to use session storage variables and take the username
     let username = "ranjeet"
+    let userid = sessionStorage.getItem('userid');
 
     return(
         <div className='settingsPageBoxInfo' >
 
-            <Link to={`/settings/profile/${username}`} className='linkDisplay' > 
+            <Link to={`/settings/profile/${userid}`} className='linkDisplay' > 
                 <div className='SettingsItemDisplayBox'>
                 <div className='textInCard'>My Profile</div>
                 </div>
