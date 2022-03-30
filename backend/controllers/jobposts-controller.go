@@ -10,6 +10,20 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
+func RetrieveAllJobPostsById(c *gin.Context) {
+	var jobposts []models.JobPost
+	id := c.Params.ByName("id")
+	result := utils.DB.Preload("AppliedUsersList", func(db *gorm.DB) *gorm.DB {
+		db = db.Order("created_at asc")
+		return db
+	}).Order("created_at desc").Where("user_id=?", id).Find(&jobposts)
+	if result.Error != nil {
+		c.JSON(400, gin.H{"error": "Unable to retrieve job posts"})
+	} else {
+		c.JSON(200, jobposts)
+	}
+}
+
 func RetrieveAllJobPosts(c *gin.Context) {
 	var jobposts []models.JobPost
 	result := utils.DB.Preload("AppliedUsersList", func(db *gorm.DB) *gorm.DB {
