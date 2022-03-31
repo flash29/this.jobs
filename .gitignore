@@ -2,4 +2,7 @@
 /backend/*.db
 /backend/.vscode
 /backend/*.exe
+/backend/public
+/backend/.vscode
 /node_modules
+.DS_Store

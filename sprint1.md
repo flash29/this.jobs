@@ -11,7 +11,7 @@ Github repository link: [https://github.com/flash29/this.jobs](https://github.co
   this.jobs is a platform where people can build their profile, connect with other users who share similar interests in careers and find/ apply or post new jobs
 
 ### Demo
-  Combined demo link is found [here](https://uflorida-my.sharepoint.com/personal/paruchuri_s_ufl_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fparuchuri%5Fs%5Fufl%5Fedu%2FDocuments%2FSE%5Fsprint1%2Fsprint1%5Fmerged%2Emp4&parent=%2Fpersonal%2Fparuchuri%5Fs%5Fufl%5Fedu%2FDocuments%2FSE%5Fsprint1)
+  Combined demo link is found [here](https://uflorida-my.sharepoint.com/:v:/g/personal/paruchuri_s_ufl_edu/Efcia-D8A1FEuZJ-2qm8Tr4BgCra_TF4qHUH7LwrU-GVJA?e=voDago)
 
 Technical stack, their pre-requisites and how to setup and run both frontend and backend can be found at this [wiki](https://github.com/flash29/this.jobs/wiki/Installation)
 
@@ -22,7 +22,7 @@ Technical stack, their pre-requisites and how to setup and run both frontend and
 - All the data is persisted and fetched from SQLite tables related to the application.
 - More about REST api's documentation can be found at this [wiki](https://github.com/flash29/this.jobs/wiki/REST-API-Documentation)
 
-Backend demo link is found [here](https://uflorida-my.sharepoint.com/personal/paruchuri_s_ufl_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fparuchuri%5Fs%5Fufl%5Fedu%2FDocuments%2FSE%5Fsprint1%2Fsprint1%5Fbackend%2Emp4&parent=%2Fpersonal%2Fparuchuri%5Fs%5Fufl%5Fedu%2FDocuments%2FSE%5Fsprint1)
+Backend demo link is found [here](https://uflorida-my.sharepoint.com/:v:/g/personal/paruchuri_s_ufl_edu/EW9AEp6aX6pKjqxOCmlizfEBaysAXfEkFVhDR2lqXvYU_w?e=LbTead)
 
 ### REST API
 
@@ -92,7 +92,7 @@ Incase of error the status will be `400` with the error message "Unable to add c
 - Created a PostCard which automatically gets loaded onto a user's feed when he/she posts something. This feature has like and comment options which were also developed. Further, in the user's feed, the posts are displayed in the order of relevance.
 - More about frontend documentation can be found at this [wiki](https://github.com/flash29/this.jobs/wiki/File-Structure)
 
-Frontend demo link is found [here](https://uflorida-my.sharepoint.com/personal/paruchuri_s_ufl_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fparuchuri%5Fs%5Fufl%5Fedu%2FDocuments%2FSE%5Fsprint1%2Fsprint1%5Ffrontend%2Emp4&parent=%2Fpersonal%2Fparuchuri%5Fs%5Fufl%5Fedu%2FDocuments%2FSE%5Fsprint1)
+Frontend demo link is found [here](https://uflorida-my.sharepoint.com/:v:/g/personal/paruchuri_s_ufl_edu/EdfI-lNcYEVNvRGp4WBZQbcBYPkf6JYaRWQt3Qn53swX7g?e=2DgwGd)
 
 ### Frontend HomePage
 

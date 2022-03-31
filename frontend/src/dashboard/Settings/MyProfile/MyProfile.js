@@ -8,7 +8,7 @@ import React from 'react';
 
 function Settings() {
 
-  //  let params = useParams();
+    let params = useParams();
 
     const [userData, setUserData] = useState({
       imageData : dp,
@@ -60,8 +60,8 @@ function Settings() {
     // setUserData();
     useEffect(()=>{
 
-
-      fetch('/userprofile/1', {
+      console.log('params id', params.userid);
+      fetch('/userprofile/'+params.userid, {
         method : 'GET',
         headers:{
           'Content-type':'application/json',
