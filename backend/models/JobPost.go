@@ -1,9 +1,5 @@
 package models
 
-import (
-	"time"
-)
-
 type JobPost struct {
 	JobID            int              `gorm:"primary_key" json:"jobId"`
 	UserID           int              `json:"userId"`

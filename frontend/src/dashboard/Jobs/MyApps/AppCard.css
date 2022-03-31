@@ -1,0 +1,37 @@
+.CardType{
+    display: flex;
+    justify-content: center;
+}
+
+.fullClassTwo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-style: solid;   
+    width: 50rem;
+    border-radius: 10%;
+    border: 0.2em solid black;
+    border-radius: 6px;
+    margin: 0.2em;
+    padding: 0.2em;
+}
+
+.topCard{
+    display: flex;
+    justify-content: space-between;
+    margin: 0.2em;
+}
+
+.timeDisplay{
+    font-weight: lighter;
+    font-size: 0.8em;
+}
+
+.PostTag{
+    display: flex;
+    font-weight:bold;
+    font-size: 0.9em;
+    background-color: white;
+    width: 20em;
+    margin: 0.3em;
+}
