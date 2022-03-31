@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 
@@ -35,6 +36,28 @@ func RetrieveAllJobPosts(c *gin.Context) {
 		db = db.Order("created_at asc")
 		return db
 	}).Order("created_at desc").Find(&jobposts)
+	if result.Error != nil {
+		c.JSON(400, gin.H{"error": "Unable to retrieve job posts"})
+	} else {
+		c.JSON(200, jobposts)
+	}
+}
+
+func RetrieveAppliedJobsById(c *gin.Context) {
+	var jobposts []models.JobPost
+	id := c.Params.ByName("id")
+	var userProfile models.User
+	if err := utils.DB.Where("user_id = ?", id).First(&userProfile).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve user"})
+		return
+	}
+	// var jobApp models.JobApplication
+	// query := utils.DB.Select("job_id").Where("user_id = ?", id)
+	result := utils.DB.Preload("AppliedUsersList", func(db *gorm.DB) *gorm.DB {
+		// db = db.Order("created_at asc")
+		return db
+	}).Where("job_id IN (select job_id from job_applications where user_id = ?)", id).Order("created_at desc").Find(&jobposts)
+	fmt.Println(result.Error)
 	if result.Error != nil {
 		c.JSON(400, gin.H{"error": "Unable to retrieve job posts"})
 	} else {
@@ -101,6 +124,10 @@ func ApplyToJob(c *gin.Context) {
 		return
 	}
 
+	if post.ValidTill < time.Now().Unix() {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Sorry, no longer accepting applications for this job"})
+		return
+	}
 	if result != nil && result.RowsAffected == 1 {
 		jobapp.CreatedAt = time.Now().Unix()
 		utils.DB.Create(&jobapp)
