@@ -75,7 +75,7 @@ func CreateJobPost(c *gin.Context) {
 		return
 	}
 
-	if post.Content == "" {
+	if post.Content == "" || post.Location == "" || post.JobTitle == "" || post.Organization == "" || post.Salary == "" {
 		c.JSON(400, gin.H{"error": "Unable to create job"})
 	} else {
 		post.CreatedAt = time.Now().Unix()
