@@ -50,8 +50,11 @@ func main() {
 	protected.PUT("/updateducation", controllers.UpdateEducationDetails)
 	protected.PUT("/updatelikes", controllers.UpdateLikes)
 	protected.DELETE("/post/:id", controllers.DeletePost)
+
 	protected.GET("/getalljobposts", controllers.RetrieveAllJobPosts)
 	protected.GET("/getjobposts/:id", controllers.RetrieveAllJobPostsById)
+	protected.GET("/getappliedjobs/:id", controllers.RetrieveAppliedJobsById)
+
 	protected.POST("/jobpost", controllers.CreateJobPost)
 	protected.PUT("/jobpost/:id", controllers.UpdateJobPost)
 	protected.DELETE("/jobpost/:id", controllers.DeleteJobPost)
