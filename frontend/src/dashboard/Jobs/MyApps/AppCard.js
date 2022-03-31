@@ -41,7 +41,7 @@ function AppCard() {
 
     return (
       <div className = 'CardType'>
-            <div className='fullClass'>
+            <div className='fullClassTwo'>
                 <div className='PostTag'>{arr.jobId}  {arr.content}</div>
                 {/* <div className='PostTag'>{arr.content}</div> */}
                 <div className="topCard">
