@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useState} from 'react';
 import {Form, FormGroup, FormControl, Button } from 'react-bootstrap';
-import { Route, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {H} from 'react-headings';
-import TestRenderer from 'react-test-renderer';
 import './LoginPage.css'
 
 
