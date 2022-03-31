@@ -9,6 +9,7 @@ import Tabs from "@material-ui/core/Tabs";
 
 function DisplayProp(props) {
   const val = props.val;
+  sessionStorage.setItem("tab", val);
   if(val == 2){
     return (<MyApps />);
   }
@@ -21,7 +22,7 @@ function DisplayProp(props) {
 }
 
 function Jobs() {
-  const [value, setValue] = React.useState(1);
+  const [value, setValue] = React.useState(sessionStorage.getItem('tab'));
     return (
       <div className="App">
           <NavBar />

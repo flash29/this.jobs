@@ -25,6 +25,7 @@ function PostBox(props){
         const [postData, setPostData] = useState({ 
             userId : 1, 
             content : 'Job desc', 
+            company : 'Google',
             validTill : 1648487629
         });  
 
@@ -75,9 +76,9 @@ function PostBox(props){
                     <input className = "commentBox1" placeholder = "Job description"  onChange = { (e) => setPostData({...postData, content : e.target.value})}/>
                 </div>    
                 <div className = "buttons1">
-                    {/* <div className ="dropdown1">
-                            <input className = "dropbtn1" placeHolder = "Job-Id" onChange = {(e) => setPostData({...postData, jobId : e.target.value}) }/>  
-                    </div> */}
+                    <div className ="dropdown1">
+                            <input className = "dropbtn1" placeHolder = "Company" onChange = {(e) => setPostData({...postData, company: e.target.value}) }/>  
+                    </div>
                     <div className ="dropdown1">
                             <input className = "dropbtn1" placeholder = "Last date to apply" onChange = {(e) => setPostData({...postData, validTill : e.target.value}) }/>  
                     </div>

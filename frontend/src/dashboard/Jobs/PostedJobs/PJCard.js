@@ -1,8 +1,9 @@
 import './PJCard.css';
 import React, { useState, useEffect } from 'react';
+import  { useParams } from "react-router-dom";
 
 function PJCard(props) {
-
+    let params = useParams();
     // const {
     //     appId,
     //     appliedOn,
@@ -12,15 +13,24 @@ function PJCard(props) {
 
     const {
         jobId,
+        company,
         createdBy,
         content,
         createdAt,
         updatedAt,
         appliedUsersList,
-        attachments
+        attachments,
+        validTill
     } = props.postContent;
 
+    const [postData, setPostData] = useState({ 
+        userId : 1, 
+        jobId : 1
+    });  
 
+    let userid = sessionStorage.getItem('userid');
+    postData.userId = Number(userid)
+    let jobid = jobId
 
     // console.log('jobId', arr.jobId);
     let timeOfApplication = '';
@@ -41,11 +51,19 @@ function PJCard(props) {
     }
     createDate();
 
+    function handleSubmit(){
+        console.log(postData.userId);
+        
+    }
+
     return (
       <div className = 'CardType2'>
-            <div className='fullClass2'>
-                <div className='PostTag2'>{jobId}  {content}</div>
-                {/* <div className='PostTag'>{arr.content}</div> */}
+            <div className='fullClass2' onClick={handleSubmit}>
+                <div className='PostTag2' >{company} {content}  </div>
+                <div className='PostTag2'> Job-id: {jobId}</div>
+                <div className="topCard2">
+                    <div className='timeDisplay2'  >valid till: {validTill}</div> 
+                </div>
                 <div className="topCard2">
                     <div className='timeDisplay2'  >{timeOfApplication}</div> 
                 </div>
