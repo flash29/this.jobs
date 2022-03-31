@@ -1,13 +1,11 @@
 import React from 'react';
 import { Container, Button} from "react-bootstrap";
-import "./PostBox.css";
+import "./PostJob.css";
 
 import { useState} from 'react';
-import sicon from "../../images/send-outline.svg";
-import licon from "../../images/link-outline.svg";
-import ficon from "../../images/document-attach-outline.svg";
+import sicon from "../../../images/send-outline.svg";
 import styled from 'styled-components';
-import picon from "../../images/camera-outline.svg";
+import picon from "../../../images/camera-outline.svg";
 
 const Button1 = styled.button`
   position: relative;
@@ -23,10 +21,16 @@ const Button1 = styled.button`
 function PostBox(props){
 
         const [postData, setPostData] = useState({ 
+            jobId : '1',
             createdBy : 'user1', 
-            content : '', tag : '', 
-            attachments : ''
+            content : '', 
+            createdAt : 1648487349,
+            updatedAt : 1648487629,
+            appliedUsersList : null,            
+            attachments : '',
+            validTill : 1648487629
         });  
+
         const [base64File, setBase64URL] = useState('');
 
         const handleFileInputChange = e => {
@@ -53,10 +57,9 @@ function PostBox(props){
 
         function handleSubmit(){
             console.log(postData);
-            fetch('/post', {
+            fetch('/jobpost', {
                 method : 'POST', 
-                headers:{'Content-type':'application/json'}, 
-                headers:{'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
+                headers:{'Content-type':'application/json'},
                 body:JSON.stringify(postData),
             }).then(response => response.json()).then(data => {
                 console.log(data);
@@ -68,17 +71,14 @@ function PostBox(props){
         return(
             <Container className = "PostBox">
                 <div >
-                    <input className = "commentBox" placeholder = "What's on your mind?"  onChange = { (e) => setPostData({...postData, content : e.target.value})}/>
+                    <input className = "commentBox" placeholder = "Job description"  onChange = { (e) => setPostData({...postData, content : e.target.value})}/>
                 </div>    
                 <div className = "buttons">
                     <div className ="dropdown">
-                            <select className = "dropbtn" onChange = {(e) => setPostData({...postData, tag : e.target.value}) }>
-                                <option value = "1">Select Tag</option> 
-                                <option value = "Job-Recruitment">Job-Recruitment</option>
-                                <option value = "Knowledge Sharing">Knowledge Sharing</option>
-                                <option value = "Inspiration">Inspiration</option>
-                                <option value = "Others">Others</option>    
-                            </select>
+                            <input className = "dropbtn" placeHolder = "Job-Id" onChange = {(e) => setPostData({...postData, jobId : e.target.value}) }/>  
+                    </div>
+                    <div className ="dropdown">
+                            <input className = "dropbtn" placeHolder = "Last date to apply" onChange = {(e) => setPostData({...postData, validTill : e.target.value}) }/>  
                     </div>
 
                     <>
@@ -90,30 +90,6 @@ function PostBox(props){
                             ref = {hiddenFileInput}
                             style={{display: 'none'}}
                             onChange = {handleFileInputChange}/>
-                    </>
-
-
-                    <>
-                        <Button1 onClick={handleClick}>
-                            <img src = {ficon} className = "images" alt = ""/>
-                        </Button1>
-                        <input
-                            type="file"
-                            ref={hiddenFileInput}
-                            onChange = {handleFileInputChange}
-                            style={{display: 'none'}}
-                        />
-                    </>
-                    <>
-                        <Button1 onClick={handleClick}>
-                            <img src = {licon} className = "images" alt = ""/>
-                        </Button1>
-                        <input
-                            type="file"
-                            ref={hiddenFileInput}
-                            onChange = {handleFileInputChange}
-                            style={{display: 'none'}}
-                        />
                     </>
 
                     <Button className = "icon" type = "submit" onClick={handleSubmit}>
