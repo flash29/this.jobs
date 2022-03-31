@@ -40,12 +40,12 @@ function PJCard() {
     createDate();
 
     return (
-      <div className = 'CardType'>
-            <div className='fullClass'>
-                <div className='PostTag'>{arr.jobId}  {arr.content}</div>
+      <div className = 'CardType2'>
+            <div className='fullClass2'>
+                <div className='PostTag2'>{arr.jobId}  {arr.content}</div>
                 {/* <div className='PostTag'>{arr.content}</div> */}
-                <div className="topCard">
-                    <div className='timeDisplay'  >{timeOfApplication}</div> 
+                <div className="topCard2">
+                    <div className='timeDisplay2'  >{timeOfApplication}</div> 
                 </div>
             </div>
       </div>  

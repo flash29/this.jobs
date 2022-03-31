@@ -57,7 +57,7 @@ function PostBox(props){
 
         function handleSubmit(){
             console.log(postData);
-            fetch('/jobpost', {
+            fetch('/getjobposts' + this.state.createdBy, {
                 method : 'POST', 
                 headers:{'Content-type':'application/json'},
                 body:JSON.stringify(postData),
@@ -69,21 +69,21 @@ function PostBox(props){
         }
 
         return(
-            <Container className = "PostBox">
+            <Container className = "PostBox1">
                 <div >
-                    <input className = "commentBox" placeholder = "Job description"  onChange = { (e) => setPostData({...postData, content : e.target.value})}/>
+                    <input className = "commentBox1" placeholder = "Job description"  onChange = { (e) => setPostData({...postData, content : e.target.value})}/>
                 </div>    
-                <div className = "buttons">
-                    <div className ="dropdown">
-                            <input className = "dropbtn" placeHolder = "Job-Id" onChange = {(e) => setPostData({...postData, jobId : e.target.value}) }/>  
+                <div className = "buttons1">
+                    <div className ="dropdown1">
+                            <input className = "dropbtn1" placeHolder = "Job-Id" onChange = {(e) => setPostData({...postData, jobId : e.target.value}) }/>  
                     </div>
-                    <div className ="dropdown">
-                            <input className = "dropbtn" placeHolder = "Last date to apply" onChange = {(e) => setPostData({...postData, validTill : e.target.value}) }/>  
+                    <div className ="dropdown1">
+                            <input className = "dropbtn1" placeHolder = "Last date to apply" onChange = {(e) => setPostData({...postData, validTill : e.target.value}) }/>  
                     </div>
 
                     <>
                         <Button1 onClick={handleClick}>
-                            <img src = {picon} className = "images" alt = ""/>
+                            <img src = {picon} className = "images1" alt = ""/>
                         </Button1>
                         <input
                             type="file"
@@ -92,8 +92,8 @@ function PostBox(props){
                             onChange = {handleFileInputChange}/>
                     </>
 
-                    <Button className = "icon" type = "submit" onClick={handleSubmit}>
-                        <img src = {sicon} className = "images" alt = "" />
+                    <Button className = "icon1" type = "submit" onClick={handleSubmit}>
+                        <img src = {sicon} className = "images1" alt = "" />
                     </Button>  
                 </div>         
             </Container>    
