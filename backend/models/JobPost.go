@@ -1,9 +1,5 @@
 package models
 
-import (
-	"time"
-)
-
 type JobPost struct {
 	JobID            int              `gorm:"primary_key" json:"jobId"`
 	UserID           int              `json:"userId"`
@@ -13,4 +9,8 @@ type JobPost struct {
 	AppliedUsersList []JobApplication `gorm:"ForeignKey:JobID" json:"appliedUsersList"`
 	Attachments      string           `gorm:"type:text" json:"attachments"`
 	ValidTill        time.Time        `json:"validTill"`
+	JobTitle         string           `json:"jobtitle"`
+	Location         string           `json:"location"`
+	Organization     string           `json:"org"`
+	Salary           string           `json:"salary"`
 }
