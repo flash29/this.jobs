@@ -11,6 +11,28 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
+func RetrieveApplicationsForJobPosting(c *gin.Context) {
+	var jobapplications []models.JobApplication
+	userid := c.Params.ByName("userid")
+	jobid := c.Params.ByName("jobid")
+	var userProfile models.User
+	if err := utils.DB.Where("user_id = ?", userid).First(&userProfile).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve user"})
+		return
+	}
+
+	var post models.JobPost
+	if err := utils.DB.Where("job_id = ?", jobid).First(&post).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrueve the job application"})
+		return
+	}
+	result := utils.DB.Where("user_id=?", userid).Where("job_id=?", jobid).Find(jobapplications)
+	if result.Error != nil {
+		c.JSON(400, gin.H{"error": "Unable to retrieve job applications"})
+	} else {
+		c.JSON(200, jobapplications)
+	}
+}
 func RetrieveAllJobPostsById(c *gin.Context) {
 	var jobposts []models.JobPost
 	id := c.Params.ByName("id")
@@ -76,7 +98,7 @@ func CreateJobPost(c *gin.Context) {
 		return
 	}
 
-	if post.Content == "" {
+	if post.Content == "" || post.Location == "" || post.JobTitle == "" || post.Organization == "" || post.Salary == "" {
 		c.JSON(400, gin.H{"error": "Unable to create job"})
 	} else {
 		post.CreatedAt = time.Now().Unix()
