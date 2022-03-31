@@ -5,15 +5,18 @@ import "./PostedJobs.css";
 import React, { useState, useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import PJBoxComp from './PJBoxComp';
+import  { useParams } from "react-router-dom";
 
 
 
 function PostedJobs(){
 
     const [posts, setPosts] = useState();
+    let params = useParams();
+    let userid = sessionStorage.getItem('userid');
 
     async function getJobsPosted () {
-            fetch('/getjobposts', {
+            fetch(('/getjobposts/'+userid), {
                 headers:{'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
             }).then(res => res.json())
                 .then(res => setPosts(res) )

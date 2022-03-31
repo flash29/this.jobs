@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Button} from "react-bootstrap";
+import  { useParams } from "react-router-dom";
 import "./PostJob.css";
 
 import { useState} from 'react';
@@ -20,16 +21,15 @@ const Button1 = styled.button`
 
 function PostBox(props){
 
+        let params = useParams();
         const [postData, setPostData] = useState({ 
-            jobId : '1',
-            createdBy : 'user1', 
-            content : '', 
-            createdAt : 1648487349,
-            updatedAt : 1648487629,
-            appliedUsersList : null,            
-            attachments : '',
+            userId : 1, 
+            content : 'Job desc', 
             validTill : 1648487629
         });  
+
+        let userid = sessionStorage.getItem('userid');
+        postData.userId = Number(userid)
 
         const [base64File, setBase64URL] = useState('');
 
@@ -56,14 +56,15 @@ function PostBox(props){
         };
 
         function handleSubmit(){
-            console.log(postData);
-            fetch('/getjobposts' + this.state.createdBy, {
+            console.log(postData.userId);
+            fetch('/jobpost', {
                 method : 'POST', 
                 headers:{'Content-type':'application/json'},
+                headers:{'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
                 body:JSON.stringify(postData),
             }).then(response => response.json()).then(data => {
                 console.log(data);
-                setPostData({ createdBy : 'user1', content : '', tag : '', attachments : ''});
+                setPostData({ userId : userid, content : '', validTill : 1648487629});
                 window.location.reload(false)
             }).catch(error => console.log('error', error))
         }
@@ -74,19 +75,19 @@ function PostBox(props){
                     <input className = "commentBox1" placeholder = "Job description"  onChange = { (e) => setPostData({...postData, content : e.target.value})}/>
                 </div>    
                 <div className = "buttons1">
-                    <div className ="dropdown1">
+                    {/* <div className ="dropdown1">
                             <input className = "dropbtn1" placeHolder = "Job-Id" onChange = {(e) => setPostData({...postData, jobId : e.target.value}) }/>  
-                    </div>
+                    </div> */}
                     <div className ="dropdown1">
-                            <input className = "dropbtn1" placeHolder = "Last date to apply" onChange = {(e) => setPostData({...postData, validTill : e.target.value}) }/>  
+                            <input className = "dropbtn1" placeholder = "Last date to apply" onChange = {(e) => setPostData({...postData, validTill : e.target.value}) }/>  
                     </div>
 
                     <>
-                        <Button1 onClick={handleClick}>
+                        {/* <Button1 onClick={handleClick}>
                             <img src = {picon} className = "images1" alt = ""/>
-                        </Button1>
+                        </Button1> */}
                         <input
-                            type="file"
+                            type="date"
                             ref = {hiddenFileInput}
                             style={{display: 'none'}}
                             onChange = {handleFileInputChange}/>
