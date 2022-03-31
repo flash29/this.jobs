@@ -4,6 +4,7 @@ import PostJob from './PostJob'
 import "./PostedJobs.css";
 import React, { useState, useEffect } from 'react';
 import { Card } from 'react-bootstrap';
+import PJBoxComp from './PJBoxComp';
 
 
 
@@ -12,7 +13,7 @@ function PostedJobs(){
     const [posts, setPosts] = useState();
 
     async function getJobsPosted () {
-            fetch('/jobposts', {
+            fetch('/getjobposts', {
                 headers:{'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
             }).then(res => res.json())
                 .then(res => setPosts(res) )
@@ -28,7 +29,7 @@ function PostedJobs(){
             <PostJob/>
             <div class="grid-container-element">
                 <div class="grid-child-element purple">
-                    <PJCard posts = {posts}/>
+                    <PJBoxComp posts = {posts}/>
                 </div>
                 <div class="grid-child-element green">
                     Applicants list will appear here
