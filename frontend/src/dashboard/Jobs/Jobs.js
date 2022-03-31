@@ -5,6 +5,7 @@ import MyApps from './MyApps/MyApps'
 import Paper from "@material-ui/core/Paper";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
+import JobSearch from './JobSearch/JobSearch';
 
 function DisplayProp(props) {
   const val = props.val;
@@ -15,7 +16,9 @@ function DisplayProp(props) {
     return (<div>Posted Jobs!</div>);
   }
   else{
-    return (<div>Jobs!</div>);
+    return (
+      <JobSearch />
+     );
   }  
 }
 
