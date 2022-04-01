@@ -1,0 +1,59 @@
+.descOrg{
+    font-weight:bolder;
+    font-size: 5em;
+}
+
+.descJob{
+    font-weight:bolder;
+    font-size: 1.5em;
+}
+
+.locAndTime{
+    display: flex;
+    justify-content: space-between;
+    font-weight: bolder;
+    opacity: 0.3;
+    margin: 1em;
+}
+
+.salary{
+    display: flex;
+    padding-left: 3em;
+    font-weight: bolder;
+    opacity: 0.3;
+}
+
+.descLoc{
+    padding-left: 2em;
+}
+
+.descTime{
+    padding-right: 2em;
+}
+
+.descriptionTag{
+    font-weight: bolder;
+    display: flex;
+    margin: 1em;
+    padding-left: 2em;
+}
+
+.descContent{
+    margin: 2em;
+}
+
+.applyJobButton{
+    margin: 1em;
+    display: flex;
+    margin-left: 3em;
+    font-weight: bolder;
+    background-color: antiquewhite;
+    width: 3em;
+    padding: 0.5em;
+}
+
+.applyJobButton:hover{
+    cursor: pointer;
+    background-color: black;
+    color: aliceblue;
+}
