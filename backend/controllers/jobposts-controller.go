@@ -33,8 +33,8 @@ func isAlreadyApplied(user_id int, job_id int) (result bool) {
 
 func RetrieveApplicationsForJobPosting(c *gin.Context) {
 	var jobapplications []models.JobApplication
-	userid, _ := strconv.Atoi(c.Params.ByName("userid"))
 	jobid, _ := strconv.Atoi(c.Params.ByName("jobid"))
+	userid, _ := strconv.Atoi(c.Params.ByName("userid"))
 
 	if !isUserPresent(userid) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve user"})

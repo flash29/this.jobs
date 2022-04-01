@@ -110,9 +110,8 @@ func TestRetrieveAllJobPostsById(t *testing.T) {
 		},
 	}
 	RetrieveAllJobPostsById(c)
-	var post []models.JobPost
-	err := json.Unmarshal(w.Body.Bytes(), &post)
-	assert.NoError(t, err)
+	expected := `{"error":"Unable to retrieve user"}`
+	assert.Equal(t, expected, w.Body.String())
 }
 
 func TestRetrieveAllJobPosts(t *testing.T) {
@@ -138,9 +137,8 @@ func TestRetrieveAppliedJobsById(t *testing.T) {
 		},
 	}
 	RetrieveAppliedJobsById(c)
-	var post []models.JobPost
-	err := json.Unmarshal(w.Body.Bytes(), &post)
-	assert.NoError(t, err)
+	expected := `{"error":"Unable to retrieve user"}`
+	assert.Equal(t, expected, w.Body.String())
 }
 
 func TestDeleteJobPost(t *testing.T) {
@@ -167,4 +165,21 @@ func TestApplyToJob(t *testing.T) {
 	var post models.JobApplication
 	err := json.Unmarshal(w.Body.Bytes(), &post)
 	assert.Equal(t, nil, err)
+}
+
+func TestRetrieveApplicationsForJobPosting(t *testing.T) {
+	w, c, _ := setUpFeedController([]byte{}, "/getjobposts/1", "GET", RetrieveApplicationsForJobPosting)
+	c.Params = []gin.Param{
+		{
+			Key:   "jobid",
+			Value: "-1",
+		},
+		{
+			Key:   "userid",
+			Value: "-1",
+		},
+	}
+	RetrieveApplicationsForJobPosting(c)
+	expected := `{"error":"Unable to retrieve user"}`
+	assert.Equal(t, expected, w.Body.String())
 }
