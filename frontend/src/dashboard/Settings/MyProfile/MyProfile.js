@@ -466,6 +466,8 @@ function Settings() {
 
     const hiddenFileInput = React.useRef(null);
 
+    const hiddenResumeInput = React.useRef(null);
+
     const handleClick = event => {
       hiddenFileInput.current.click();
   };
@@ -507,6 +509,68 @@ function Settings() {
       
   };
 
+  const handleClickUploadResume = () => {
+    hiddenResumeInput.current.click();
+  }
+
+  const handleResumeUpload = (e) =>{
+    console.log('e', e)
+
+    const reader = new FileReader();
+
+          var data = new FormData();
+
+
+            data.append("filename", e.target.files[0].name);
+           data.append("file", e.target.files[0] );
+   
+   
+           console.log('Form Data in resume', data);
+   
+           const response = fetch('/resumeupload/'+ userid, {
+             method: 'POST',
+             headers:{
+               'Authorization': 'Bearer ' + token
+             },
+             body: data
+           });
+   
+           console.log('response from the server for uploading resume', response);
+
+
+
+    // const response = fetch('/resumeupload/'+ userid, {
+    //   method: 'POST',
+    //   headers:{
+    //     'Authorization': 'Bearer ' + token
+    //   },
+    //   body: data
+    // });
+
+
+    // reader.onload = function() {
+    //     setBase64URL(reader.result);
+    //     setUserData({...userData, imageData : reader.result })
+
+    //     console.log('reader result for resume', reader.result );
+
+
+       
+      
+
+
+
+
+    // console.log('result', reader.result);
+    // console.log("file result", base64File);
+    // console.log('userdata', userData);
+    // }
+    if(e.target.files[0]){
+    reader.readAsDataURL(e.target.files[0]);
+    console.log('reader',reader);
+    }
+    
+  }
     
 
     return (
@@ -537,6 +601,7 @@ function Settings() {
                   type="file"
                   ref = {hiddenFileInput}
                   style={{display: 'none'}}
+                  id = "inputBoxes"
                   onChange = {handleFileInputChange}/>
               </div>
                         
@@ -565,7 +630,8 @@ function Settings() {
                     }
               </div>
                
-               {/* <div className='userResume'>
+               {
+               /* <div className='userResume'>
                     {
                       userData.resume ===''
                       ?
@@ -577,7 +643,18 @@ function Settings() {
                         Here is your
                       </>
                     }
-               </div> */}  
+               </div> */
+               }  
+
+               <div className='changeDP' onClick={handleClickUploadResume}>
+                Upload Resume
+                <input
+                  type="file"
+                  ref = {hiddenResumeInput}
+                  style={{display: 'none'}}
+                  id = "inputBoxes  resumeinput"
+                  onChange = {handleResumeUpload}/>
+               </div>
 
                <div
                className='updateButton'
@@ -636,6 +713,7 @@ function Settings() {
                         type="text" 
                         name="description" 
                         className='newDescriptionEducation'
+                        id = "inputBoxes"
                         onChange={ (e) => changeEducationDescription(e) }
                         /> 
                       </div>
