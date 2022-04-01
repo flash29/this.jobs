@@ -135,3 +135,17 @@ func TestDeleteJobPost(t *testing.T) {
 	DeleteJobPost(c)
 	assert.Equal(t, http.StatusOK, w.Code)
 }
+
+func TestApplyToJob(t *testing.T) {
+	var jsonData = []byte(`{
+		"jobId" : 1,
+		"userId": 2
+	}`)
+
+	w, c, _ := setUpFeedController(jsonData, "/applyjob", "POST", ApplyToJob)
+
+	ApplyToJob(c)
+	var post models.JobApplication
+	err := json.Unmarshal(w.Body.Bytes(), &post)
+	assert.Equal(t, nil, err)
+}
