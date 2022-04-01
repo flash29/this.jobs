@@ -1,4 +1,4 @@
-.PostBox{
+.PostBox1{
     border-color: black;
     padding : 2%;
     /* width : 70%; */
@@ -15,8 +15,8 @@
     padding-right: 10%;
 }
 
-.commentBox{
-    width: 400px;
+.commentBox1{
+    width: 200px;
     height: 40px;
     position: relative;
     display: inline-block flex;
@@ -31,9 +31,10 @@
     padding-left: 15px;
     padding-right: 15px;
     border-radius : 10px;
+
 }
 
-.buttons{
+.buttons1{
     width: 200px;
     height: 50%;
     position: relative;
@@ -57,7 +58,7 @@
     z-index: 10%;
 }
 
-.icon{
+.icon1{
     position: relative;
     flex-wrap: wrap;
     flex-direction: row;
@@ -69,11 +70,11 @@
     /* margin-left: 30px; */
 }
 
-.images{
+.images1{
     height : 18px;
 }
 
-.dropbtn {
+.dropbtn1 {
     color: black;
     background-color: white;
     padding: 5px;
@@ -87,13 +88,13 @@
     border-radius : 5px;
   }
   
-  .dropdown {
+  .dropdown1 {
     position: relative;
     display: inline-block;
     margin-right: 10px;
   }
   
-  .dropdown-content {
+  .dropdown-content{
     display: none;
     position: absolute;
     background-color: #f9f9f9;

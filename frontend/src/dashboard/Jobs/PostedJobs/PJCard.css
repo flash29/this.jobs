@@ -1,33 +1,33 @@
-.CardType{
+.CardType2{
     display: flex;
     justify-content: center;
 }
 
-.fullClass{
+.fullClass2{
     display: flex;
     justify-content: center;
     flex-direction: column;
     border-style: solid;   
-    width: 50rem;
+    width: 20rem;
     border-radius: 10%;
-    border: 0.2em solid black;
+    border: 0.1em solid black;
     border-radius: 6px;
     margin: 0.2em;
     padding: 0.2em;
 }
 
-.topCard{
+.topCard2{
     display: flex;
     justify-content: space-between;
     margin: 0.2em;
 }
 
-.timeDisplay{
+.timeDisplay2{
     font-weight: lighter;
     font-size: 0.8em;
 }
 
-.PostTag{
+.PostTag2{
     display: flex;
     font-weight:bold;
     font-size: 0.9em;
