@@ -146,10 +146,10 @@ func ApplyToJob(c *gin.Context) {
 		return
 	}
 
-	if post.ValidTill < time.Now().Unix() {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Sorry, no longer accepting applications for this job"})
-		return
-	}
+	// if post.ValidTill < time.Now().Unix() {
+	// 	c.JSON(http.StatusBadRequest, gin.H{"error": "Sorry, no longer accepting applications for this job"})
+	// 	return
+	// }
 	if result != nil && result.RowsAffected == 1 {
 		jobapp.CreatedAt = time.Now().Unix()
 		utils.DB.Create(&jobapp)
