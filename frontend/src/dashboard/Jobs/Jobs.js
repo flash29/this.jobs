@@ -5,23 +5,67 @@ import MyApps from './MyApps/MyApps'
 import Paper from "@material-ui/core/Paper";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
+import  { useParams } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import PostedJobs from './PostedJobs/PostedJobs';
+
+let userid = sessionStorage.getItem('userid');
+// let params = useParams();
 
 function DisplayProp(props) {
   const val = props.val;
-  sessionStorage.setItem("tab", val);
-  if(val == 2){
-    return (<MyApps />);
+  sessionStorage.setItem('tab', val);
+  console.log(props.posts)
+  if(val == 2){  
+    return (<MyApps posts = {props.posts}/>);
   }
   else if(val == 3){
-    return (<div>Posted Jobs!</div>);
+    return (<div><PostedJobs /></div>);
   }
   else{
     return (<div>Jobs!</div>);
   }  
 }
 
-function Jobs() {
-  const [value, setValue] = React.useState(sessionStorage.getItem('tab'));
+function Jobs(props) {
+  
+  const [value, setValue] = React.useState(1);
+  const [posts, setPosts] = useState();
+
+  async function getPosts () {
+      console.log('/getappliedjobs/' + userid)
+      fetch(('/getappliedjobs/' + userid), {
+        //headers:{'Content-type':'application/json'},
+        headers:{'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
+        //body:JSON.stringify(postData),
+    }).then(res => res.json())
+        .then(res => setPosts(res) )
+        .catch(error => console.log('error getting Feed'))
+  }
+  useEffect(() => {
+    getPosts();
+    console.log('posts', posts);
+  }, []);
+
+
+  const [pjobs, setPJobs] = useState();
+
+  // async function getPJobs () {
+  //     console.log('/getjobposts/'+ userid)
+  //     fetch(('/getjobposts/' + userid), {
+  //       //headers:{'Content-type':'application/json'},
+  //       headers:{'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
+  //       //body:JSON.stringify(postData),
+  //   }).then(res => res.json())
+  //       .then(res => setPJobs(res) )
+  //       .catch(error => console.log('error getting Feed'))
+  // }
+  // useEffect(() => {
+  //   getPJobs();
+  //   console.log('pjobs', pjobs);
+  // }, []);
+
+  
     return (
       <div className="App">
           <NavBar />
@@ -38,5 +82,4 @@ function Jobs() {
       </div>      
     );
   }
-  
   export default Jobs;

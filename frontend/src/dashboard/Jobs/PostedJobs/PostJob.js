@@ -19,45 +19,34 @@ const Button1 = styled.button`
   background: transparent;
 `;
 
-function PostBox(props){
-
+function PostJob(props){
         let params = useParams();
         const [postData, setPostData] = useState({ 
+            jobId : 0, 
             userId : 1, 
-            content : 'Job desc', 
-            company : 'Google',
-            validTill : 1648487629
-        });  
+            content : '',
+            createdAt : 1234443546,
+            updatedAt : 1786473478, 
+            appliedUsersList : [],
+            attachments : '',
+            validTill : 14262318723,
+            jobTitle : '',
+            location : '',
+            org : '',
+            salary : ''
+        });
 
         let userid = sessionStorage.getItem('userid');
-        postData.userId = Number(userid)
+        postData.userId = Number(userid);
+        // console.log(postData.userId)
 
-        const [base64File, setBase64URL] = useState('');
-
-        const handleFileInputChange = e => {
-            console.log(e.target.files[0]);
-            const reader = new FileReader();
-            reader.onload = function() {
-                setBase64URL(reader.result);
-                setPostData({...postData, attachments : reader.result })
-            console.log('result', reader.result);
-            console.log("file result", base64File);
-            }
-            if(e.target.files[0]){
-            reader.readAsDataURL(e.target.files[0]);
-            console.log('reader',reader);
-            }
-            
-        };
-
-        const hiddenFileInput = React.useRef(null);
-
-        const handleClick = event => {
-            hiddenFileInput.current.click();
-        };
+        // let jobid = sessionStorage.getTime('jobid');
+        // postData.jobId = jobid
 
         function handleSubmit(){
-            console.log(postData.userId);
+            console.log("Entered submit")
+            // postData.jobId = sessionStorage.getItem(jobId)
+            console.log(postData);
             fetch('/jobpost', {
                 method : 'POST', 
                 headers:{'Content-type':'application/json'},
@@ -65,7 +54,19 @@ function PostBox(props){
                 body:JSON.stringify(postData),
             }).then(response => response.json()).then(data => {
                 console.log(data);
-                setPostData({ userId : userid, content : '', validTill : 1648487629});
+                // console.log(postData);
+                setPostData({ jobId : 0, 
+                    userId : 1, 
+                    content : '',
+                    createdAt : 1234443546,
+                    updatedAt : 1786473478, 
+                    appliedUsersList : [],
+                    attachments : '',
+                    validTill : 14262318723,
+                    jobTitle : '',
+                    location : '',
+                    org : '',
+                    salary : ''});
                 window.location.reload(false)
             }).catch(error => console.log('error', error))
         }
@@ -73,27 +74,19 @@ function PostBox(props){
         return(
             <Container className = "PostBox1">
                 <div >
-                    <input className = "commentBox1" placeholder = "Job description"  onChange = { (e) => setPostData({...postData, content : e.target.value})}/>
+                    <input className = "commentBox1" placeholder = "Company" onChange = {(e) => {setPostData({...postData, org: e.target.value}); console.log(postData.org) }}/>
+                    <input className = "commentBox1" placeholder = "Job description"  onChange = { (e) => setPostData({...postData, jobTitle : e.target.value, content : e.target.value})}/>   
                 </div>    
                 <div className = "buttons1">
                     <div className ="dropdown1">
-                            <input className = "dropbtn1" placeHolder = "Company" onChange = {(e) => setPostData({...postData, company: e.target.value}) }/>  
+                            <input className = "dropbtn1" placeholder = "Location" onChange = {(e) => setPostData({...postData, location: e.target.value}) }/>  
                     </div>
                     <div className ="dropdown1">
-                            <input className = "dropbtn1" placeholder = "Last date to apply" onChange = {(e) => setPostData({...postData, validTill : e.target.value}) }/>  
+                            <input className = "dropbtn1" placeholder = "salary" onChange = {(e) => {setPostData({...postData, salary : e.target.value}); console.log(postData.salary);} }/>  
                     </div>
-
-                    <>
-                        {/* <Button1 onClick={handleClick}>
-                            <img src = {picon} className = "images1" alt = ""/>
-                        </Button1> */}
-                        <input
-                            type="date"
-                            ref = {hiddenFileInput}
-                            style={{display: 'none'}}
-                            onChange = {handleFileInputChange}/>
-                    </>
-
+                    <div className ="dropdown1">
+                            <input className = "dropbtn1" type = "date" placeholder = "Last date to apply" onChange = {(e) => setPostData({...postData, validTill : (e.target.value).getTime()}) }/>  
+                    </div>
                     <Button className = "icon1" type = "submit" onClick={handleSubmit}>
                         <img src = {sicon} className = "images1" alt = "" />
                     </Button>  
@@ -102,4 +95,4 @@ function PostBox(props){
         );    
     }
 
-export default PostBox;
+export default PostJob;
