@@ -125,13 +125,17 @@ func UpdateJobPost(c *gin.Context) {
 	var post models.JobPost
 	id, _ := strconv.Atoi(c.Params.ByName("id"))
 
-	if !isJobPostPresent(id) {
-		c.JSON(http.StatusNotFound, gin.H{"error": "Unable to update job"})
-	} else {
+	var job models.JobPost
+	result := utils.DB.Where(" job_id= ?", id).First(&job)
+
+	if result != nil && result.RowsAffected == 1 {
+		post.JobID = id
 		c.BindJSON(&post)
 		post.UpdatedAt = time.Now().Unix()
 		utils.DB.Save(&post)
 		c.JSON(200, post)
+	} else {
+		c.JSON(404, gin.H{"message:": "Did not find any job with id " + strconv.Itoa(id)})
 	}
 }
 
