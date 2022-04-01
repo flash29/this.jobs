@@ -82,6 +82,25 @@ func TestUpdateJobPost(t *testing.T) {
 	err := json.Unmarshal(w.Body.Bytes(), &post)
 	assert.NoError(t, err)
 }
+
+func TestIsUserPresent(t *testing.T) {
+	utils.MockConnectDatabase()
+	result := isUserPresent(-1)
+	assert.Equal(t, result, false)
+}
+
+func TestIsJobPostPresent(t *testing.T) {
+	utils.MockConnectDatabase()
+	result := isJobPostPresent(-1)
+	assert.Equal(t, result, false)
+}
+
+func TestIsAlreadyApplied(t *testing.T) {
+	utils.MockConnectDatabase()
+	result := isAlreadyApplied(-1, -1)
+	assert.Equal(t, result, false)
+}
+
 func TestRetrieveAllJobPostsById(t *testing.T) {
 	w, c, _ := setUpFeedController([]byte{}, "/getjobposts/1", "GET", RetrieveAllJobPostsById)
 	c.Params = []gin.Param{
