@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 
@@ -10,6 +11,28 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
+func RetrieveApplicationsForJobPosting(c *gin.Context) {
+	var jobapplications []models.JobApplication
+	userid := c.Params.ByName("userid")
+	jobid := c.Params.ByName("jobid")
+	var userProfile models.User
+	if err := utils.DB.Where("user_id = ?", userid).First(&userProfile).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve user"})
+		return
+	}
+
+	var post models.JobPost
+	if err := utils.DB.Where("job_id = ?", jobid).First(&post).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrueve the job application"})
+		return
+	}
+	result := utils.DB.Where("user_id=?", userid).Where("job_id=?", jobid).Find(jobapplications)
+	if result.Error != nil {
+		c.JSON(400, gin.H{"error": "Unable to retrieve job applications"})
+	} else {
+		c.JSON(200, jobapplications)
+	}
+}
 func RetrieveAllJobPostsById(c *gin.Context) {
 	var jobposts []models.JobPost
 	id := c.Params.ByName("id")
@@ -42,6 +65,28 @@ func RetrieveAllJobPosts(c *gin.Context) {
 	}
 }
 
+func RetrieveAppliedJobsById(c *gin.Context) {
+	var jobposts []models.JobPost
+	id := c.Params.ByName("id")
+	var userProfile models.User
+	if err := utils.DB.Where("user_id = ?", id).First(&userProfile).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve user"})
+		return
+	}
+	// var jobApp models.JobApplication
+	// query := utils.DB.Select("job_id").Where("user_id = ?", id)
+	result := utils.DB.Preload("AppliedUsersList", func(db *gorm.DB) *gorm.DB {
+		// db = db.Order("created_at asc")
+		return db
+	}).Where("job_id IN (select job_id from job_applications where user_id = ?)", id).Order("created_at desc").Find(&jobposts)
+	fmt.Println(result.Error)
+	if result.Error != nil {
+		c.JSON(400, gin.H{"error": "Unable to retrieve job posts"})
+	} else {
+		c.JSON(200, jobposts)
+	}
+}
+
 func CreateJobPost(c *gin.Context) {
 	var post models.JobPost
 	c.BindJSON(&post)
@@ -53,7 +98,7 @@ func CreateJobPost(c *gin.Context) {
 		return
 	}
 
-	if post.Content == "" {
+	if post.Content == "" || post.Location == "" || post.JobTitle == "" || post.Organization == "" || post.Salary == "" {
 		c.JSON(400, gin.H{"error": "Unable to create job"})
 	} else {
 		post.CreatedAt = time.Now().Unix()
@@ -101,6 +146,10 @@ func ApplyToJob(c *gin.Context) {
 		return
 	}
 
+	if post.ValidTill < time.Now().Unix() {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Sorry, no longer accepting applications for this job"})
+		return
+	}
 	if result != nil && result.RowsAffected == 1 {
 		jobapp.CreatedAt = time.Now().Unix()
 		utils.DB.Create(&jobapp)
