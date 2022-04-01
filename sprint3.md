@@ -41,7 +41,7 @@ Request Method: `POST`
 
 ![](./assets/createjob.PNG)
 
-Id associated to the job is an auto-incrementing value and is assigned directly in the database. `userId, content, jobTitle, org, validTill, locatio` and `location` are required fields to post a job.
+Id associated to the job is an auto-incrementing value and is assigned directly in the database. `userId, content, jobTitle, org, validTill, location` and `salary` are required fields to post a job.
 Response:
 
 Possible Response status : `200, 400`
@@ -53,7 +53,7 @@ The job has been created and the response with status 200 shows the newly create
 
 #### Update Job
 
-URL: `<base_url>/jobposts`
+URL: `<base_url>/jobposts/<job_id>`
 
 Request Method: `PUT`
 
