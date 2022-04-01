@@ -4,42 +4,42 @@ import FeedEmpty from '../../../ErrorPage/FeedEmpty'
 import AppCard from './AppCard';
 
 
-function MyApps() {
-    // console.log('props', props);
+function MyApps(props) {
+    console.log('props', props);
 
-    // return (
-    //     <>
-    //     {
-    //         props.apps === undefined ?
-    //             <ServerLost />
-    //             :
-    //             <>
-    //             {
-    //                 props.apps.length === 0 ?
-    //                 <FeedEmpty />
-    //                 :
-    //                 <>
-    //                 {
-    //                     props.apps.map((app, i)=>{
-    //                         console.log('anslist', app);
-    //                         return (
-    //                             <AppCard 
-    //                                 key ={i}
-    //                                 AppContent = {app}
-    //                             />
-    //                         );
-    //                     })
-    //                 }
-    //                 </>
-    //             }
-    //             </>
-    //     }
-    //     </>
-    // );
-
-    return(
-        <AppCard />
+    return (
+        <>
+        {
+            props.posts === undefined ?
+                <ServerLost />
+                :
+                <>
+                {
+                    props.posts.length === 0 ?
+                    <FeedEmpty />
+                    :
+                    <>
+                    {
+                        props.posts.map((post, i)=>{
+                            console.log('anslist', post);
+                            return (
+                                <AppCard 
+                                    key ={i}
+                                    postContent = {post}
+                                />
+                            );
+                        })
+                    }
+                    </>
+                }
+                </>
+        }
+        </>
     );
+
+    // return(
+    //     <AppCard />
+    // );
 }
 
 export default MyApps;

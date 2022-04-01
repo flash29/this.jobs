@@ -39,20 +39,66 @@ func SetUpJobPostsController(data []byte, url string, method string, handler gin
 }
 
 func TestCreateJobPost(t *testing.T) {
-	type args struct {
-		c *gin.Context
+	var jsonData = []byte(`{
+		"userId": 1,
+		"content":"Backend developer 3",
+		"validTill" : 1648767770,
+		"jobTitle" : "Backend Developer 3",
+		"org" : "abc",
+		"location" : "abc",
+		"salary" : "123"
+	}`)
+
+	w, c, _ := setUpFeedController(jsonData, "/jobpost", "POST", CreateJobPost)
+
+	CreateJobPost(c)
+	var post models.JobPost
+	err := json.Unmarshal(w.Body.Bytes(), &post)
+	assert.NoError(t, err)
+}
+
+func TestUpdateJobPost(t *testing.T) {
+	var jsonData = []byte(`{
+		"jobId" : 1,
+		"userId": 1,
+		"content":"Backend developer",
+		"validTill" : 1648767770,
+		"jobTitle" : "Backend Developer",
+		"org" : "abc",
+		"location" : "abc",
+		"salary" : "123"
+	}`)
+
+	w, c, _ := setUpFeedController(jsonData, "/jobpost", "PUT", UpdateJobPost)
+	c.Params = []gin.Param{
+		{
+			Key:   "id",
+			Value: "1",
+		},
 	}
-	tests := []struct {
-		name string
-		args args
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			CreateJobPost(tt.args.c)
-		})
-	}
+
+	UpdateJobPost(c)
+	var post models.JobPost
+	err := json.Unmarshal(w.Body.Bytes(), &post)
+	assert.NoError(t, err)
+}
+
+func TestIsUserPresent(t *testing.T) {
+	utils.MockConnectDatabase()
+	result := isUserPresent(-1)
+	assert.Equal(t, result, false)
+}
+
+func TestIsJobPostPresent(t *testing.T) {
+	utils.MockConnectDatabase()
+	result := isJobPostPresent(-1)
+	assert.Equal(t, result, false)
+}
+
+func TestIsAlreadyApplied(t *testing.T) {
+	utils.MockConnectDatabase()
+	result := isAlreadyApplied(-1, -1)
+	assert.Equal(t, result, false)
 }
 
 func TestRetrieveAllJobPostsById(t *testing.T) {
@@ -81,4 +127,44 @@ func TestRetrieveAllJobPosts(t *testing.T) {
 	var post []models.JobPost
 	err := json.Unmarshal(w.Body.Bytes(), &post)
 	assert.NoError(t, err)
+}
+
+func TestRetrieveAppliedJobsById(t *testing.T) {
+	w, c, _ := setUpFeedController([]byte{}, "/getappliedjobs/1", "GET", RetrieveAppliedJobsById)
+	c.Params = []gin.Param{
+		{
+			Key:   "id",
+			Value: "1",
+		},
+	}
+	RetrieveAppliedJobsById(c)
+	var post []models.JobPost
+	err := json.Unmarshal(w.Body.Bytes(), &post)
+	assert.NoError(t, err)
+}
+
+func TestDeleteJobPost(t *testing.T) {
+	w, c, _ := setUpFeedController([]byte{}, "/jobpost/1", "DELETE", DeleteJobPost)
+	c.Params = []gin.Param{
+		{
+			Key:   "id",
+			Value: "1",
+		},
+	}
+	DeleteJobPost(c)
+	assert.Equal(t, http.StatusOK, w.Code)
+}
+
+func TestApplyToJob(t *testing.T) {
+	var jsonData = []byte(`{
+		"jobId" : 1,
+		"userId": 2
+	}`)
+
+	w, c, _ := setUpFeedController(jsonData, "/applyjob", "POST", ApplyToJob)
+
+	ApplyToJob(c)
+	var post models.JobApplication
+	err := json.Unmarshal(w.Body.Bytes(), &post)
+	assert.Equal(t, nil, err)
 }
