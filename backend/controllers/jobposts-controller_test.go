@@ -109,3 +109,29 @@ func TestRetrieveAllJobPosts(t *testing.T) {
 	err := json.Unmarshal(w.Body.Bytes(), &post)
 	assert.NoError(t, err)
 }
+
+func TestRetrieveAppliedJobsById(t *testing.T) {
+	w, c, _ := setUpFeedController([]byte{}, "/getappliedjobs/1", "GET", RetrieveAppliedJobsById)
+	c.Params = []gin.Param{
+		{
+			Key:   "id",
+			Value: "1",
+		},
+	}
+	RetrieveAppliedJobsById(c)
+	var post []models.JobPost
+	err := json.Unmarshal(w.Body.Bytes(), &post)
+	assert.NoError(t, err)
+}
+
+func TestDeleteJobPost(t *testing.T) {
+	w, c, _ := setUpFeedController([]byte{}, "/jobpost/1", "DELETE", DeleteJobPost)
+	c.Params = []gin.Param{
+		{
+			Key:   "id",
+			Value: "1",
+		},
+	}
+	DeleteJobPost(c)
+	assert.Equal(t, http.StatusOK, w.Code)
+}

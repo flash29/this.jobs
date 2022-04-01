@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 	"time"
 
@@ -81,11 +80,8 @@ func RetrieveAppliedJobsById(c *gin.Context) {
 	// 	jobApps += job + ","
 	// }
 
-	result := utils.DB.Preload("AppliedUsersList", func(db *gorm.DB) *gorm.DB {
-		// db = db.Order("created_at asc")
-		return db
-	}).Where("job_id IN (select job_id from job_applications where user_id = ?)", id).Order("created_at desc").Find(&jobposts)
-	fmt.Println(result.Error)
+	result := utils.DB.Where("job_id IN (select job_id from job_applications where user_id = ?)", id).Order("created_at desc").Find(&jobposts)
+	// fmt.Println(result.Error)
 	if result.Error != nil {
 		c.JSON(400, gin.H{"error": "Unable to retrieve job posts"})
 	} else {
