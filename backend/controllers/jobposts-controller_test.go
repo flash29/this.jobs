@@ -137,9 +137,8 @@ func TestRetrieveAppliedJobsById(t *testing.T) {
 		},
 	}
 	RetrieveAppliedJobsById(c)
-	var post []models.JobPost
-	err := json.Unmarshal(w.Body.Bytes(), &post)
-	assert.NoError(t, err)
+	expected := `{"error":"Unable to retrieve user"}`
+	assert.Equal(t, expected, w.Body.String())
 }
 
 func TestDeleteJobPost(t *testing.T) {
