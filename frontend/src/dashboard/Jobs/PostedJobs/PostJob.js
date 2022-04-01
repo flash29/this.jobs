@@ -87,7 +87,7 @@ function PostJob(props){
                     <div className ="dropdown1">
                             <input className = "dropbtn1" type = "date" placeholder = "Last date to apply" onChange = {(e) => setPostData({...postData, validTill : (e.target.value).getTime()}) }/>  
                     </div>
-                    <Button className = "icon1" type = "submit" onClick={handleSubmit}>
+                    <Button className = "icon1" type = "submit" onClick={handleSubmit} placeholder = "">
                         <img src = {sicon} className = "images1" alt = "" />
                     </Button>  
                 </div>         

@@ -1,7 +1,7 @@
 import './PJCard.css';
 import React, { useState, useEffect } from 'react';
 import moment from 'moment'
-import { Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 function PJCard(props) {
 

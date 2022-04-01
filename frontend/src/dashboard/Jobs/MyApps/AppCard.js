@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 function AppCard(props) {
 
     const {
-        jobID,
-        userID,
+        jobId,
+        userId,
         content, 
         createdAt, 
         updatedAt,

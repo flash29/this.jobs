@@ -24,10 +24,10 @@ function PostedJobs(props){
 
     return(
         <div>
-            <PostJob/>
+            <PostJob className = "job-posting"/>
             <div className="grid-container-element">
                 <div className="grid-child-element purple">
-                    <PJBoxComp posts = {posts}/>
+                    <PJBoxComp clasName = "posted-jobs" posts = {posts}/>
                 </div>
                 {/* <div className="grid-child-element green">
                     Applicants list will appear here

@@ -11,12 +11,12 @@ function MyApps(props) {
         <>
         {
             props.posts === undefined ?
-                <ServerLost />
+                <ServerLost className = "serverLost"/>
                 :
                 <>
                 {
                     props.posts.length === 0 ?
-                    <FeedEmpty />
+                    <FeedEmpty className = "feedEmpty"/>
                     :
                     <>
                     {
@@ -26,6 +26,7 @@ function MyApps(props) {
                                 <AppCard 
                                     key ={i}
                                     postContent = {post}
+                                    className = "appCard"
                                 />
                             );
                         })

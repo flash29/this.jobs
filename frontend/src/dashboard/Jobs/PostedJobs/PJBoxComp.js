@@ -25,7 +25,7 @@ function PJBoxComp(props) {
             <>
             {
                 props.posts.length === 0 ?
-                <FeedEmpty />
+                <FeedEmpty className = "feedEmpty1"/>
                 :
                 <>
                 {
