@@ -10,6 +10,10 @@ import { useState, useEffect } from 'react';
 import PostedJobs from './PostedJobs/PostedJobs';
 
 let userid = sessionStorage.getItem('userid');
+
+if(sessionStorage.getItem('tab') == undefined){
+  sessionStorage.setItem('tab', 1);
+}
 // let params = useParams();
 
 function DisplayProp(props) {
@@ -46,25 +50,6 @@ function Jobs(props) {
     getPosts();
     console.log('posts', posts);
   }, []);
-
-
-  const [pjobs, setPJobs] = useState();
-
-  // async function getPJobs () {
-  //     console.log('/getjobposts/'+ userid)
-  //     fetch(('/getjobposts/' + userid), {
-  //       //headers:{'Content-type':'application/json'},
-  //       headers:{'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
-  //       //body:JSON.stringify(postData),
-  //   }).then(res => res.json())
-  //       .then(res => setPJobs(res) )
-  //       .catch(error => console.log('error getting Feed'))
-  // }
-  // useEffect(() => {
-  //   getPJobs();
-  //   console.log('pjobs', pjobs);
-  // }, []);
-
   
     return (
       <div className="App">
@@ -77,7 +62,7 @@ function Jobs(props) {
             </Tabs> 
           </Paper>
           <div>
-            <DisplayProp val = {value}/>
+            <DisplayProp val = {value} posts = {posts}/>
           </div>
       </div>      
     );

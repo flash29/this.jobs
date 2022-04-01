@@ -1,31 +1,28 @@
 import './AppCard.css';
 import React, { useState, useEffect } from 'react';
 
-function AppCard() {
+function AppCard(props) {
 
-    // const {
-    //     appId,
-    //     appliedOn,
-    //     company,
-    // } = props.AppContent;
+    const {
+        jobID,
+        userID,
+        content, 
+        createdAt, 
+        updatedAt,
+        appliedUsersList,
+        attachments,
+        validTill,
+        jobTitle, 
+        location, 
+        org,
+        salary
+    } = props.postContent;
 
-
-    const arr = {jobId: 2,
-        createdBy: "User2",
-        content: "Backend developer II",
-        createdAt: 1648487349,
-        updatedAt: 1648487629,
-        appliedUsersList: null,
-        attachments: ""}
-
-
-
-    console.log('jobId', arr.jobId);
     let timeOfApplication = '';
 
     function createDate(){
         let  currentTime= Math.floor(Date.now()/1000);
-        let differenceDate = (currentTime - arr.createdAt)/(60*60*24) ;
+        let differenceDate = (currentTime - createdAt)/(60*60*24) ;
         if(differenceDate<1){
             // console.log('check proper time here', differenceDate*24 );
             differenceDate = differenceDate *24;
@@ -42,7 +39,8 @@ function AppCard() {
     return (
       <div className = 'CardType'>
             <div className='fullClassTwo'>
-                <div className='PostTag'>{arr.jobId}  {arr.content}</div>
+                <div className='PostTag'>{org}  {content}</div>
+                <div className='PostTag'>location : {location}</div>
                 {/* <div className='PostTag'>{arr.content}</div> */}
                 <div className="topCard">
                     <div className='timeDisplay'  >{timeOfApplication}</div> 
