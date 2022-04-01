@@ -170,6 +170,7 @@ func ApplyToJob(c *gin.Context) {
 		return
 	}
 
+
 	if post.ValidTill < time.Now().Unix() {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Sorry, no longer accepting applications for this job"})
 		return
@@ -179,6 +180,7 @@ func ApplyToJob(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "You have already applied for this Job"})
 		return
 	}
+
 
 	if result != nil && result.RowsAffected == 1 {
 		jobapp.CreatedAt = time.Now().Unix()
