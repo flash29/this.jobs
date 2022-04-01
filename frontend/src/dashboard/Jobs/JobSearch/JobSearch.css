@@ -1,0 +1,15 @@
+.JobsListAndDesc{
+    display: flex;
+    justify-content: center;
+}
+
+
+.JobsList{
+    border: 0.4em solid rgb(0, 0, 0);
+}
+
+.JobsDesc{
+    border: 0.4em solid rgb(0, 0, 0);
+    width: 50vw;
+    margin: 0.1em;
+}
