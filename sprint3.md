@@ -1,4 +1,4 @@
-# this.jobs - sprint 2
+# this.jobs - sprint 3
 ### Group Members
 Ranjeet Mallipeddi (Frontend)\
 Syama Vangmayi Vydyula (Frontend)\
