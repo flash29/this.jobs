@@ -14,6 +14,9 @@ import { shallow, mount, configure } from "enzyme";
 import Adapter from 'enzyme-adapter-react-16'
 import renderer from 'react-test-renderer';
 import PJBoxComp from './PostedJobs/PJBoxComp';
+import JobSearch from  './JobSearch/JobSearch';
+import JobDescriptionCard from '../../components/JobDescriptionCard/JobDescriptionCard';
+import JobDisplayCard from '../../components/JobDisplayCard/JobDisplayCard';
 
 configure({adapter: new Adapter()});
 
@@ -154,3 +157,73 @@ test("PJCompBox Rendering PostedJobs", () => {
     expect(container.classList.contains("grid-child-element purple"));
 });
 
+//JobSearch
+
+test("Jobs component rendering", () => {
+    const {container} = render(
+        <BrowserRouter>
+           <MyApps />
+        </BrowserRouter>);
+    expect(container.classList.contains("jsearch"));
+});
+
+
+test("Rendering all components of JobSearch", () => {
+    const {container} = render(
+        <BrowserRouter>
+           <JobSearch />
+        </BrowserRouter>);
+    expect(container.classList.contains("JobsListAndDesc"));  
+    expect(container.classList.contains("JobsList"));
+    expect(container.classList.contains("JobsDesc"));
+});
+
+
+test('hitting the API /getalljobposts', () => {
+    const history = createMemoryHistory()
+    const route = '/getalljobposts'
+    history.push(route)
+    render(
+      <BrowserRouter history={history}>
+        <JobSearch />
+      </BrowserRouter>)
+});
+
+//Job description card
+
+test("Rendering all components of JobDescriptionCard", () => {
+    const {container} = render(
+        <BrowserRouter>
+           <JobDescriptionCard />
+        </BrowserRouter>);
+    expect(container.classList.contains("descOrg"));  
+    expect(container.classList.contains("descJob"));
+    expect(container.classList.contains("locAndTime"));
+    expect(container.classList.contains("salary"));
+    expect(container.classList.contains("descriptionJob"));
+    expect(container.classList.contains("descContent"));
+});
+
+test('hitting the API /applyjob', () => {
+    const history = createMemoryHistory()
+    const route = '/applyjob'
+    history.push(route)
+    render(
+      <BrowserRouter history={history}>
+        <JobDescriptionCard />
+      </BrowserRouter>)
+});
+
+// JobDisplayCard
+
+test("Rendering all components of JobDisplayCard", () => {
+    const {container} = render(
+        <BrowserRouter>
+           <JobDisplayCard />
+        </BrowserRouter>);
+    expect(container.classList.contains("listCardJobs"));  
+    expect(container.classList.contains("jobTitleList"));
+    expect(container.classList.contains("jobOrgList"));
+    expect(container.classList.contains("jobLocList"));
+    expect(container.classList.contains("jobTimeList"));
+});

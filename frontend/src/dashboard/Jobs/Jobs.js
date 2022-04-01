@@ -30,7 +30,7 @@ function DisplayProp(props) {
   }
   else{
     return (
-      <JobSearch />
+      <JobSearch className = "jsearch"/>
      );
   }  
 }
