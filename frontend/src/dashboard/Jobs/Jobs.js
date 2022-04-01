@@ -29,7 +29,7 @@ function DisplayProp(props) {
 
 function Jobs(props) {
   
-  const [value, setValue] = React.useState(1);
+  const [value, setValue] = React.useState(sessionStorage.getItem('tab'));
   const [posts, setPosts] = useState();
 
   async function getPosts () {

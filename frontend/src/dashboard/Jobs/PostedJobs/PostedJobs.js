@@ -29,9 +29,9 @@ function PostedJobs(props){
                 <div className="grid-child-element purple">
                     <PJBoxComp posts = {posts}/>
                 </div>
-                <div className="grid-child-element green">
+                {/* <div className="grid-child-element green">
                     Applicants list will appear here
-                </div>
+                </div> */}
             </div>
         </div>  
     );

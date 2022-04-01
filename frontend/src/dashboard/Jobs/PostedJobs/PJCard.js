@@ -1,6 +1,7 @@
 import './PJCard.css';
 import React, { useState, useEffect } from 'react';
 import moment from 'moment'
+import { Link} from "react-router-dom";
 
 function PJCard(props) {
 
@@ -39,13 +40,9 @@ function PJCard(props) {
     }
     createDate();
 
-    function handleSubmit(){
-        console.log(userid);   
-    }
-
     return (
       <div className = 'CardType2'>
-            <div className='fullClass2' onClick={handleSubmit}>
+            <div className='fullClass2'>
                 <div className='PostTag2' >{org} {content}  </div>
                 <div className='PostTag2'> Job-id: {jobId}</div>
                 <div className="topCard2">
