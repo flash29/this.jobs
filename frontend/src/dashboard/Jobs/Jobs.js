@@ -10,7 +10,6 @@ import { useState, useEffect } from 'react';
 import PostedJobs from './PostedJobs/PostedJobs';
 
 let userid = sessionStorage.getItem('userid');
-
 if(sessionStorage.getItem('tab') == undefined){
   sessionStorage.setItem('tab', 1);
 }
@@ -33,7 +32,7 @@ function DisplayProp(props) {
 
 function Jobs(props) {
   
-  const [value, setValue] = React.useState(sessionStorage.getItem('tab'));
+  const [value, setValue] = React.useState(Number(sessionStorage.getItem('tab')));
   const [posts, setPosts] = useState();
 
   async function getPosts () {

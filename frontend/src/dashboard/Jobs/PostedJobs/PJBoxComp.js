@@ -5,14 +5,14 @@ import { useState } from 'react'
 import './PJBoxComp.css';
 import { Link} from "react-router-dom";
 
-function Applicants(state){
-  if(state === 'yes'){  
-    return (<div>Applicants</div>);
-  }
-  else{
-    return(<div> </div>);
-  }  
-}
+// function Applicants(state){
+//   if(state === 'yes'){  
+//     return (<div>Applicants</div>);
+//   }
+//   else{
+//     return(<div> </div>);
+//   }  
+// }
 
 function PJBoxComp(props) {
   const [state, setState] = useState('no');
@@ -40,7 +40,7 @@ function PJBoxComp(props) {
                                   className="grid-child-element purple"
                                 />
                             </Link>
-                            <Applicants className="grid-child-element green" state = {state}/>
+                            {/* <Applicants className="grid-child-element green" state = {state}/> */}
                           </div>
                         );
                       })
