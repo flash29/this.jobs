@@ -73,8 +73,14 @@ func RetrieveAppliedJobsById(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve user"})
 		return
 	}
-	// var jobApp models.JobApplication
-	// query := utils.DB.Select("job_id").Where("user_id = ?", id)
+	// var jobApp []models.JobApplication
+	// utils.DB.Select("job_id").Where("user_id = ?", id).Find(&jobApp)
+	// fmt.Print(len(jobApp))
+	// var jobApps string
+	// for _, job := range jobApp {
+	// 	jobApps += job + ","
+	// }
+
 	result := utils.DB.Preload("AppliedUsersList", func(db *gorm.DB) *gorm.DB {
 		// db = db.Order("created_at asc")
 		return db

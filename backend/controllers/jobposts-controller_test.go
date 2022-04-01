@@ -39,22 +39,49 @@ func SetUpJobPostsController(data []byte, url string, method string, handler gin
 }
 
 func TestCreateJobPost(t *testing.T) {
-	type args struct {
-		c *gin.Context
-	}
-	tests := []struct {
-		name string
-		args args
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			CreateJobPost(tt.args.c)
-		})
-	}
+	var jsonData = []byte(`{
+		"userId": 1,
+		"content":"Backend developer 3",
+		"validTill" : 1648767770,
+		"jobTitle" : "Backend Developer 3",
+		"org" : "abc",
+		"location" : "abc",
+		"salary" : "123"
+	}`)
+
+	w, c, _ := setUpFeedController(jsonData, "/jobpost", "POST", CreateJobPost)
+
+	CreateJobPost(c)
+	var post models.JobPost
+	err := json.Unmarshal(w.Body.Bytes(), &post)
+	assert.NoError(t, err)
 }
 
+func TestUpdateJobPost(t *testing.T) {
+	var jsonData = []byte(`{
+		"jobId" : 1,
+		"userId": 1,
+		"content":"Backend developer",
+		"validTill" : 1648767770,
+		"jobTitle" : "Backend Developer",
+		"org" : "abc",
+		"location" : "abc",
+		"salary" : "123"
+	}`)
+
+	w, c, _ := setUpFeedController(jsonData, "/jobpost", "PUT", UpdateJobPost)
+	c.Params = []gin.Param{
+		{
+			Key:   "id",
+			Value: "1",
+		},
+	}
+
+	UpdateJobPost(c)
+	var post models.JobPost
+	err := json.Unmarshal(w.Body.Bytes(), &post)
+	assert.NoError(t, err)
+}
 func TestRetrieveAllJobPostsById(t *testing.T) {
 	w, c, _ := setUpFeedController([]byte{}, "/getjobposts/1", "GET", RetrieveAllJobPostsById)
 	c.Params = []gin.Param{
