@@ -49,7 +49,7 @@ func TestCreateJobPost(t *testing.T) {
 		"salary" : "123"
 	}`)
 
-	w, c, _ := setUpFeedController(jsonData, "/jobpost", "POST", CreateJobPost)
+	w, c, _ := SetUpJobPostsController(jsonData, "/jobpost", "POST", CreateJobPost)
 
 	CreateJobPost(c)
 	var post models.JobPost
@@ -69,7 +69,7 @@ func TestUpdateJobPost(t *testing.T) {
 		"salary" : "123"
 	}`)
 
-	w, c, _ := setUpFeedController(jsonData, "/jobpost", "PUT", UpdateJobPost)
+	w, c, _ := SetUpJobPostsController(jsonData, "/jobpost", "PUT", UpdateJobPost)
 	c.Params = []gin.Param{
 		{
 			Key:   "id",
@@ -102,7 +102,7 @@ func TestIsAlreadyApplied(t *testing.T) {
 }
 
 func TestRetrieveAllJobPostsById(t *testing.T) {
-	w, c, _ := setUpFeedController([]byte{}, "/getjobposts/1", "GET", RetrieveAllJobPostsById)
+	w, c, _ := SetUpJobPostsController([]byte{}, "/getjobposts/1", "GET", RetrieveAllJobPostsById)
 	c.Params = []gin.Param{
 		{
 			Key:   "id",
@@ -116,7 +116,7 @@ func TestRetrieveAllJobPostsById(t *testing.T) {
 }
 
 func TestRetrieveAllJobPosts(t *testing.T) {
-	w, c, _ := setUpFeedController([]byte{}, "/getalljobposts", "GET", RetrieveAllJobPosts)
+	w, c, _ := SetUpJobPostsController([]byte{}, "/getalljobposts", "GET", RetrieveAllJobPosts)
 	c.Params = []gin.Param{
 		{
 			Key:   "id",
@@ -130,7 +130,7 @@ func TestRetrieveAllJobPosts(t *testing.T) {
 }
 
 func TestRetrieveAppliedJobsById(t *testing.T) {
-	w, c, _ := setUpFeedController([]byte{}, "/getappliedjobs/1", "GET", RetrieveAppliedJobsById)
+	w, c, _ := SetUpJobPostsController([]byte{}, "/getappliedjobs/1", "GET", RetrieveAppliedJobsById)
 	c.Params = []gin.Param{
 		{
 			Key:   "id",
@@ -144,7 +144,7 @@ func TestRetrieveAppliedJobsById(t *testing.T) {
 }
 
 func TestDeleteJobPost(t *testing.T) {
-	w, c, _ := setUpFeedController([]byte{}, "/jobpost/1", "DELETE", DeleteJobPost)
+	w, c, _ := SetUpJobPostsController([]byte{}, "/jobpost/1", "DELETE", DeleteJobPost)
 	c.Params = []gin.Param{
 		{
 			Key:   "id",
@@ -161,7 +161,7 @@ func TestApplyToJob(t *testing.T) {
 		"userId": 2
 	}`)
 
-	w, c, _ := setUpFeedController(jsonData, "/applyjob", "POST", ApplyToJob)
+	w, c, _ := SetUpJobPostsController(jsonData, "/applyjob", "POST", ApplyToJob)
 
 	ApplyToJob(c)
 	var post models.JobApplication

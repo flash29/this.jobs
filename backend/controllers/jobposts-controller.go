@@ -130,6 +130,7 @@ func UpdateJobPost(c *gin.Context) {
 
 	if result != nil && result.RowsAffected == 1 {
 		post.JobID = id
+		post.UserID = job.UserID
 		c.BindJSON(&post)
 		post.UpdatedAt = time.Now().Unix()
 		utils.DB.Save(&post)

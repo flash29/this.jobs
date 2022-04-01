@@ -216,7 +216,7 @@ A mock database is created and unit tests are performed on the data from mock DB
 Test cases include job creation, updation and deletion with valid and invalid details and also applying to the job.
 
 ![](./assets/jobposts_unit_tests.png)
-
+![](./assets/jobposts_unit_tests_1.png)
 
 
 ### Frontend accomplishments
