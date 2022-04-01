@@ -1,0 +1,33 @@
+.listCardJobs{
+    background-color:antiquewhite;
+    padding: 0.5em;
+    margin: 0.2em;
+}
+
+.listCardJobs:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 1s;
+}
+
+.jobTitleList{
+    font-weight: bolder;
+}
+
+.jobOrgList{
+    display: flex;
+    padding-left: 2.2em;
+    opacity: 0.6;
+}
+
+.jobLocList{
+    display: flex;
+    padding-left: 2.2em;
+    opacity: 0.6;
+}
+
+.jobTimeList{
+    display: flex;
+    justify-content: end;
+    opacity: 0.4;
+}
