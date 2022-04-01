@@ -4,18 +4,18 @@ import React, { useState, useEffect } from 'react';
 function AppCard(props) {
 
     const {
-        JobID,
-        UserID,
-        Content, 
-        CreatedAt, 
-        UpdatedAt,
-        AppliedUsersList,
-        Attachments,
-        ValidTill,
-        JobTitle, 
-        Location, 
-        Organization,
-        Salary
+        jobID,
+        userId,
+        content, 
+        createdAt, 
+        updatedAt,
+        appliedUsersList,
+        attachments,
+        validTill,
+        jobTitle, 
+        location, 
+        org,
+        salary
     } = props.postContent;
 
 
@@ -23,7 +23,7 @@ function AppCard(props) {
 
     function createDate(){
         let  currentTime= Math.floor(Date.now()/1000);
-        let differenceDate = (currentTime - CreatedAt)/(60*60*24) ;
+        let differenceDate = (currentTime - createdAt)/(60*60*24) ;
         if(differenceDate<1){
             // console.log('check proper time here', differenceDate*24 );
             differenceDate = differenceDate *24;
@@ -40,8 +40,8 @@ function AppCard(props) {
     return (
       <div className = 'CardType'>
             <div className='fullClassTwo'>
-                <div className='PostTag'>{Organization}  {Content}</div>
-                <div className='PostTag'>Location : {Location}</div>
+                <div className='PostTag'>{org}  {content}</div>
+                <div className='PostTag'>Location : {location}</div>
                 {/* <div className='PostTag'>{arr.content}</div> */}
                 <div className="topCard">
                     <div className='timeDisplay'  >{timeOfApplication}</div> 
