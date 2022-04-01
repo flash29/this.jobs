@@ -54,7 +54,7 @@ func main() {
 	protected.GET("/getalljobposts", controllers.RetrieveAllJobPosts)
 	protected.GET("/getjobposts/:id", controllers.RetrieveAllJobPostsById)
 	protected.GET("/getappliedjobs/:id", controllers.RetrieveAppliedJobsById)
-
+	protected.GET("/job/:jobid/applications/:userid", controllers.RetrieveApplicationsForJobPosting)
 	protected.POST("/jobpost", controllers.CreateJobPost)
 	protected.PUT("/jobpost/:id", controllers.UpdateJobPost)
 	protected.DELETE("/jobpost/:id", controllers.DeleteJobPost)
