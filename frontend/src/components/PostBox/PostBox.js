@@ -52,6 +52,7 @@ function PostBox(props){
         };
 
         function handleSubmit(){
+            postData.createdBy = sessionStorage.getItem('userid');
             console.log(postData);
             fetch('/post', {
                 method : 'POST', 
