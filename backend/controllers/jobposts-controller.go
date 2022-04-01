@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 	"time"
@@ -20,6 +21,13 @@ func isUserPresent(user_id int) (result bool) {
 func isJobPostPresent(job_id int) (result bool) {
 	var post models.JobPost
 	Result := utils.DB.Where("job_id = ?", job_id).First(&post)
+	return Result.Error == nil
+}
+
+func isAlreadyApplied(user_id int, job_id int) (result bool) {
+	var application models.JobApplication
+	Result := utils.DB.Where("job_id=? and user_id=?", job_id, user_id).Find(&application)
+	fmt.Print(Result.Error == nil)
 	return Result.Error == nil
 }
 
@@ -164,6 +172,11 @@ func ApplyToJob(c *gin.Context) {
 
 	if post.ValidTill < time.Now().Unix() {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Sorry, no longer accepting applications for this job"})
+		return
+	}
+
+	if isAlreadyApplied(jobapp.UserID, int(jobapp.JobID)) {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "You have already applied for this Job"})
 		return
 	}
 
