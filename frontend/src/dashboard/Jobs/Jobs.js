@@ -7,28 +7,32 @@ import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import  { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import PostedJobs from './PostedJobs/PostedJobs';
 
-// let params = useParams();
 let userid = sessionStorage.getItem('userid');
+if(sessionStorage.getItem('tab') == undefined){
+  sessionStorage.setItem('tab', 1);
+}
+// let params = useParams();
 
-
-// function DisplayProp(props) {
-//   const val = props.val;
-//   console.log(props.posts)
-//   if(val == 2){  
-//     return (<MyApps props = {props.posts}/>);
-//   }
-//   else if(val == 3){
-//     return (<div>Posted Jobs!</div>);
-//   }
-//   else{
-//     return (<div>Jobs!</div>);
-//   }  
-// }
+function DisplayProp(props) {
+  const val = props.val;
+  sessionStorage.setItem('tab', val);
+  console.log(props.posts)
+  if(val == 2){  
+    return (<MyApps posts = {props.posts}/>);
+  }
+  else if(val == 3){
+    return (<div><PostedJobs /></div>);
+  }
+  else{
+    return (<div>Jobs!</div>);
+  }  
+}
 
 function Jobs(props) {
-
-  const [value, setValue] = React.useState(1);
+  
+  const [value, setValue] = React.useState(Number(sessionStorage.getItem('tab')));
   const [posts, setPosts] = useState();
 
   async function getPosts () {
@@ -45,8 +49,7 @@ function Jobs(props) {
     getPosts();
     console.log('posts', posts);
   }, []);
-
-
+  
     return (
       <div className="App">
           <NavBar />
@@ -58,27 +61,9 @@ function Jobs(props) {
             </Tabs> 
           </Paper>
           <div>
-            {/* <DisplayProp val = {value}/> */}
-            <>
-            {
-                value === 2 ?
-                    <MyApps posts = {posts}/>
-                    :
-                    <>
-                    {
-                        value === 3 ?
-                        <div>Posted Jobs!</div>
-                        :
-                        <>
-                          <div>Jobs!</div>
-                        </>
-                    }
-                    </>
-            }
-            </>
+            <DisplayProp val = {value} posts = {posts}/>
           </div>
       </div>      
     );
   }
-  
   export default Jobs;
