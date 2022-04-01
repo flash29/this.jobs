@@ -69,11 +69,39 @@ Response status : `200`
 
 ![](./assets/updatejobpost_response.PNG)
 
-#### Get User Profile
-URL: `<base_url>/userprofile/:id`
+#### Apply to a Job
+URL: `<base_url>/applyjob`
+
+Request Method: `POST`
+![](./assets/applyjob.PNG)
+Applying `userId` and the `jobId` to which they are applying are required fields.
+Possible Response status: `200, 400`
+
+Message format: `json`
+
+Example
+
+Code: 200 OK
+
+![](./assets/applyjob_response.PNG)
+
+If the user tries to apply after the deadline, the following error message is sent.
+
+Code: 400 Bad Request
+
+![](./assets/applyjob_validtill.PNG)
+
+In case of duplicate appliction the error message is as below
+
+![](./assets/applyjob_duplicate.PNG)
+#### Retrieve Jobs
+URL: `<base_url>/getalljobs`
 
 Request Method: `GET`
-![](./assets/getprofile.PNG)
+
+![](./assets/retrievejobs.PNG)
+
+
 Possible Response status: `200, 404`
 
 Message format: `json`
@@ -82,16 +110,36 @@ Example
 
 Code: 200 OK
 
-![](./assets/getprofile_response.PNG)
-#### Update Profile Picture
-URL: `<base_url>/updatepic`
+```
+[
+    {
+        "jobId": 4,
+        "userId": 1,
+        "content": "Job posting 1",
+        "createdAt": 1648753603,
+        "updatedAt": 0,
+        "appliedUsersList": [],
+        "attachments": "",
+        "validTill" : 1648767770,
+        "jobTitle" : "Backend Developer 3",
+        "org" : "abc",
+        "location" : "abc",
+        "salary" : "123K"
+    }
+]
+```
 
-Request Method: `PUT`
+#### Retrieve Jobs posted by Recruiter
+List of jobs along with the Applicant Ids are retrieved.
 
-![](./assets/updatepicture.PNG)
-All the fields are mandatory
+URL: `<base_url>/getjobs/<user_id>`
 
-Possible Response status: `200, 400`
+Request Method: `GET`
+
+![](./assets/recruiterposts.PNG)
+
+
+Possible Response status: `200, 404`
 
 Message format: `json`
 
@@ -100,94 +148,40 @@ Example
 Code: 200 OK
 
 ```
-{
-        "message": "Profile photo uploaded successfully"
-}
+[
+    {
+        "jobId": 4,
+        "userId": 1,
+        "content": "Job posting 1",
+        "createdAt": 1648753603,
+        "updatedAt": 0,
+        "appliedUsersList":  [
+                                 {
+                                 "applicationId": 2,
+                                 "userId": 2,
+                                 "jobId": 2,
+                                 "createdAt": 1648767785,
+                                 "updatedAt": 0
+                                 }
+                              ],
+        "attachments": "",
+        "validTill" : 1648767770,
+        "jobTitle" : "Backend Developer 3",
+        "org" : "abc",
+        "location" : "abc",
+        "salary" : "123K"
+    }
+]
 ```
+#### Retrieve My Applications
+URL: `<base_url>/getappliedjobs/<user_id>`
 
-#### Update Bio
-URL: `<base_url>/updatebio`
+Request Method: `GET`
 
-Request Method: `PUT`
-
-![](./assets/updatebio.PNG)
-All the fields are mandatory
-
-Possible Response status: `200, 400`
-
-Message format: `json`
-
-Example
-
-Code: 200 OK
-
-![](./assets/updatebio_response.PNG)
-#### Add Education Details
-URL: `<base_url>/addeducation`
-
-Request Method: `POST`
-
-![](./assets/addeducation.PNG)
-
-Possible Response status: `201, 400`
-
-Message format: `json`
-
-Example
-
-Code: 200 OK
-
-```
-{
-        "educationId" : 1,
-        "insName": "UF",
-        "timeline": "string format of time",
-        "gpa" : "",
-        "userId" : 1
-}
-```
-#### Add Job Details
-URL: `<base_url>/addjob`
-
-Request Method: `POST`
-
-![](./assets/addjob.PNG)
-
-Possible Response status: `201, 400`
-
-Message format: `json`
-
-Example
-
-Code: 200 OK
-
-![](./assets/addjob_response.PNG)
-
-#### Add Project Details
-URL: `<base_url>/addproject`
-
-![](./assets/addproject.PNG)
+![](./assets/appliedjobs.PNG)
 
 
-Possible Response status: `201, 400`
-
-Message format: `json`
-
-Example
-
-Code: 201 Created
-
-![](./assets/addproject_response.PNG)
-
-#### Update Education Details
-URL: `<base_url>/updateducation`
-
-Request Method: `PUT`
-
-![](./assets/updateeducation.PNG)
-educationId and userId are mandatory
-
-Possible Response status: `201, 400`
+Possible Response status: `200, 404`
 
 Message format: `json`
 
@@ -196,75 +190,33 @@ Example
 Code: 200 OK
 
 ```
-{
-        "educationId" : 1,
-        "insName": "UF",
-        "timeline": "string format of time",
-        "gpa" : "",
-        "userId" : 1
-}
+[
+    {
+        "jobId": 4,
+        "userId": 1,
+        "content": "Job posting 1",
+        "createdAt": 1648753603,
+        "updatedAt": 0,
+        "appliedUsersList": [],
+        "attachments": "",
+        "validTill" : 1648767770,
+        "jobTitle" : "Backend Developer 3",
+        "org" : "abc",
+        "location" : "abc",
+        "salary" : "123K"
+    }
+]
 ```
-
-#### Update Job Details
-URL: `<base_url>/updatejob`
-
-Request Method: `PUT`
-
-![](./assets/updatejob.PNG)
-jobHistoryId and userId are mandatory
-
-Possible Response status: `201, 400`
-
-Message format: `json`
-
-Example
-
-Code: 200 OK
-
-![](./assets/updatejob_response.PNG)
-
-
-#### Update Project Details
-URL: `<base_url>/updateproject`
-
-Request Method: `PUT`
-
-![](./assets/updateproject.PNG)
-projectId and userId are mandatory
-
-Possible Response status: `201, 400`
-
-Message format: `json`
-
-Example
-
-Code: 200 OK
-
-![](./assets/updateproject_response.PNG)
 
 #### Unit Tests
 
 A mock database is created and unit tests are performed on the data from mock DB. The below sections show the unit testing output along with their coverage
-#### User Registration
+#### Create, Retrieve and Apply Jobs
 
-Test cases include User registartion with valid and invalid details and also registering the same user twice.
+Test cases include job creation, updation and deletion with valid and invalid details and also applying to the job.
 
-![](./assets/registration_unit_tests.png)
+![](./assets/jobposts_unit_tests.png)
 
-#### User Login
 
-Test cases include user login with valid and invalid credentials
-
-![](./assets/login_unit_tests.png)
-
-#### User Proflie
-
-Test cases are included to check the addition and updation of education details, projects and jobs along with bio and display picture updation.
-![](./assets/user_profile_unit_tests.png)
-
-#### Feed
-
-Test cases are included to check the retrieval of feed, posting of new feed, comments ,likes etc.
-![](./assets/feed-unit-tests.png)
 
 ### Frontend accomplishments
