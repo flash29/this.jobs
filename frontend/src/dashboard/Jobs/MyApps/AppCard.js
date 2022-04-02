@@ -12,7 +12,7 @@ function AppCard(props) {
         appliedUsersList,
         attachments,
         validTill,
-        jobTitle, 
+        jobtitle, 
         location, 
         org,
         salary
@@ -39,7 +39,8 @@ function AppCard(props) {
     return (
       <div className = 'CardType'>
             <div className='fullClassTwo'>
-                <div className='PostTag'>{org}  {content}</div>
+                <div className='PostTag'>{org} </div>
+                <div className='PostTag'> {jobtitle} </div>
                 <div className='PostTag'>Location : {location}</div>
                 {/* <div className='PostTag'>{arr.content}</div> */}
                 <div className="topCard">

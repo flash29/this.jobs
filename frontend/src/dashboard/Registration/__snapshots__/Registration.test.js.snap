@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correctly the Registration Form component 1`] = `
+<div
+  className="divStyle"
+>
+  <h1
+    className="title"
+  >
+     this.jobs 
+  </h1>
+  <h1 />
+  <form
+    className="LoginForm"
+    id="loginForm"
+  >
+    <div
+      className="FormComp w-50"
+    >
+      <input
+        className="inpBox form-control"
+        id="formEmail"
+        onChange={[Function]}
+        placeholder="Enter your name"
+      />
+    </div>
+    <div
+      className="FormComp w-50"
+    >
+      <input
+        className="inpBox form-control"
+        onChange={[Function]}
+        placeholder="Email Address"
+        type="email"
+      />
+    </div>
+    <div
+      className="FormComp w-50"
+      onChange={[Function]}
+    >
+      <input
+        className="inpBox form-control"
+        id="formPassword"
+        placeholder="Password"
+        type="password"
+      />
+    </div>
+    <div
+      className="FormComp"
+    >
+      <button
+        className="buttonStyle btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Register
+      </button>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`render correctly the Registration Page component 1`] = `
+<div
+  className="Registration"
+>
+  <div
+    className="divStyle"
+  >
+    <h1
+      className="title"
+    >
+       this.jobs 
+    </h1>
+    <h1 />
+    <form
+      className="LoginForm"
+      id="loginForm"
+    >
+      <div
+        className="FormComp w-50"
+      >
+        <input
+          className="inpBox form-control"
+          id="formEmail"
+          onChange={[Function]}
+          placeholder="Enter your name"
+        />
+      </div>
+      <div
+        className="FormComp w-50"
+      >
+        <input
+          className="inpBox form-control"
+          onChange={[Function]}
+          placeholder="Email Address"
+          type="email"
+        />
+      </div>
+      <div
+        className="FormComp w-50"
+        onChange={[Function]}
+      >
+        <input
+          className="inpBox form-control"
+          id="formPassword"
+          placeholder="Password"
+          type="password"
+        />
+      </div>
+      <div
+        className="FormComp"
+      >
+        <button
+          className="buttonStyle btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Register
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+`;

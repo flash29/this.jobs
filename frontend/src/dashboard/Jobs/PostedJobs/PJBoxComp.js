@@ -33,13 +33,18 @@ function PJBoxComp(props) {
                         console.log('anslist', post);
                         return (
                           <div className = "grid-container-element2">
-                            <Link to = "#" onClick = {(e) => {setState('yes'); console.log(state)}}>
+                            {/* <Link to = "#" onClick = {(e) => {setState('yes'); console.log(state)}}>
                               <PJCard 
                                   key ={i}
                                   postContent = {post}
                                   className="grid-child-element purple"
                                 />
-                            </Link>
+                            </Link> */}
+                             <PJCard 
+                                  key ={i}
+                                  postContent = {post}
+                                  className="grid-child-element purple"
+                                />
                             {/* <Applicants className="grid-child-element green" state = {state}/> */}
                           </div>
                         );

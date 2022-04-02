@@ -123,3 +123,9 @@
   .dropdown:hover .dropbtn {
     background-color: transparent;
   }
+
+
+  .descrptionBox{
+    height: 4em;
+    width: 40vw;
+  }
