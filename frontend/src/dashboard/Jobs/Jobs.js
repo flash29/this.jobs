@@ -26,7 +26,7 @@ function DisplayProp(props) {
     return (<MyApps posts = {props.posts}/>);
   }
   else if(val == 3){
-    return (<div><PostedJobs /></div>);
+    return (<div><PostedJobs/></div>);
   }
   else{
     return (
