@@ -52,10 +52,12 @@ function PostBox(props){
         };
 
         function handleSubmit(){
+            postData.createdBy = sessionStorage.getItem('userid');
             console.log(postData);
             fetch('/post', {
                 method : 'POST', 
-                headers:{'Content-type':'application/json'},
+                headers:{'Content-type':'application/json'}, 
+                headers:{'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
                 body:JSON.stringify(postData),
             }).then(response => response.json()).then(data => {
                 console.log(data);

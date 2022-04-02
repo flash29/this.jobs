@@ -202,3 +202,8 @@ inputBoxes:focus {
     text-decoration: underline;
     cursor: pointer;
 }
+
+.resumeDisplay{
+    display: flex;
+    margin-left: 0.4em;
+}

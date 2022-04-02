@@ -21,6 +21,8 @@ function Settings() {
       test: ''
     });
 
+    
+
     const [updateEducationTracker , setUpdateEducationTracker] = useState(null);
     const [updateExperienceTracker , setUpdateExperienceTracker] = useState(null);
     const [updateProjectTracker , setUpdateProjectTracker] = useState(null);
@@ -28,6 +30,8 @@ function Settings() {
 
     let token = sessionStorage.getItem('token');
     let userid = sessionStorage.getItem('userid');
+
+    const editableCheck = userid === params.userid ? true : false;
 
     const [changedTracker, setChangedTracker] = useState(false);
 
@@ -77,7 +81,8 @@ function Settings() {
                 projects: data.projects,
                 imageData: data.picture,
                 userName: data.username,
-                userEmail: data.useremail
+                userEmail: data.useremail,
+                resume: data.resumepath
 
                 });
           }).catch(error => console.log('error', error))
@@ -466,6 +471,8 @@ function Settings() {
 
     const hiddenFileInput = React.useRef(null);
 
+    const hiddenResumeInput = React.useRef(null);
+
     const handleClick = event => {
       hiddenFileInput.current.click();
   };
@@ -507,6 +514,68 @@ function Settings() {
       
   };
 
+  const handleClickUploadResume = () => {
+    hiddenResumeInput.current.click();
+  }
+
+  const handleResumeUpload = (e) =>{
+    console.log('e', e)
+
+    const reader = new FileReader();
+
+          var data = new FormData();
+
+
+            data.append("filename", e.target.files[0].name);
+           data.append("file", e.target.files[0] );
+   
+   
+           console.log('Form Data in resume', data);
+   
+           const response = fetch('/resumeupload/'+ userid, {
+             method: 'POST',
+             headers:{
+               'Authorization': 'Bearer ' + token
+             },
+             body: data
+           });
+   
+           console.log('response from the server for uploading resume', response);
+
+
+
+    // const response = fetch('/resumeupload/'+ userid, {
+    //   method: 'POST',
+    //   headers:{
+    //     'Authorization': 'Bearer ' + token
+    //   },
+    //   body: data
+    // });
+
+
+    // reader.onload = function() {
+    //     setBase64URL(reader.result);
+    //     setUserData({...userData, imageData : reader.result })
+
+    //     console.log('reader result for resume', reader.result );
+
+
+       
+      
+
+
+
+
+    // console.log('result', reader.result);
+    // console.log("file result", base64File);
+    // console.log('userdata', userData);
+    // }
+    if(e.target.files[0]){
+    reader.readAsDataURL(e.target.files[0]);
+    console.log('reader',reader);
+    }
+    
+  }
     
 
     return (
@@ -531,14 +600,22 @@ function Settings() {
                     </div>
               </div>
 
+            {
+              editableCheck
+              ?
               <div onClick={handleClick} className='changeDP'>
-                  Change Display Picture 
-                  <input
-                  type="file"
-                  ref = {hiddenFileInput}
-                  style={{display: 'none'}}
-                  onChange = {handleFileInputChange}/>
-              </div>
+                Change Display Picture 
+                <input
+                type="file"
+                ref = {hiddenFileInput}
+                style={{display: 'none'}}
+                id = "inputBoxes"
+                onChange = {handleFileInputChange}/>
+             </div>
+            :
+            <></>
+            }
+              
                         
 
               <div
@@ -551,7 +628,7 @@ function Settings() {
 
               <div 
               className='userBio'
-              contentEditable="true"
+              contentEditable={editableCheck}
               onInput={e => updateBioInfo(e) } 
               suppressContentEditableWarning={true}
               >
@@ -565,7 +642,8 @@ function Settings() {
                     }
               </div>
                
-               {/* <div className='userResume'>
+               {
+               /* <div className='userResume'>
                     {
                       userData.resume ===''
                       ?
@@ -577,7 +655,57 @@ function Settings() {
                         Here is your
                       </>
                     }
-               </div> */}  
+               </div> */
+               }  
+
+                {
+                 editableCheck
+                 ?
+                 <>
+                    {
+                       userData.resume === ''
+                       ?
+                       <>
+                          <div className='changeDP' onClick={handleClickUploadResume}>
+                              Upload Resume
+                                <input
+                                  type="file"
+                                  ref = {hiddenResumeInput}
+                                  style={{display: 'none'}}
+                                  id = "inputBoxes  resumeinput"
+                                  onChange = {handleResumeUpload}/>
+                           </div>
+                       </>
+                       :
+                       <>
+                           <div className='resumeDisplay'> <a href={'http://127.0.0.1:8080/'+ userData.resume} target='blank'> Resume </a> </div>
+                           <div className='changeDP' onClick={handleClickUploadResume}>
+                              Update Resume
+                                <input
+                                  type="file"
+                                  ref = {hiddenResumeInput}
+                                  style={{display: 'none'}}
+                                  id = "inputBoxes  resumeinput"
+                                  onChange = {handleResumeUpload}/>
+                           </div>
+                       </>
+                    }
+                 </>
+                 :
+                 <>
+                    {
+                      userData.resume !== ''
+                      ?
+                      <div className='resumeDisplay'> <a href={'http://127.0.0.1:8080/'+ userData.resume} target='blank'> Resume </a> </div>
+                      :
+                      <></>
+                    }
+                    
+                 </>
+               }    
+
+               
+
 
                <div
                className='updateButton'
@@ -587,6 +715,7 @@ function Settings() {
                  Update
                </div>
 
+
               <div className='Education' >
 
                   <div className='headerAndAdd'>
@@ -595,13 +724,19 @@ function Settings() {
                           Education 
                           
                       </div>
-
-                      <div 
-                      className='addbutton'
-                      onClick={addEducation }
-                      >
-                          Add
+                      {
+                        editableCheck
+                        ?
+                        <div 
+                          className='addbutton'
+                          onClick={addEducation }
+                          >
+                              Add
                       </div>
+                      :
+                      <></>
+                      }
+                      
                   </div> 
              
                   <div 
@@ -636,6 +771,7 @@ function Settings() {
                         type="text" 
                         name="description" 
                         className='newDescriptionEducation'
+                        id = "inputBoxes"
                         onChange={ (e) => changeEducationDescription(e) }
                         /> 
                       </div>
@@ -657,7 +793,7 @@ function Settings() {
                       <>
                         <div 
                         className='EduHeader' 
-                        contentEditable="true"
+                        contentEditable={editableCheck}
                         onInput={e => upDateEduJson('insName', i, e) } 
                         suppressContentEditableWarning={true}
                         >
@@ -666,7 +802,7 @@ function Settings() {
 
                         <div 
                         className='EduDates' 
-                        contentEditable="true"
+                        contentEditable={editableCheck}
                         onInput={e => upDateEduJson('timeline', i, e) } 
                         suppressContentEditableWarning={true}
                         >
@@ -675,7 +811,7 @@ function Settings() {
 
                         <div 
                         className='EduDescription' 
-                        contentEditable="true"
+                        contentEditable={editableCheck}
                         onInput={e => upDateEduJson('gpa', i, e) } 
                         suppressContentEditableWarning={true}
                         >
@@ -705,13 +841,19 @@ function Settings() {
                           Work Experience  
                           
                       </div>
-
-                      <div 
-                      className='addbutton'
-                      onClick={addExperience }
-                      >
-                          Add
+                      {
+                        editableCheck
+                        ?
+                        <div 
+                          className='addbutton'
+                          onClick={addExperience }
+                          >
+                              Add
                       </div>
+                      :
+                      <></>
+                      }
+                      
                   </div> 
              
                   <div 
@@ -768,7 +910,7 @@ function Settings() {
                       <>
                         <div 
                         className='EduHeader' 
-                        contentEditable="true"
+                        contentEditable={editableCheck}
                         onInput={e => upDateExperienceJson('company', i, e) } 
                         suppressContentEditableWarning={true}
                         >
@@ -777,7 +919,7 @@ function Settings() {
 
                         <div 
                         className='EduDates' 
-                        contentEditable="true"
+                        contentEditable={editableCheck}
                         onInput={e => upDateExperienceJson('timeline', i, e) } 
                         suppressContentEditableWarning={true}
                         >
@@ -786,7 +928,7 @@ function Settings() {
 
                         <div 
                         className='EduDescription' 
-                        contentEditable="true"
+                        contentEditable={editableCheck}
                         onInput={e => upDateExperienceJson('position', i, e) } 
                         suppressContentEditableWarning={true}
                         >
@@ -817,12 +959,20 @@ function Settings() {
                           
                       </div>
 
-                      <div 
-                      className='addbutton'
-                      onClick={addProject }
-                      >
-                          Add
+                      {
+                        editableCheck
+                        ?
+                        <div 
+                        className='addbutton'
+                        onClick={addProject }
+                        >
+                            Add
                       </div>
+                      :
+                      <></>
+                      }
+
+                      
                   </div> 
              
                   <div 
@@ -868,7 +1018,7 @@ function Settings() {
                       <>
                         <div 
                         className='EduHeader' 
-                        contentEditable="true"
+                        contentEditable={editableCheck}
                         onInput={e => upDateProjectJson('projName', i, e) } 
                         suppressContentEditableWarning={true}
                         >
@@ -877,7 +1027,7 @@ function Settings() {
 
                         <div 
                         className='EduDescription' 
-                        contentEditable="true"
+                        contentEditable={editableCheck}
                         onInput={e => upDateProjectJson('description', i, e) } 
                         suppressContentEditableWarning={true}
                         >

@@ -3,8 +3,11 @@ package controllers
 import (
 	"bytes"
 	"encoding/json"
+	"io"
+	"mime/multipart"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"testing"
 
 	"com.uf/src/models"
@@ -183,4 +186,41 @@ func TestUpdateBio(t *testing.T) {
 	err := json.Unmarshal(w.Body.Bytes(), &user)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusOK, w.Code)
+}
+
+func TestResumeUploadService(t *testing.T) {
+	fileName := "test.pdf"
+	filePath := "../public/" + fileName
+	fieldName := "file"
+	body := new(bytes.Buffer)
+	mw := multipart.NewWriter(body)
+	file, err := os.Open(filePath)
+	if err != nil {
+		t.Fatal(err)
+	}
+	writer, err := mw.CreateFormFile(fieldName, fileName)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err := io.Copy(writer, file); err != nil {
+		t.Fatal(err)
+	}
+	mw.Close()
+
+	w := httptest.NewRecorder()
+	c, _ := gin.CreateTestContext(w)
+	utils.MockConnectDatabase()
+	c.Params = []gin.Param{
+		{
+			Key:   "id",
+			Value: "1",
+		},
+	}
+
+	c.Request, _ = http.NewRequest(http.MethodPost, "/resumeupload/1", body)
+	c.Request.Header.Add("Content-Type", mw.FormDataContentType())
+	UploadResume(c)
+	expected := `{"error":"Unable to save the resume"}`
+	assert.Equal(t, http.StatusInternalServerError, w.Code)
+	assert.Equal(t, expected, w.Body.String())
 }

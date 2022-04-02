@@ -1,0 +1,131 @@
+.PostBox1{
+    border-color: black;
+    padding : 2%;
+    /* width : 70%; */
+    align-self: center;
+    outline : black;
+    display : inline flex;
+    /* overflow : hidden; */
+    align-content : center;
+    border-width: 10px;
+    /* border: solid; */
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.commentBox1{
+    width: 200px;
+    height: 40px;
+    position: relative;
+    display: inline-block flex;
+    overflow: hidden;
+    align-items: center;
+    margin : 0;
+    align-content: center;
+    /* left: 50%; 
+    transform: translateX(-50%); */
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius : 10px;
+
+}
+
+.buttons1{
+    width: 200px;
+    height: 50%;
+    position: relative;
+    display: flex;
+    /* overflow: hidden; */
+    align-items: center;
+    align-self : center;
+    margin : 0;
+    align-content: center;
+    left: 50%; 
+    transform: translateX(-50%);
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 50%;
+    padding-right: 50%;
+    border-radius : 10px;
+    justify-content: center;
+    width: 45%;
+    size-adjust: 10px;
+    align-items: left;
+    z-index: 10%;
+}
+
+.icon1{
+    position: relative;
+    flex-wrap: wrap;
+    flex-direction: row;
+    border-radius: 10%;
+    margin-right : 10px;
+    width: 6%;
+    height: 5%;
+    background: transparent;
+    /* margin-left: 30px; */
+}
+
+.images1{
+    height : 18px;
+}
+
+.dropbtn1 {
+    color: black;
+    background-color: white;
+    padding: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    border : solid;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius : 5px;
+  }
+  
+  .dropdown1 {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    font-size: 13px;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 10% ;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: black;
+    color: aliceblue;
+}
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown:hover .dropbtn {
+    background-color: transparent;
+  }
+
+
+  .descrptionBox{
+    height: 4em;
+    width: 40vw;
+  }
