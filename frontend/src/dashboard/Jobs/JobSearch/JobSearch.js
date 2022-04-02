@@ -31,7 +31,10 @@ function JobSearch(){
                     data.forEach((d)=> d.applied = false );
                   console.log('here is the data for userProfile', data);
                   setListJobs(data);
-                  setLoading(true);
+                  if(data.length>0){
+                    setLoading(true);
+                  }
+                  
               }).catch(error => console.log('error', error))
     }, []);
 

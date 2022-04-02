@@ -75,8 +75,11 @@ function PostJob(props){
             <Container className = "PostBox1">
                 <div >
                     <input className = "commentBox1" placeholder = "Company" onChange = {(e) => {setPostData({...postData, org: e.target.value}); console.log(postData.org) }}/>
-                    <input className = "commentBox1" placeholder = "Job description"  onChange = { (e) => setPostData({...postData, jobTitle : e.target.value, content : e.target.value})}/>   
+                    <input className = "commentBox1" placeholder = "Job Title"  onChange = { (e) => setPostData({...postData, jobTitle : e.target.value })}/>   
+                    
+
                 </div>    
+                <textarea className = "descrptionBox" placeholder = "Description"  onChange = { (e) => setPostData({...postData,  content : e.target.value})}/>   
                 <div className = "buttons1">
                     <div className ="dropdown1">
                             <input className = "dropbtn1" placeholder = "Location" onChange = {(e) => setPostData({...postData, location: e.target.value}) }/>  
