@@ -220,3 +220,24 @@ Test cases include job creation, updation and deletion with valid and invalid de
 
 
 ### Frontend accomplishments
+Goals achieved:
+#### MyProfile: 
+1. Resume Upload and checking. 
+2. Other user's profiles are viewable by other users.
+
+![](./assets/MyProfile.PNG)
+
+#### Jobs:
+Upon clicking on the jobs icon in the navigation bar, the user is directed to 3 links -
+1. Jobs: Where the users can check out all the jobs and apply to whichever they want. They can see the details and descriptions of all the jobs on click.
+2. My Applications: Displays all the applications that the user has applied to
+3. Employer View: This gives the user the facility to post any jobs that they wish to and the list of all the jobs posted will be displayed in the same page.
+
+![](./assets/JobSearch.PNG)
+![](./assets/MyApps.PNG)
+![](./assets/EmployerView.PNG)
+
+#### Unit Testing: 
+For all the created components for this sprint.
+
+![](./assets/unitTests.PNG)
