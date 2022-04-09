@@ -61,5 +61,6 @@ func main() {
 	protected.POST("/applyjob", controllers.ApplyToJob)
 	protected.POST("/resumeupload/:id", controllers.UploadResume)
 
+	protected.GET("/logout/:id", controllers.Logout)
 	router.Run(":8080")
 }
