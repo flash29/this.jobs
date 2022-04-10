@@ -36,7 +36,7 @@ function DisplayProp(props) {
   }  
 }
 
-function Jobs(props) {
+function Jobs() {
   
   const [value, setValue] = React.useState(Number(sessionStorage.getItem('tab')));
   const [posts, setPosts] = useState();
