@@ -155,12 +155,13 @@ func ApplyToJob(c *gin.Context) {
 	var jobapp models.JobApplication
 
 	c.BindJSON(&jobapp)
-
-	if !isUserPresent(jobapp.UserID) {
+	//needed the username so replaced UserPresent function with the DB call
+	var userProfile models.User
+	Result := utils.DB.Where("user_id = ?", jobapp.UserID).First(&userProfile)
+	if Result == nil || Result.RowsAffected != 1 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve user"})
 		return
 	}
-
 	var post models.JobPost
 
 	result := utils.DB.Where("job_id = ?", jobapp.JobID).First(&post)
@@ -187,6 +188,7 @@ func ApplyToJob(c *gin.Context) {
 
 	if result != nil && result.RowsAffected == 1 {
 		jobapp.CreatedAt = time.Now().Unix()
+		jobapp.UserName = userProfile.UserName
 		utils.DB.Create(&jobapp)
 		c.JSON(http.StatusOK, jobapp)
 	} else {
