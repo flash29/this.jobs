@@ -9,6 +9,13 @@ import settings from '../../images/settings_white_1.png'
 
 
 function NavBar() {
+  const handleLogout = () =>{
+    console.log("Pressed Logout!");
+    sessionStorage.removeItem('userid');
+    sessionStorage.removeItem('token');
+    // console.log(sessionStorage.getItem('userid'));
+    // console.log(sessionStorage.getItem('token'));
+  }
   return (
     <div>
      <div className="NavBar">
@@ -44,7 +51,7 @@ function NavBar() {
               <p className='iconLabel'>Settings</p>
             </div>
           </Link>
-          <Link to="/" className='linkDisplay logout'> 
+          <Link className='linkDisplay logout' onClick={handleLogout} to="/"> 
             <div className='iconsDisplay'>
               <img className='iconsImages' src={logout} alt="Home"/>
               <p className='iconLabel'>Logout</p>
