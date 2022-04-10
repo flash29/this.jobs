@@ -4,12 +4,14 @@ import {Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import {H} from 'react-headings';
 import './LoginPage.css'
-
+import Popup from '../../components/Popup';
 
 
 function LoginForm(props) {
 
     const [postData, setPostData] = useState({ useremail : '', password : ''});
+    const [message, setMessage] = useState("");
+    const [status, setStatus] = useState(false);
 
     const handleLoginClick = () =>{
         //console.log(postData);
@@ -27,9 +29,23 @@ function LoginForm(props) {
             console.log('stored token', sessionStorage.getItem('token') );
             console.log('userid stored', sessionStorage.getItem('userid')   );
             setPostData({ useremail : '', password : ''});
+
+            if(data.token == undefined){
+                setMessage("Login Unsuccessful! Try Again!");
+                setStatus(true);
+                
+            }
+            else{
+                // setMessage("Login Successful! Press Close to Enter!")
+                let path = "/home";
+                navigate(path);
+            }
+            // data.token == undefined ? (setMessage("Login Unsuccessful! Try Again!"); setStatus(false);) :  (setMessage("Login Successful! Press Close to Enter!");
+            // setStatus(true);
             //window.location.reload(false)
-            let path = "/home";
-            navigate(path);
+
+            // let path = "/home";
+            // navigate(path);
         }).catch(error => console.log('error', error))
     }
 
@@ -58,6 +74,10 @@ function LoginForm(props) {
                     </Button>
                 </FormGroup>
             </Form>
+            <Popup trigger = {status} url = "/home" msg = {message} setStatus = {setStatus}>
+                    <h1>Alert!</h1>
+                    <h3>{message}</h3>
+            </Popup> 
         </div>
     )
 }
