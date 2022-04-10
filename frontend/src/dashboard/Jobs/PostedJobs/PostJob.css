@@ -1,3 +1,18 @@
+.box{
+  border-color: black;
+  align-self: center;
+  outline : black;
+  align-content : center;
+  /* border-width: 10px; */
+  background-color: aliceblue;
+  
+  
+    border: 0.2em solid rgb(0, 0, 0);
+    padding: 0%;
+    margin: 0.1em;
+    
+}
+
 .PostBox1{
     border-color: black;
     padding : 2%;
@@ -128,4 +143,24 @@
   .descrptionBox{
     height: 4em;
     width: 40vw;
+
+    /* width: 200px;
+    height: 40px; */
+    position: relative;
+    display: inline-block flex;
+    overflow: hidden;
+    align-items: center;
+    /* margin : 5;
+    padding: 2; */
+    align-content: center;
+    /* left: 50%; 
+    transform: translateX(-50%); */
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius : 10px;
+    border-width: 0.1rem;
+    border-color: black;
+
   }

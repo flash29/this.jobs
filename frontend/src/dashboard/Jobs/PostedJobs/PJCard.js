@@ -40,10 +40,14 @@ function PJCard(props) {
     }
     createDate();
 
+    const clickHandler = () => {
+        props.descSet(props.index);
+    }
+
     return (
       <div className = 'CardType2'>
-            <div className='fullClass2'>
-                <div className='PostTag2' >{org}   </div>
+            <div className='fullClass2' onClick = {clickHandler}>
+                <div className='PostTag3' >{org}   </div>
                 <div className='PostTag2' >{jobtitle}   </div>
                 <div className='PostTag2'> Location: {location}</div>
                 <div className="topCard2">
