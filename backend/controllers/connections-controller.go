@@ -89,7 +89,9 @@ func AcceptConnection(c *gin.Context) {
 		utils.DB.Where("request_id = ?", request.RequestID).Delete(&request)
 		return
 	}
-
+	//already connected user check
+	var requestingUser models.User
+	utils.DB.Where("user_id = ?", request.RequestedFrom).First(&requestingUser)
 	if request.RequestedTo != existingRequest.RequestedTo {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Connection can only be accepted by use with id " + strconv.Itoa(request.RequestedTo)})
 		return
@@ -109,4 +111,12 @@ func AcceptConnection(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"message:": "Accepted Connection from " + strconv.Itoa(existingRequest.RequestedFrom)})
 	}
 
+}
+func followingCheck(followers pq.Int64Array, requestor int) bool {
+	for _, a := range followers {
+		if int(a) == requestor {
+			return true
+		}
+	}
+	return false
 }
