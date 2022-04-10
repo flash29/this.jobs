@@ -1,8 +1,6 @@
 package utils
 
 import (
-	"fmt"
-
 	"com.uf/src/models"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -20,23 +18,23 @@ func LoginCheck(useremail string, password string) (string, error, int) {
 	if err := DB.Where("user_email = ?", useremail).First(&user).Error; err != nil {
 		return "User not found", err, -1
 	} else {
-		fmt.Println("verifying password " + password + " " + user.Password)
 		err = VerifyPassword(password, user.Password)
 		if err != nil {
 			return "Password did not match", err, -1
 		}
 	}
 
-	// if err != nil && err == bcrypt.ErrMismatchedHashAndPassword {
-	// 	return "", err
-	// }
-
-	token, err := GenerateToken(user) //todo
+	token, err := GenerateToken(user)
 
 	if err != nil {
 		return "Error generating token", err, -1
 	}
 
+	userToken := new(models.UserToken)
+	userToken.UserId = user.UserID
+	userToken.Token = token
+	DB.Where("user_id = ?", user.UserID).Delete(&models.UserToken{})
+	DB.Create(&userToken)
 	return token, nil, user.UserID
 
 }

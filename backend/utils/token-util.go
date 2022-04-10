@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"fmt"
 	"strings"
 	"time"
 
@@ -10,30 +9,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var jwtSecretKey = []byte("this.jobs")
-
-// type JwtClaims struct {
-// 	username  string
-// 	useremail string
-// 	userid    int
-// 	jwt.StandardClaims
-// }
+var JwtSecretKey = []byte("this.jobs")
 
 func GenerateToken(user models.User) (string, error) {
 	user.Password = ""
 	tokenExpirationTime := time.Now().Add(24 * time.Hour)
-	// jwtClaim := &JwtClaims{
-	// 	username:  user.UserName,
-	// 	useremail: user.UserEmail,
-	// 	userid:    user.UserID,
-	// 	StandardClaims: jwt.StandardClaims{
-	// 		ExpiresAt: tokenExpirationTime.Unix(),
-	// 		IssuedAt:  time.Now().Unix(),
-	// 		Issuer:    "this.jobs",
-	// 		Subject:   "Token for this.jobs frontend",
-	// 	},
-	// }
-
 	claim := jwt.MapClaims{}
 	claim["authorized"] = true
 	claim["username"] = user.UserName
@@ -46,23 +26,16 @@ func GenerateToken(user models.User) (string, error) {
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claim)
 
-	return token.SignedString(jwtSecretKey) //todo
+	return token.SignedString(JwtSecretKey) //todo
 
 }
 
-func TokenValid(c *gin.Context) (*jwt.Token, error) {
-	// tokenString := ExtractToken(c)
-	// claims := &JwtClaims{}
-
-	// token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (i interface{}, err error) {
-	// 	return jwtSecretKey, nil
-	// })
-	// return token, claims, err
+func TokenValid(c *gin.Context) (*jwt.Token, string, error) {
 	tokenString := ExtractToken(c)
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
-		return jwtSecretKey, nil
+		return JwtSecretKey, nil
 	})
-	return token, err
+	return token, tokenString, err
 }
 
 func ExtractToken(c *gin.Context) string {
@@ -71,7 +44,6 @@ func ExtractToken(c *gin.Context) string {
 		return token
 	}
 	bearerToken := c.Request.Header.Get("Authorization")
-	fmt.Println(bearerToken)
 	if len(strings.Split(bearerToken, " ")) == 2 {
 		return strings.Split(bearerToken, " ")[1]
 	}
