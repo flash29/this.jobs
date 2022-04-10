@@ -62,5 +62,6 @@ func main() {
 	protected.POST("/resumeupload/:id", controllers.UploadResume)
 
 	protected.POST("/requestconnection", controllers.RequestConnection)
+	protected.POST("/acceptconnection", controllers.AcceptConnection)
 	router.Run(":8080")
 }
