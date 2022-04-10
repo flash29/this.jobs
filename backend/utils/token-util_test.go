@@ -29,6 +29,6 @@ func TestGenerateTokenAndValidation(t *testing.T) {
 
 	returnToken := ExtractToken(c)
 	assert.Equal(t, token, returnToken)
-	_, errr := TokenValid(c)
+	_, _, errr := TokenValid(c)
 	assert.NoError(t, errr)
 }

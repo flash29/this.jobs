@@ -33,9 +33,8 @@ func LoginCheck(useremail string, password string) (string, error, int) {
 	userToken := new(models.UserToken)
 	userToken.UserId = user.UserID
 	userToken.Token = token
-
+	DB.Where("user_id = ?", user.UserID).Delete(&models.UserToken{})
 	DB.Create(&userToken)
-
 	return token, nil, user.UserID
 
 }
