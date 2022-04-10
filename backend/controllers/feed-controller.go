@@ -18,9 +18,9 @@ func DeletePost(c *gin.Context) {
 	var post models.UserPost
 	d := utils.DB.Where("post_id = ?", id).Delete(&post)
 	if d.Error != nil {
-		c.JSON(404, gin.H{"post with id " + id: "not found"})
+		c.JSON(http.StatusNotFound, gin.H{"post with id " + id: "not found"})
 	} else {
-		c.JSON(200, gin.H{"post with id " + id: "deleted"})
+		c.JSON(http.StatusOK, gin.H{"post with id " + id: "deleted"})
 	}
 }
 
@@ -33,9 +33,9 @@ func PostComment(c *gin.Context) {
 	if result != nil && result.RowsAffected == 1 {
 		comment.CreatedAt = time.Now().Unix()
 		utils.DB.Create(&comment)
-		c.JSON(200, comment)
+		c.JSON(http.StatusOK, comment)
 	} else {
-		c.JSON(400, gin.H{"error": "Unable to add comment"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to add comment"})
 	}
 }
 
@@ -72,10 +72,10 @@ func UpdateLikes(c *gin.Context) {
 				post.LikesList = append(post.LikesList, likes.UserID)
 				post.Likes = post.Likes + 1
 				utils.DB.Save(&post)
-				c.JSON(200, gin.H{"message": "likes updated"})
+				c.JSON(http.StatusOK, gin.H{"message": "likes updated"})
 			} else {
 				fmt.Println("idx true")
-				c.JSON(400, gin.H{"error": "You already liked this post"})
+				c.JSON(http.StatusBadRequest, gin.H{"error": "You already liked this post"})
 			}
 		} else {
 			idx := contains(post.LikesList, likes.UserID)
@@ -83,14 +83,14 @@ func UpdateLikes(c *gin.Context) {
 				post.Likes = post.Likes - 1
 				post.LikesList = RemoveUserID(post.LikesList, idx)
 				utils.DB.Save(&post)
-				c.JSON(200, gin.H{"message": "likes updated"})
+				c.JSON(http.StatusOK, gin.H{"message": "likes updated"})
 			} else {
 				fmt.Println("idx false")
-				c.JSON(400, gin.H{"error": "You cannot dislike this post"})
+				c.JSON(http.StatusBadRequest, gin.H{"error": "You cannot dislike this post"})
 			}
 		}
 	} else {
-		c.JSON(400, gin.H{"error": "Unable to update likes"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to update likes"})
 	}
 }
 
@@ -103,7 +103,7 @@ func UpdatePost(c *gin.Context) {
 		c.BindJSON(&post)
 		post.UpdatedAt = time.Now().Unix()
 		utils.DB.Save(&post)
-		c.JSON(200, post)
+		c.JSON(http.StatusOK, post)
 	}
 }
 
@@ -112,11 +112,11 @@ func CreatePost(c *gin.Context) {
 	c.BindJSON(&post)
 	fmt.Printf("%+v\n", post)
 	if post.CreatedBy == "" || post.Content == "" || post.Tag == "" || contains(Tags, post.Tag) == -1 {
-		c.JSON(400, gin.H{"error": "Unable to create post"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to create post"})
 	} else {
 		post.CreatedAt = time.Now().Unix()
 		utils.DB.Create(&post)
-		c.JSON(200, post)
+		c.JSON(http.StatusOK, post)
 	}
 }
 
@@ -127,7 +127,7 @@ func GetPost(c *gin.Context) {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
 	} else {
-		c.JSON(200, post)
+		c.JSON(http.StatusOK, post)
 	}
 }
 
@@ -138,8 +138,8 @@ func GetPosts(c *gin.Context) {
 		return db
 	}).Order("CASE WHEN tag = 'Job-Recruitment' THEN 1 ELSE 2 END, created_at desc").Find(&userposts)
 	if result.Error != nil {
-		c.JSON(400, gin.H{"error": "Unable to retrieve feed posts"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve feed posts"})
 	} else {
-		c.JSON(200, userposts)
+		c.JSON(http.StatusOK, userposts)
 	}
 }
