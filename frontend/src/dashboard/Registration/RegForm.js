@@ -2,35 +2,30 @@ import React, { Component } from 'react';
 import { useState} from 'react';
 import {Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
+import ReactDom from 'react-dom';
+import Popup from '../../components/Popup';
 import {H} from 'react-headings';
 import './Registration.css'
-
-
 
 function RegForm(props) {
 
     const [postData, setPostData] = useState({ userName : '', userEmail : '', password : '' });
-    let navigate = useNavigate();
+    const [message, setMessage] = useState("");
+    const [status, setStatus] = useState(false);
 
     const handleRegisterClick = () =>{
-        //console.log(postData);
+        setStatus(true);
         fetch('/auth/register', {
             method : 'POST', 
             headers:{'Content-type':'application/json'},
             body:JSON.stringify(postData),
         }).then(response => response.json()).then(data => {
-            //console.log(data);
+            console.log(data.message);
             setPostData({ userName: '', userEmail : '', password : ''});
-            //window.location.reload(false)
-            let path = "/";
-            navigate(path);
-        }).catch(error => console.log('error', error))
-    }
-
-    
-    const handleLoginClick = () => {
-        let path = "/";
-        navigate(path);
+            data.message == undefined ? setMessage("Registration Successful!") :  setMessage(data.message);
+            
+        }).catch(error => {console.log('error', error);
+        })
     }
 
     return (
@@ -45,17 +40,19 @@ function RegForm(props) {
                     <FormControl type="email" placeholder="Email Address" className = "inpBox" onChange={(e) => setPostData({...postData, userEmail : e.target.value}) }/>
                 </FormGroup>
                 <FormGroup controlId="formPassword" className = "FormComp w-50" onChange = {(e) => setPostData({...postData, password : e.target.value})}>
-                    <FormControl type="password" className = "FormComp" placeholder="Password" className = "inpBox"/>
+                    <FormControl type="password" placeholder="Password" className = "inpBox"/>
                 </FormGroup>
                 <FormGroup controlId="formSubmit" className = "FormComp">
                     <Button  className = "buttonStyle"  onClick={handleRegisterClick}>
                         Register
-                    </Button>
-                    {/* <Button  className = "buttonStyle"  onClick={handleLoginClick}>
-                        Login
-                    </Button> */}
+                    </Button> 
                 </FormGroup>
+                <Popup trigger = {status} url = "/">
+                    <h1>Alert!</h1>
+                    <h3>{message}</h3>
+                </Popup> 
             </Form>
+            
         </div>
     )
 }
