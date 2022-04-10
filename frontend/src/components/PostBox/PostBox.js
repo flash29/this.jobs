@@ -68,59 +68,66 @@ function PostBox(props){
 
         return(
             <Container className = "PostBox">
-                <div >
-                    <input className = "commentBox" placeholder = "What's on your mind?"  onChange = { (e) => setPostData({...postData, content : e.target.value})}/>
-                </div>    
-                <div className = "buttons">
-                    <div className ="dropdown">
-                            <select className = "dropbtn" onChange = {(e) => setPostData({...postData, tag : e.target.value}) }>
-                                <option value = "1">Select Tag</option> 
-                                <option value = "Job-Recruitment">Job-Recruitment</option>
-                                <option value = "Knowledge Sharing">Knowledge Sharing</option>
-                                <option value = "Inspiration">Inspiration</option>
-                                <option value = "Others">Others</option>    
-                            </select>
-                    </div>
+                <div className = "box">
+                    <h1>Create a Post!</h1>
+                    <div >
+                        <input type = "text" className = "textBox" placeholder = "What's on your mind?"  onChange = { (e) => setPostData({...postData, content : e.target.value})}/>
+                    </div>    
+                    <div className = "buttons">
+                        <div className ="dropdown">
+                                <select className = "dropbtn" onChange = {(e) => setPostData({...postData, tag : e.target.value}) }>
+                                    <option value = "1">Select Tag</option> 
+                                    <option value = "Job-Recruitment">Job-Recruitment</option>
+                                    <option value = "Knowledge Sharing">Knowledge Sharing</option>
+                                    <option value = "Inspiration">Inspiration</option>
+                                    <option value = "Others">Others</option>    
+                                </select>
+                        </div>
 
-                    <>
-                        <Button1 onClick={handleClick}>
-                            <img src = {picon} className = "images" alt = ""/>
-                        </Button1>
-                        <input
-                            type="file"
-                            ref = {hiddenFileInput}
-                            style={{display: 'none'}}
-                            onChange = {handleFileInputChange}/>
-                    </>
+                        <>
+                            <Button1 onClick={handleClick}>
+                                <img src = {picon} className = "images" alt = ""/>
+                            </Button1>
+                            <input
+                                type="file"
+                                ref = {hiddenFileInput}
+                                style={{display: 'none'}}
+                                accept="image/x-png,image/gif,image/jpeg"
+                                onChange = {handleFileInputChange}
+                                />
+                        </>
 
 
-                    <>
-                        <Button1 onClick={handleClick}>
-                            <img src = {ficon} className = "images" alt = ""/>
-                        </Button1>
-                        <input
-                            type="file"
-                            ref={hiddenFileInput}
-                            onChange = {handleFileInputChange}
-                            style={{display: 'none'}}
-                        />
-                    </>
-                    <>
-                        <Button1 onClick={handleClick}>
-                            <img src = {licon} className = "images" alt = ""/>
-                        </Button1>
-                        <input
-                            type="file"
-                            ref={hiddenFileInput}
-                            onChange = {handleFileInputChange}
-                            style={{display: 'none'}}
-                        />
-                    </>
+                        {/* <>
+                            <Button1 onClick={handleClick}>
+                                <img src = {ficon} className = "images" alt = ""/>
+                            </Button1>
+                            <input
+                                type="file"
+                                ref={hiddenFileInput}
+                                onChange = {handleFileInputChange}
+                                style={{display: 'none'}}
+                            />
+                        </>
+                        <>
+                            <Button1 onClick={handleClick}>
+                                <img src = {licon} className = "images" alt = ""/>
+                            </Button1>
+                            <input
+                                type="file"
+                                ref={hiddenFileInput}
+                                onChange = {handleFileInputChange}
+                                style={{display: 'none'}}
+                            />
+                        </> */}
 
-                    <Button className = "icon" type = "submit" onClick={handleSubmit}>
-                        <img src = {sicon} className = "images" alt = "" />
-                    </Button>  
-                </div>         
+                        <Button className = "postButton" type = "submit" onClick={handleSubmit}>
+                            {/* <img src = {sicon} className = "images" alt = "" /> */}
+                            Post
+                        </Button>  
+                    </div> 
+                    <br></br>
+                </div>       
             </Container>    
         );    
     }

@@ -36,12 +36,15 @@ function PostedJobs(){
 
     console.log(descKey);
     return(
-        <div>
+        <div className = "mainDiv">
             <PostJob className = "job-posting"/>
             <div className="grid-container-element">
                 <div className='grid-child-element purple'>
                     <Scroll height="80vh" width="25vw" >
                     {
+                        posts.length === 0 ?
+                        <>No Job Posts yet!</>
+                        :
                         posts.map((post, i) => {
                             console.log('anslist', post);
                             return (
@@ -65,7 +68,7 @@ function PostedJobs(){
                             loading ? 
                             <Applicants posts = {posts[descKey]} index = {descKey} /> 
                             : 
-                            <>Applicants!</>
+                            <>No Jobposts!</>
                         }
                     </Scroll>
                 </div>

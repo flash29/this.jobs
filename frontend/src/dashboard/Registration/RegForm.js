@@ -22,7 +22,7 @@ function RegForm(props) {
         }).then(response => response.json()).then(data => {
             console.log(data.message);
             setPostData({ userName: '', userEmail : '', password : ''});
-            data.message == undefined ? setMessage("Registration Successful!") :  setMessage(data.message);
+            data.message == undefined ? setMessage("Registration Successful!") :  setMessage(data.message+"! Registration Unsuccessful, Please try again!");
             
         }).catch(error => {console.log('error', error);
         })

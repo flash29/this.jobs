@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ServerLost from '../../../ErrorPage/ServerLost'
-import FeedEmpty from '../../../ErrorPage/FeedEmpty'
 import AppCard from './AppCard';
 
 
@@ -16,7 +15,7 @@ function MyApps(props) {
                 <>
                 {
                     props.posts.length === 0 ?
-                    <FeedEmpty className = "feedEmpty"/>
+                    <>No applications made!</>
                     :
                     <>
                     {
