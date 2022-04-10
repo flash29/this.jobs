@@ -49,6 +49,7 @@ func RequestConnection(c *gin.Context) {
 	utils.DB.Where("user_id = ?", request.RequestedFrom).First(&requestingUser)
 	if !followingCheck(requestingUser.Following, request.RequestedTo) {
 		request.CreatedAt = time.Now().Unix()
+		request.RequestorName = requestingUser.UserName
 		utils.DB.Create(&request)
 		c.JSON(http.StatusOK, request)
 	} else {
@@ -56,6 +57,7 @@ func RequestConnection(c *gin.Context) {
 	}
 
 }
+
 func followingCheck(followers pq.Int64Array, requestor int) bool {
 
 	for _, a := range followers {
@@ -112,11 +114,20 @@ func AcceptConnection(c *gin.Context) {
 	}
 
 }
-func followingCheck(followers pq.Int64Array, requestor int) bool {
-	for _, a := range followers {
-		if int(a) == requestor {
-			return true
-		}
+
+func RetrieveConectionRequestsById(c *gin.Context) {
+	var connectionReqs []models.ConnectionRequest
+	id, _ := strconv.Atoi(c.Params.ByName("id"))
+	if !isUserPresent(id) {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve user"})
+		return
 	}
-	return false
+
+	result := utils.DB.Where("requested_to = ? ", id).Order("created_at desc").Find(&connectionReqs)
+
+	if result.Error != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve connection requests"})
+	} else {
+		c.JSON(http.StatusOK, connectionReqs)
+	}
 }

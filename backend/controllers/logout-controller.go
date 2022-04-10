@@ -17,8 +17,8 @@ func Logout(c *gin.Context) {
 	}
 	d := utils.DB.Where("user_id = ?", id).Delete(&userToken)
 	if d.Error != nil {
-		c.JSON(404, gin.H{"message:": "Did not find any user token for id: " + id})
+		c.JSON(http.StatusNotFound, gin.H{"message:": "Did not find any user token for id: " + id})
 	} else {
-		c.JSON(200, gin.H{"message:": "deleted token for user with id " + id})
+		c.JSON(http.StatusOK, gin.H{"message:": "deleted token for user with id " + id})
 	}
 }

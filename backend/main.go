@@ -60,8 +60,10 @@ func main() {
 	protected.DELETE("/jobpost/:id", controllers.DeleteJobPost)
 	protected.POST("/applyjob", controllers.ApplyToJob)
 	protected.POST("/resumeupload/:id", controllers.UploadResume)
+
 	protected.GET("/logout/:id", controllers.Logout)
 	protected.POST("/requestconnection", controllers.RequestConnection)
 	protected.POST("/acceptconnection", controllers.AcceptConnection)
+	protected.GET("/connectionrequests/:id", controllers.RetrieveConectionRequestsById)
 	router.Run(":8080")
 }
