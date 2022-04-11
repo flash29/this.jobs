@@ -48,6 +48,9 @@ function JobSearch(){
                <div className='JobsList'>
                     <Scroll height="80vh" width="30vw" >
                         {
+                            listjobs.length === 0 ?
+                            <>No Jobs Available Right Now!</>
+                            :
                             listjobs.map((job, i) => {
                                 return (
                                     <JobDisplayCard 
@@ -84,7 +87,7 @@ function JobSearch(){
                         index = {descKey}
                         /> 
                         :
-                        <>Loading</>
+                        <>No Job Selected!</>
                    }
                     </Scroll>
 
