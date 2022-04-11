@@ -11,7 +11,7 @@ function ApplicantCard(props){
 
     return (
         <div className='listCardJobs2' onClick={clickHandler}>
-            <div className='jobTitleList2'> {props.userId} </div>
+            <div className='jobTitleList2'> {props.userName} </div>
         </div>
     );
 }

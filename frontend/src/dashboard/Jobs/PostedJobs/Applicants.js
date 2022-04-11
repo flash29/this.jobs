@@ -28,7 +28,7 @@ function Applicants(props){
                             props.posts.appliedUsersList.length === 0 ?
                             <>No Applicants for this Job yet!</>
                             :
-                            props.posts.appliedUsersList.map((names) => <ApplicantCard userId = {names.userId}/>
+                            props.posts.appliedUsersList.map((names) => <ApplicantCard userId = {names.userId} userName = {names.userName}/>
                             // <h2>{names.userId}</h2>
                             )
                             // <h2>{props.posts.appliedUsersList}</h2>

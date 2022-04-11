@@ -48,9 +48,11 @@ function Jobs() {
         headers:{'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
         //body:JSON.stringify(postData),
     }).then(res => res.json())
-        .then(res => setPosts(res) )
+        .then(res => {setPosts(res); })
         .catch(error => console.log('error getting Feed'))
   }
+
+
   useEffect(() => {
     getPosts();
     console.log('posts', posts);
