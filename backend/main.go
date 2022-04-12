@@ -65,6 +65,7 @@ func main() {
 	protected.POST("/requestconnection", controllers.RequestConnection)
 	protected.POST("/acceptconnection", controllers.AcceptConnection)
 	protected.GET("/connectionrequests/:id", controllers.RetrieveConectionRequestsById)
+	protected.GET("/peopleyoumayknow/:id", controllers.RetrievePeopleYouMayKnowById)
 
 	protected.GET("/search/people", controllers.SearchPeople)
 	router.Run(":8080")
