@@ -1,33 +1,29 @@
-.CardType2{
-    display: flex;
-    justify-content: center;
-}
-
-.fullClassTwo2{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    border-style: solid;   
-    width: 50rem;
-    border-radius: 10%;
-    border: 0.2em solid black;
-    border-radius: 6px;
+.listCardJobs5{
+    background-color: antiquewhite;
+    padding: 0.5em;
     margin: 0.2em;
-    padding: 0.2em;
+    border: 1px; 
+    border: 0.2em solid rgb(0, 0, 0);
 }
 
-.topCard2{
-    display: flex;
-    justify-content: space-between;
-    margin: 0.2em;
+.listCardJobs5:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 1s;
 }
 
-
-.PostTag2{
-    display: flex;
-    font-weight:bold;
-    font-size: 0.9em;
-    background-color: white;
-    width: 20em;
-    margin: 0.3em;
+.jobTitleList5{
+    font-weight: bolder;
 }
+
+.mainDiv5{
+    border: 0.2em;
+    border-width: 0.2em;
+    padding : 2px;
+    /* border: 1px; 
+    border: 0.2em solid rgb(0, 0, 0); */
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+}
+

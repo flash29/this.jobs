@@ -27,12 +27,13 @@ function ConnCard(props) {
     }
 
     return (
-      <div className = 'CardType2'>
-            <div className='fullClassTwo2' onClick={clickHandler}>
-                <div className='PostTag2'> {useremail} </div>
+
+        <div className = "mainDiv5">
+            <div className='listCardJobs5' onClick={clickHandler}>
+                <div className='jobTitleList5'> {username} </div>
             </div>
-            <div className='PostTag2'>{userId} </div>
-      </div>  
+        </div>
+        
       
     );
   }

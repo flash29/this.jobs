@@ -33,6 +33,7 @@ function Connections() {
 
    const [value, setValue] = React.useState(Number(sessionStorage.getItem('tab')));
    const [posts, setPosts] = useState();
+   let userid = sessionStorage.getItem('userid');
 
   async function getPosts () {
       console.log('/followers/' + userid)
