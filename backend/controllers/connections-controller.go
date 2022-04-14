@@ -182,3 +182,27 @@ func RetrievePeopleYouMayKnowById(c *gin.Context) {
 		c.JSON(http.StatusOK, usersList)
 	}
 }
+
+func RetrieveFollowersById(c *gin.Context) {
+	var followers []models.User
+	id, _ := strconv.Atoi(c.Params.ByName("id"))
+	var userProfile models.User
+	Result := utils.DB.Where("user_id = ?", id).First(&userProfile)
+	if Result == nil || Result.RowsAffected != 1 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve user"})
+		return
+	}
+
+	for _, a := range userProfile.Following {
+		var user models.User
+		//only id and name are retrieved although it's user object
+		Result := utils.DB.Select("user_id, user_name").Where("user_id = ?", a).First(&user)
+		if Result.Error != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve all followers."})
+		} else {
+			followers = append(followers, user)
+		}
+	}
+
+	c.JSON(http.StatusOK, followers)
+}
