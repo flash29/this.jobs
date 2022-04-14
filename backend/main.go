@@ -69,5 +69,6 @@ func main() {
 	protected.GET("/followers/:id", controllers.RetrieveFollowersById)
 
 	protected.GET("/search/people", controllers.SearchPeople)
+	protected.GET("/search/jobs", controllers.SearchJobs)
 	router.Run(":8080")
 }
