@@ -3,6 +3,7 @@ package controllers
 import (
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 
 	"com.uf/src/models"
@@ -130,4 +131,78 @@ func RetrieveConectionRequestsById(c *gin.Context) {
 	} else {
 		c.JSON(http.StatusOK, connectionReqs)
 	}
+}
+
+func RetrievePeopleYouMayKnowById(c *gin.Context) {
+	var usersList []models.User
+	id, _ := strconv.Atoi(c.Params.ByName("id"))
+
+	var userProfile models.User
+	Result := utils.DB.Preload("EducationList").Preload("ProjectList").Preload("JobHistoryList").Where("user_id = ?", id).First(&userProfile)
+	if Result == nil || Result.RowsAffected != 1 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve user"})
+		return
+	}
+	var followers string
+	followers = strconv.Itoa(id)
+	for _, a := range userProfile.Following {
+		followers += ", " + strconv.Itoa(int(a))
+	}
+
+	//add people from same school or company in where clause
+	var companies string
+	for _, a := range userProfile.JobHistoryList {
+		companies += ", '" + a.Company + "'"
+	}
+	var institutes string
+	for _, a := range userProfile.EducationList {
+		institutes += ", '" + a.InsName + "'"
+	}
+	var whereClause string
+	if companies != "" {
+		companies = strings.Replace(companies, ", ", "", 1)
+		whereClause += "job_histories.company in (" + companies + ")"
+	}
+	if institutes != "" {
+		institutes = strings.Replace(institutes, ", ", "", 1)
+		if whereClause != "" {
+			whereClause += "or educations.ins_name in (" + institutes + ") and "
+		} else {
+			whereClause += "educations.ins_name in (" + institutes + ") and "
+		}
+	}
+	result := utils.DB.Select("users.user_id, users.user_name").
+		Joins("left join educations on educations.user_id = users.user_id").
+		Joins("left join job_histories on job_histories.user_id = users.user_id").
+		Where(whereClause + " users.user_id not in (" + followers + ")").Limit(10).Find(&usersList)
+
+	if result.Error != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve users"})
+	} else {
+		c.JSON(http.StatusOK, usersList)
+	}
+}
+
+func RetrieveFollowersById(c *gin.Context) {
+	var followers []models.User
+	id, _ := strconv.Atoi(c.Params.ByName("id"))
+	var userProfile models.User
+	Result := utils.DB.Where("user_id = ?", id).First(&userProfile)
+	if Result == nil || Result.RowsAffected != 1 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve user"})
+		return
+	}
+
+	for _, a := range userProfile.Following {
+		var user models.User
+		//only id and name are retrieved although it's user object
+		Result := utils.DB.Select("user_id, user_name").Where("user_id = ?", a).First(&user)
+		if Result.Error != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve all followers."})
+		} else {
+			followers = append(followers, user)
+		}
+	}
+
+	c.JSON(http.StatusOK, followers)
 }
