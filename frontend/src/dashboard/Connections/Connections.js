@@ -5,23 +5,24 @@ import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import MyConnections from "../Connections/MyConnections/MyConnections"
 import PendingRequests from './PendingRequests/PendingRequests';
+import Suggestions from "./Suggestions/Suggestions";
 import { useState, useEffect } from 'react';
 
 
-if(sessionStorage.getItem('tab') == undefined){
-  sessionStorage.setItem('tab', 1);
+if(sessionStorage.getItem('tab2') == undefined){
+  sessionStorage.setItem('tab2', 1);
 }
 let userid = sessionStorage.getItem('userid');
 
 function DisplayProp(props) {
   const val = props.val;
-  sessionStorage.setItem('tab', val);
+  sessionStorage.setItem('tab2', val);
   console.log(props.posts)
   if(val == 2){  
     return (<PendingRequests/>);
   }
   else if(val == 3){
-   return (<div>Suggestions</div>);
+   return (<Suggestions/>);
   }
   else{
     console.log(props.posts);
@@ -33,7 +34,7 @@ function DisplayProp(props) {
 
 function Connections() {
 
-   const [value, setValue] = React.useState(Number(sessionStorage.getItem('tab')));
+   const [value, setValue] = React.useState(Number(sessionStorage.getItem('tab2')));
    const [posts, setPosts] = useState();
    let userid = sessionStorage.getItem('userid');
 

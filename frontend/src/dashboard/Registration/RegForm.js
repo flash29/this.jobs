@@ -3,7 +3,7 @@ import { useState} from 'react';
 import {Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import ReactDom from 'react-dom';
-import Popup from '../../components/Popup';
+import Popup from '../../components/Popup/Popup';
 import {H} from 'react-headings';
 import './Registration.css'
 

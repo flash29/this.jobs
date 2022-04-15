@@ -1,6 +1,4 @@
 import React from 'react';
-import ServerLost from '../../../ErrorPage/ServerLost'
-import Scroll from '../../../components/Scroll';
 import { useState, useEffect } from 'react';
 import PRs from "./PRs";
 
