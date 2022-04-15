@@ -12,13 +12,14 @@ function MyConnections(props){
             <ServerLost className = "serverLost"/>
             :
             <>
-            {
+            {   
+                props.posts === null ?
+                <>No Connections! Let's make new ones now!</>
+                :
                 props.posts.map((post, i) => {
                   console.log("connections", post);
                   return(
-                    <Scroll height="100vh" >
                       <ConnCard key = {i} postContent = {post} className = "connCard"/>
-                    </Scroll>
                   )  
                 })
             }

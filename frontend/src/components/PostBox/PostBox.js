@@ -73,7 +73,7 @@ function PostBox(props){
                     <div >
                         <input type = "text" className = "textBox" placeholder = "What's on your mind?"  onChange = { (e) => setPostData({...postData, content : e.target.value})}/>
                     </div>    
-                    <div className = "buttons">
+                    <div className = "buttons25">
                         <div className ="dropdown">
                                 <select className = "dropbtn" onChange = {(e) => setPostData({...postData, tag : e.target.value}) }>
                                     <option value = "1">Select Tag</option> 

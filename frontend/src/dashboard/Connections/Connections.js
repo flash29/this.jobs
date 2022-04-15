@@ -4,6 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import MyConnections from "../Connections/MyConnections/MyConnections"
+import PendingRequests from './PendingRequests/PendingRequests';
 import { useState, useEffect } from 'react';
 
 
@@ -17,14 +18,15 @@ function DisplayProp(props) {
   sessionStorage.setItem('tab', val);
   console.log(props.posts)
   if(val == 2){  
-    return (<div>Pending Requests</div>);
+    return (<PendingRequests/>);
   }
   else if(val == 3){
    return (<div>Suggestions</div>);
   }
   else{
+    console.log(props.posts);
     return (
-      <div><MyConnections posts = {props.posts}/></div>
+        <div><MyConnections posts = {props.posts}/></div>
      );
   }  
 }

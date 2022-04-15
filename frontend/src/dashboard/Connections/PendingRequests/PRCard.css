@@ -1,0 +1,78 @@
+.listCardJobs3{
+    background-color: aliceblue;
+    padding: 0.5em;
+    margin: 0.2em;
+    display: flex;
+    justify-content: space-around;
+    border: 0.2em solid rgb(0, 0, 0);
+    padding: 0.75%;
+    height: 40px;
+}
+
+/* .listCardJobs3:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 1s;
+} */
+
+.jobTitleList3{
+    font-weight: bolder;
+    font-size: larger;
+    justify-content: center;
+
+}
+
+.jobTitleList3:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 1s;
+}
+
+/* .container {
+    display: flex;
+}
+
+.item {
+background: #ce8888;
+flex-basis: 100px;
+height: 100px;
+margin: 5px;
+} */
+
+.accept-button{
+    float: left;
+    font-size: medium;
+    font-weight: bolder;
+    margin: 1px;
+    padding: 0%;
+    width : 200px;
+    background-color: #5BAE4F;
+    border: 0.2em solid rgb(0, 0, 0);
+    border-radius: 5%;
+    height: 40px;
+}
+
+.decline-button{
+    float: left;
+    font-size: medium;
+    font-weight: bolder;
+    margin: 1px;
+    padding: 0%;
+    width : 200px;
+    background-color: #FF6F6F;
+    border: 0.2em solid rgb(0, 0, 0);
+    border-radius: 5%;
+    height: 40px;
+}
+
+.accept-button:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 1s;
+}
+
+.decline-button:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 1s;
+}

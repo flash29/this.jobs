@@ -22,20 +22,20 @@ function ConnCard(props) {
     } = props.postContent;
 
     const clickHandler = () => {
+    
         let path = "/settings/profile/"+userId;
         navigate(path);
     }
 
+    console.log(username);
     return (
 
         <div className = "mainDiv5">
             <div className='listCardJobs5' onClick={clickHandler}>
                 <div className='jobTitleList5'> {username} </div>
             </div>
-        </div>
-        
-      
-    );
+        </div>      
+    );    
   }
   
   export default ConnCard;
