@@ -34,6 +34,20 @@ function PRCard(props){
             }).catch(error => console.log('error', error))
     }
 
+    const declineButton = () => {
+        console.log("Entered Decline");
+
+        fetch('/declineconnection', {
+            method : 'POST', 
+            headers:{'Content-type':'application/json'},
+            headers:{'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
+            body:JSON.stringify(props.postContent),
+        }).then(response => response.json()).then(data => {
+            console.log(data);
+            window.location.reload(false)
+        }).catch(error => console.log('error', error))
+}
+
     return (
         <div className='listCardJobs3'>
             <div className='jobTitleList3'  onClick={clickHandler}> 
@@ -43,7 +57,7 @@ function PRCard(props){
             </div>
             <div className = "bdiv">
                 <Button className = "accept-button" variant="text" onClick = {acceptButton} >Accept</Button>
-                <Button className = "decline-button" variant="text">Decline</Button>
+                <Button className = "decline-button" variant="text" onClick = {declineButton}>Decline</Button>
             </div>
             
         </div>

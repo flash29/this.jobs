@@ -24,7 +24,13 @@ function PendingRequests(){
 
     return(
         <>{
-            <PRs props = {posts}></PRs>
+            <div>
+                <h1>Some people can't wait to connect with you!</h1>
+                <div className = "mainDivConn">
+                    <PRs props = {posts}></PRs>
+                </div>
+            </div>
+            
         }</>   
     )
 }

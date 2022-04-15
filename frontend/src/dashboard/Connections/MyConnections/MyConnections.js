@@ -19,7 +19,9 @@ function MyConnections(props){
                 props.posts.map((post, i) => {
                   console.log("connections", post);
                   return(
-                      <ConnCard key = {i} postContent = {post} className = "connCard"/>
+                    <div >
+                        <ConnCard key = {i} postContent = {post} className = "connCard"/>
+                    </div> 
                   )  
                 })
             }

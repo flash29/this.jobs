@@ -7,6 +7,7 @@ import MyConnections from "../Connections/MyConnections/MyConnections"
 import PendingRequests from './PendingRequests/PendingRequests';
 import Suggestions from "./Suggestions/Suggestions";
 import { useState, useEffect } from 'react';
+import './Connections.css';
 
 
 if(sessionStorage.getItem('tab2') == undefined){
@@ -27,7 +28,12 @@ function DisplayProp(props) {
   else{
     console.log(props.posts);
     return (
-        <div><MyConnections posts = {props.posts}/></div>
+        <div >
+          <h1>Your Circle!</h1>
+          <div className="mainDivConn">
+            <MyConnections posts = {props.posts}/>
+          </div>
+        </div>
      );
   }  
 }

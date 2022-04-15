@@ -68,14 +68,14 @@ function SCard(props){
     }
 
     return (
-        <div className='listCardJobs3'>
-            <div className='jobTitleList3'  onClick={clickHandler}> 
+        <div className='listCardJobs65'>
+            <div className='jobTitleList65'  onClick={clickHandler}> 
                 <div>
                     {username}  
                 </div>
             </div>
             <div className = "bdiv">
-                <Button className = "accept-button" variant="text" onClick = {requestButton} >Request</Button>
+                <Button className = "accept-button20" variant="text" onClick = {requestButton} >Request</Button>
                 {/* <Button className = "decline-button" variant="text">Remove</Button> */}
             </div>
             <Alerts trigger = {status} url = "/connections" msg = {message} setStatus = {setStatus}>

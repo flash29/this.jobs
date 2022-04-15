@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import SComp from "./SComp";
+import "./Suggestions.css";
 
 function Suggestions(){
     const [posts, setPosts] = useState();
@@ -26,7 +27,13 @@ function Suggestions(){
 
     return(
         <>{
-            <SComp props = {posts}/>
+            <div>
+                <h1>People you may know!</h1>
+                <div className = "mainDivConn"> 
+                    <SComp props = {posts}/>
+                </div>
+            </div>
+            
         }</>   
     )
 }
