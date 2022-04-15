@@ -92,11 +92,11 @@ func AcceptConnection(c *gin.Context) {
 		utils.DB.Where("request_id = ?", request.RequestID).Delete(&request)
 		return
 	}
-	//already connected user check
+	//requested user and loggedIn user check
 	var requestingUser models.User
 	utils.DB.Where("user_id = ?", request.RequestedFrom).First(&requestingUser)
 	if request.RequestedTo != existingRequest.RequestedTo {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Connection can only be accepted by use with id " + strconv.Itoa(request.RequestedTo)})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Connection can only be accepted by user with id " + strconv.Itoa(request.RequestedTo)})
 		return
 	}
 
@@ -205,4 +205,44 @@ func RetrieveFollowersById(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, followers)
+}
+
+func DeclineConnection(c *gin.Context) {
+	var request models.ConnectionRequest
+	c.BindJSON(&request)
+	//connection is retrieved first to get requested from and to ids
+	var existingRequest models.ConnectionRequest
+	result := utils.DB.Where("request_id = ? ", request.RequestID).First(&existingRequest)
+	if result == nil || result.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Request Not Found"})
+		return
+	}
+	var requestedToUser models.User
+	u := utils.DB.Where("user_id = ?", existingRequest.RequestedTo).First(&requestedToUser)
+	if u == nil || u.RowsAffected != 1 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Did not find any user with Id " + strconv.Itoa(request.RequestedTo)})
+		return
+	}
+
+	//delete the request if the requested user does not exist
+	if !isUserPresent(existingRequest.RequestedFrom) {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to find the requested user with ID " + strconv.Itoa(existingRequest.RequestedFrom)})
+		utils.DB.Where("request_id = ?", request.RequestID).Delete(&request)
+		return
+	}
+
+	var requestingUser models.User
+	utils.DB.Where("user_id = ?", request.RequestedFrom).First(&requestingUser)
+	if request.RequestedTo != existingRequest.RequestedTo {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Connection can only be declined by user with id " + strconv.Itoa(request.RequestedTo)})
+		return
+	}
+
+	d := utils.DB.Where("request_id = ?", request.RequestID).Delete(&request)
+	if d.Error != nil {
+		c.JSON(http.StatusNotFound, gin.H{"message:": "Unable to decline the connection request at the moment."})
+	} else {
+		c.JSON(http.StatusOK, gin.H{"message:": "Declined Connection from " + strconv.Itoa(existingRequest.RequestedFrom)})
+	}
+
 }
