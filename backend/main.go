@@ -64,10 +64,12 @@ func main() {
 	protected.GET("/logout/:id", controllers.Logout)
 	protected.POST("/requestconnection", controllers.RequestConnection)
 	protected.POST("/acceptconnection", controllers.AcceptConnection)
+	protected.POST("/declineconnection", controllers.DeclineConnection)
 	protected.GET("/connectionrequests/:id", controllers.RetrieveConectionRequestsById)
 	protected.GET("/peopleyoumayknow/:id", controllers.RetrievePeopleYouMayKnowById)
 	protected.GET("/followers/:id", controllers.RetrieveFollowersById)
 
 	protected.GET("/search/people", controllers.SearchPeople)
+	protected.GET("/search/jobs", controllers.SearchJobs)
 	router.Run(":8080")
 }
