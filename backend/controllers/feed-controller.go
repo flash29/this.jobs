@@ -3,6 +3,8 @@ package controllers
 import (
 	"fmt"
 	"net/http"
+	"strconv"
+	"strings"
 	"time"
 
 	"com.uf/src/models"
@@ -128,6 +130,41 @@ func GetPost(c *gin.Context) {
 		fmt.Println(err)
 	} else {
 		c.JSON(http.StatusOK, post)
+	}
+}
+
+func GetFollowingPosts(c *gin.Context) {
+
+	userid := c.Params.ByName("id")
+
+	var user models.User
+
+	res := utils.DB.Where("user_id = ?", userid).First(&user)
+	if res.Error != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve user"})
+	}
+
+	var userposts []models.UserPost
+
+	following := user.Following
+
+	var following_str string
+	for _, a := range following {
+		following_str += strconv.Itoa(int(a)) + ","
+	}
+	following_str = strings.TrimSuffix(following_str, ",")
+	if following_str != "" {
+		result := utils.DB.Preload("Comments", func(db *gorm.DB) *gorm.DB {
+			db = db.Order("created_at desc")
+			return db
+		}).Where("creator_id in (" + following_str + ")").Order("CASE WHEN tag = 'Job-Recruitment' THEN 1 ELSE 2 END, created_at desc").Find(&userposts)
+		if result.Error != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve feed posts"})
+		} else {
+			c.JSON(http.StatusOK, userposts)
+		}
+	} else {
+		c.JSON(http.StatusOK, userposts)
 	}
 }
 
