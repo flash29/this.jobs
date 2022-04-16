@@ -112,7 +112,16 @@ func UpdatePost(c *gin.Context) {
 func CreatePost(c *gin.Context) {
 	var post models.UserPost
 	c.BindJSON(&post)
-	fmt.Printf("%+v\n", post)
+
+	var user models.User
+
+	res := utils.DB.Where("user_id = ?", post.CreatorID).First(&user)
+
+	if res.Error != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve user"})
+		return
+	}
+
 	if post.CreatedBy == "" || post.Content == "" || post.Tag == "" || contains(Tags, post.Tag) == -1 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to create post"})
 	} else {
