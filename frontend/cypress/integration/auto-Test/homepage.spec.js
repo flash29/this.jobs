@@ -57,4 +57,32 @@ describe('End-to End Tests - Login Page', ()=>{
 })
 
 
+describe('Home Page Test Suite', function(){
 
+  it('Post Data Write', function(){
+
+    cy.visit('/home')
+
+    cy.get('.textBox').type('Hi We are Hiring at Amazon').should('have.value', 'Hi We are Hiring at Amazon')
+
+    cy.get('select').select('Job-Recruitment').should('have.value', 'Job-Recruitment')
+
+  })
+
+  it('Publish a post', function(){
+
+    cy.visit('/home')
+
+    cy.get('.textBox').type('Hi We are Hiring at Amazon')
+
+    const picture = 'Amazon.jpeg'
+
+    cy.get('#inputPhotoPost').attachFile(picture)
+
+    cy.get('select').select('Job-Recruitment')
+
+    cy.get('.postButton').click()
+
+  })
+
+})

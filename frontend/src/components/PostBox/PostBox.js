@@ -76,11 +76,11 @@ function PostBox(props){
                     <div className = "buttons">
                         <div className ="dropdown">
                                 <select className = "dropbtn" onChange = {(e) => setPostData({...postData, tag : e.target.value}) }>
-                                    <option value = "1">Select Tag</option> 
-                                    <option value = "Job-Recruitment">Job-Recruitment</option>
-                                    <option value = "Knowledge Sharing">Knowledge Sharing</option>
-                                    <option value = "Inspiration">Inspiration</option>
-                                    <option value = "Others">Others</option>    
+                                    <option value = "1" id = "SelectTag" >Select Tag</option> 
+                                    <option value = "Job-Recruitment" id="JobRecruitment" >Job-Recruitment</option>
+                                    <option value = "Knowledge Sharing" id="KnowledgeSharing" >Knowledge Sharing</option>
+                                    <option value = "Inspiration" id="Inspiration" >Inspiration</option>
+                                    <option value = "Others" id="Others" >Others</option>    
                                 </select>
                         </div>
 
@@ -94,6 +94,7 @@ function PostBox(props){
                                 style={{display: 'none'}}
                                 accept="image/x-png,image/gif,image/jpeg"
                                 onChange = {handleFileInputChange}
+                                id="inputPhotoPost"
                                 />
                         </>
 
