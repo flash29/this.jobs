@@ -8,7 +8,7 @@ import (
 
 func setUpLoginUtil(username string, password string) (string, error) {
 	MockConnectDatabase()
-	token, err, _ := LoginCheck(username, password)
+	token, err, _, _ := LoginCheck(username, password)
 	return token, err
 }
 func TestLoginUtilWithValidCredentials(t *testing.T) {
