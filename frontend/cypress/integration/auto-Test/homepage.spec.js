@@ -1,114 +1,60 @@
-<reference types="cypress" />
-import React from 'react';
+/* eslint-disable no-undef */
+//usually tests need to include
+//Arrange - set up initial state
+//Act - take an action
+//Assert - make an assumption
 
+describe('End-to End Tests - Login Page', ()=>{
 
-
-describe('Test Suite for login page', ()=>{
-  beforeEach(() => {
+  it('Test Login with Empty Details', function(){
     cy.visit('/')
+
+    cy.get('#loginButton').click()
+
+    cy.url().should('include', '/')
   })
 
-  it('Check Display for login Page', ()=>{ 
-    cy
-    .get('#formEmail')
-    .should('be.visible');
+  it('Checking Entered Details', function(){
 
+    cy.visit('/')
 
-    cy
-    .get('#formPassword')
-    .should('be.visible');
+    cy.get('#loginEmail').type('tester1@email.com').should('have.value', 'tester1@email.com')
 
-    cy
-    .get('#loginButton')
-    .click();
-
-    
-    cy.go('back');
-    
-
-    cy
-    .get('#registrationButton')
-    .contains('Register');
-
-  });
-
-  const emailId =  'tester1@email.com';
-  const password = "123"
-
-  it('Login Check for the user', ()=>{
-    
-
-      cy.request('POST', 'http://localhost:8080/auth/login', {
-          useremail : emailId, 
-            password : password
-        })
-        .should(( response ) => {
-           expect(response.status).to.eq(200);
-
-          window.localStorage.setItem('token', response.token);
-          window.localStorage.setItem('userid', response.userId);
-
-
-        })
+    cy.get('#loginPassword').type('123').should('have.value', '123')
 
   })
+
+  it('Wrong Credentials', function(){
+    cy.visit('/')
+
+    cy.get('#loginEmail').type('tester1@email.com')
+
+    cy.get('#loginPassword').type('1234567')
+
+    cy.get('#loginButton').click()
+
+    cy.url().should('include', '/')
+  })
+
+
+  it('Valid Credentials', function(){
+    cy.visit('/')
+
+    cy.get('#loginEmail').type('tester1@email.com')
+
+    cy.get('#loginPassword').type('123')
+
+    cy.get('#loginButton').click()
+
+    cy.url().should('include', '/home')
+  })
+
+
+
+
 
 
 })
 
-describe('Test Suite for Navigation Page', ()=>{
-    beforeEach(() => {
-        cy.visit('/connections')
-      })
-
-      it('Navigation Bar vists settings page', ()=> {
-
-        // cy.get('a')
-        // .should('have.attr', 'href').and('include', 'contact')
-        // .then((href) => {
-        //   cy.visit(href)
-        // })
-
-        cy.get('.settings').click({force: true})
-        cy.url().should('include', '/settings')
-      });
-
-      it('Navigation Bar visits jobs page', ()=> {
-
-        // cy.get('a')
-        // .should('have.attr', 'href').and('include', 'contact')
-        // .then((href) => {
-        //   cy.visit(href)
-        // })
-
-        cy.get('.jobs').click({force: true})
-        cy.url().should('include', '/jobs')
-      });
-
-      it('Navigation Bar visits logout page', ()=> {
-
-        // cy.get('a')
-        // .should('have.attr', 'href').and('include', 'contact')
-        // .then((href) => {
-        //   cy.visit(href)
-        // })
-
-        cy.get('.logout').click({force: true})
-        cy.url().should('include', '/')
-      });
-
-      it('Navigation Bar visits home page', ()=> {
-
-        // cy.get('a')
-        // .should('have.attr', 'href').and('include', 'contact')
-        // .then((href) => {
-        //   cy.visit(href)
-        // })
-
-        cy.get('.home').click({force: true})
-        cy.url().should('include', '/home')
-      });
-      
-})
 
 
