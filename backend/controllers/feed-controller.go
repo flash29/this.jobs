@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"strings"
 	"time"
 
 	"com.uf/src/models"
@@ -161,7 +160,9 @@ func GetFollowingPosts(c *gin.Context) {
 	for _, a := range following {
 		following_str += strconv.Itoa(int(a)) + ","
 	}
-	following_str = strings.TrimSuffix(following_str, ",")
+
+	following_str += strconv.Itoa(int(user.UserID))
+
 	if following_str != "" {
 		result := utils.DB.Preload("Comments", func(db *gorm.DB) *gorm.DB {
 			db = db.Order("created_at desc")
