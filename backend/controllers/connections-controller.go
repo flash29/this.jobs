@@ -169,7 +169,7 @@ func RetrievePeopleYouMayKnowById(c *gin.Context) {
 		if whereClause != "" {
 			whereClause += "or educations.ins_name in (" + institutes + ") ) and "
 		} else {
-			whereClause += "(educations.ins_name in (" + institutes + ") ) and "
+			whereClause += "educations.ins_name in (" + institutes + ") and "
 		}
 	}
 
