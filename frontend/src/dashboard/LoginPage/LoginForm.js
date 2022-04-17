@@ -4,7 +4,7 @@ import {Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import {H} from 'react-headings';
 import './LoginPage.css'
-import Popup from '../../components/Popup';
+import Popup from '../../components/Popup/Popup';
 
 
 function LoginForm(props) {

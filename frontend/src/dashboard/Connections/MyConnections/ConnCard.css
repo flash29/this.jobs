@@ -1,0 +1,35 @@
+.listCardJobs5{
+    background-color: antiquewhite;
+    padding: 0.5em;
+    margin: 0.2em;
+    border: 1px; 
+    border: 0.2em solid rgb(0, 0, 0);
+    height: 50px;
+    align-items: center;
+}
+
+.listCardJobs5:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: 1s;
+}
+
+.jobTitleList5{
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.mainDiv5{
+    border: 0.2em;
+    border-width: 0.2em;
+    padding : 2px;
+    /* border: 1px; 
+    border: 0.2em solid rgb(0, 0, 0); */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+}
+
