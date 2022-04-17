@@ -30,6 +30,7 @@ func main() {
 
 	protected.Use(middleware.JwtAuthMiddleware())
 	protected.GET("/feed", controllers.GetPosts)
+	protected.GET("/feed/following/:id", controllers.GetFollowingPosts)
 	protected.GET("/post/:id", controllers.GetPost)
 	protected.GET("/userprofile/:id", controllers.GetUserProfile)
 
