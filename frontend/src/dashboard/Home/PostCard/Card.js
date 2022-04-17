@@ -1,9 +1,11 @@
 import './Card.css';
 import React, { useState, useEffect } from 'react';
 import CommentCard from '../CommentCard/CommentCard';
+import { useNavigate } from "react-router-dom";
 
 function Card(props) {
-
+    let navigate = useNavigate();
+    console.log("card", props);
     const [color, setColor] = useState('rgba(243, 242, 242)');
     const [likeChecker, setLikeChecker] = useState(false);
     const [commentContent, setCommentContent] = useState('');
@@ -15,6 +17,7 @@ function Card(props) {
         updatedAt,
         likes,
         createdBy,
+        creatorId,
         createdAt,
         content,
         comments,
@@ -123,11 +126,17 @@ function Card(props) {
         }
     }
 
+    const clickHandler = () => {
+        console.log(props.postContent.creatorId)
+        let path = "/settings/profile/"+props.postContent.creatorId;
+        navigate(path);
+    }
+
     return (
       <div className='CardType'>
           <div className='fullClass'>
             <div className="topCard">
-                <div className='usernameDisplay' >{createdBy}</div> 
+                <div className='usernameDisplay' onClick={clickHandler} >{createdBy}</div> 
                 <div className='timeDisplay'  >{timeOfPost}</div> 
             </div>
             <div className='PostTag'>#{tag}</div>

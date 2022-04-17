@@ -21,13 +21,15 @@ function LoginForm(props) {
             //headers:{'Authorization' : 'Bearer '}
             body:JSON.stringify(postData),
         }).then(response => response.json()).then(data => {
-            console.log(data);
+            console.log("login details", data);
             sessionStorage.setItem("token", data.token);
             sessionStorage.setItem(data.userEmail, data.password);
             sessionStorage.setItem('userid', data.userId);
-            sessionStorage.setItem('token', data.token);
-            console.log('stored token', sessionStorage.getItem('token') );
-            console.log('userid stored', sessionStorage.getItem('userid')   );
+            sessionStorage.setItem('username', data.username);
+
+            // sessionStorage.setItem('token', data.token);
+            // console.log('stored token', sessionStorage.getItem('token') );
+            // console.log('userid stored', sessionStorage.getItem('userid')   );
             setPostData({ useremail : '', password : ''});
 
             if(data.token == undefined){
