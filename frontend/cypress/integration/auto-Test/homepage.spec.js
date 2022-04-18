@@ -4,40 +4,12 @@
 //Act - take an action
 //Assert - make an assumption
 
-describe('End-to End Tests - Login Page', ()=>{
-
-  it('Test Login with Empty Details', function(){
-    cy.visit('/')
-
-    cy.get('#loginButton').click()
-
-    cy.url().should('include', '/')
-  })
-
-  it('Checking Entered Details', function(){
-
-    cy.visit('/')
-
-    cy.get('#loginEmail').type('tester1@email.com').should('have.value', 'tester1@email.com')
-
-    cy.get('#loginPassword').type('123').should('have.value', '123')
-
-  })
-
-  it('Wrong Credentials', function(){
-    cy.visit('/')
-
-    cy.get('#loginEmail').type('tester1@email.com')
-
-    cy.get('#loginPassword').type('1234567')
-
-    cy.get('#loginButton').click()
-
-    cy.url().should('include', '/')
-  })
 
 
-  it('Valid Credentials', function(){
+
+describe('Home Page Test Suite', function(){
+
+  it('Loggin IN', function(){
     cy.visit('/')
 
     cy.get('#loginEmail').type('tester1@email.com')
@@ -48,16 +20,6 @@ describe('End-to End Tests - Login Page', ()=>{
 
     cy.url().should('include', '/home')
   })
-
-
-
-
-
-
-})
-
-
-describe('Home Page Test Suite', function(){
 
   it('Post Data Write', function(){
 
@@ -85,4 +47,14 @@ describe('Home Page Test Suite', function(){
 
   })
 
+  it('Add a comment on a post', function(){
+
+    cy.get('#CommentInputPlace').first().type('If you are interested please send me a connection request')
+
+
+  })
+
 })
+
+
+

@@ -180,6 +180,7 @@ function Card(props) {
                 className='CommentAddBox'
                 onChange={(e)=> onCommentContentChange(e) }
                 value={commentContent}
+                id = "CommentInputPlace"
                 />
                 <div className='CommentAddButton' onClick={()=>commentClicked()}> Comment </div>
             </div>
