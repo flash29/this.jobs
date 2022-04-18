@@ -1,39 +1,13 @@
-.searchBar {
-    width: 100%;
-    height: 30px;
-    position: relative;
-    display: inline-block flex;
-    overflow: hidden;
-    align-items: center;
-    margin : 0;
-    align-content: center;
-    left: 50%; 
-    /* right: 50%; */
-    transform: translateX(-50%);
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 15px;
-    padding-right: 15px;;
+
+.searchInput{
+    height: 1.8em;
+    width: 14em;
 }
-.SearchIcon{
-    /* width: 100%; */
-    background-color: white;
-    height: 18px;
-    width: 20px;
-    margin-top: 5vh;
-    place-items: center;
-    position: absolute;
-    display: inline;
-    overflow: hidden;
-    margin : 0;
-    top : 20%;
-    padding-top: 2px;
-    padding-bottom: 3px;
-    padding-left: 6px;
-    padding-right: 10px;;
-    color: white;
+
+.searchBarDisplay{
+    display: flex;
 }
-body{
-    padding: 0;
-    margin: 0;
+
+.searchimage{
+    height: 4vh;
 }
