@@ -150,6 +150,7 @@ func GetFollowingPosts(c *gin.Context) {
 	res := utils.DB.Where("user_id = ?", userid).First(&user)
 	if res.Error != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve user"})
+		return
 	}
 
 	var userposts []models.UserPost

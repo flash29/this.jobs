@@ -117,6 +117,36 @@ func TestUpdatePostWithInValidData(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusNotFound, w.Code)
 }
+
+func TestGetFollowingPostsWithInvalidUser(t *testing.T) {
+	w, c, _ := setUpFeedController([]byte{}, "/feed/following/100", "GET", GetFollowingPosts)
+	c.Params = []gin.Param{
+		{
+			Key:   "id",
+			Value: "100",
+		},
+	}
+	GetFollowingPosts(c)
+	expected := `{"error":"Unable to retrieve user"}`
+	assert.Equal(t, expected, w.Body.String())
+}
+
+func TestGetFollowingPostsWithValidUser(t *testing.T) {
+	w, c, _ := setUpFeedController([]byte{}, "/feed/following/1", "GET", GetFollowingPosts)
+	c.Params = []gin.Param{
+		{
+			Key:   "id",
+			Value: "1",
+		},
+	}
+	var userPosts []models.UserPost
+	GetFollowingPosts(c)
+	err := json.Unmarshal(w.Body.Bytes(), &userPosts)
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusOK, w.Code)
+	assert.Equal(t, 0, len(userPosts))
+}
+
 func TestGetPost(t *testing.T) {
 	w, c, _ := setUpFeedController([]byte{}, "/post/1", "GET", GetPost)
 	c.Params = []gin.Param{
