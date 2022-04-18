@@ -76,23 +76,23 @@ function PostJob(props){
                 <div className = "box">
                     <h1>Create a Job Post!</h1>
                     <div >
-                        <input className = "commentBox1" placeholder = "Company" onChange = {(e) => {setPostData({...postData, org: e.target.value}); console.log(postData.org) }}/>
-                        <input className = "commentBox1" placeholder = "Job Title"  onChange = { (e) => setPostData({...postData, jobTitle : e.target.value })}/>   
+                        <input className = "commentBox1" id="companyNameInput" placeholder = "Company" onChange = {(e) => {setPostData({...postData, org: e.target.value}); console.log(postData.org) }}/>
+                        <input className = "commentBox1" id="jobTitleInput" placeholder = "Job Title"  onChange = { (e) => setPostData({...postData, jobTitle : e.target.value })}/>   
                     </div> 
                     <div className = "buttons1">
-                        <textarea className = "descrptionBox" placeholder = "Description"  onChange = { (e) => setPostData({...postData,  content : e.target.value})}/>   
+                        <textarea className = "descrptionBox" placeholder = "Description" id="descriptionInput" onChange = { (e) => setPostData({...postData,  content : e.target.value})}/>   
                     </div>
                     <div className = "buttons1">
                         <div className ="dropdown1">
-                                <input className = "dropbtn1" placeholder = "Location" onChange = {(e) => setPostData({...postData, location: e.target.value}) }/>  
+                                <input className = "dropbtn1" placeholder = "Location" id="locationInput" onChange = {(e) => setPostData({...postData, location: e.target.value}) }/>  
                         </div>
                         <div className ="dropdown1">
-                                <input className = "dropbtn1" placeholder = "salary" onChange = {(e) => {setPostData({...postData, salary : e.target.value}); console.log(postData.salary);} }/>  
+                                <input className = "dropbtn1" placeholder = "salary" id="salaryInput" onChange = {(e) => {setPostData({...postData, salary : e.target.value}); console.log(postData.salary);} }/>  
                         </div>
                         <div className ="dropdown1">
-                                <input className = "dropbtn1" type = "date" placeholder = "Last date to apply" onChange = {(e) => setPostData({...postData, validTill : (e.target.value).getTime()}) }/>  
+                                <input className = "dropbtn1" type = "date" placeholder = "Last date to apply" id="dateInput" onChange = {(e) => setPostData({...postData, validTill : (e.target.value) } ) }/>  
                         </div>
-                        <Button className = "icon1" type = "submit" onClick={handleSubmit} placeholder = "">
+                        <Button className = "icon1" type = "submit" id ="submitNewJobPosting" onClick={handleSubmit} placeholder = "">
                             <img src = {sicon} className = "images1" alt = "" />
                         </Button>  
                     </div>
