@@ -119,7 +119,7 @@ func TestUpdatePostWithInValidData(t *testing.T) {
 }
 
 func TestGetFollowingPostsWithInvalidUser(t *testing.T) {
-	w, c, _ := setUpFeedController([]byte{}, "/post/1", "GET", GetFollowingPosts)
+	w, c, _ := setUpFeedController([]byte{}, "/feed/following/100", "GET", GetFollowingPosts)
 	c.Params = []gin.Param{
 		{
 			Key:   "id",
@@ -132,7 +132,7 @@ func TestGetFollowingPostsWithInvalidUser(t *testing.T) {
 }
 
 func TestGetFollowingPostsWithValidUser(t *testing.T) {
-	w, c, _ := setUpFeedController([]byte{}, "/post/1", "GET", GetFollowingPosts)
+	w, c, _ := setUpFeedController([]byte{}, "/feed/following/1", "GET", GetFollowingPosts)
 	c.Params = []gin.Param{
 		{
 			Key:   "id",
