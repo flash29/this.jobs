@@ -87,7 +87,7 @@ function PostJob(props){
         return(
             <Container className = "PostBox1">
                 <div className = "box">
-                    <h1>Create a Job Post!</h1>
+                    <h1 className='titleToHover'>Create a Job Post!</h1>
                     <div >
                         <input className = "commentBox1" placeholder = "Company" onChange = {(e) => {setPostData({...postData, org: e.target.value}); console.log(postData.org) }}/>
                         <input className = "commentBox1" placeholder = "Job Title"  onChange = { (e) => setPostData({...postData, jobTitle : e.target.value })}/>   

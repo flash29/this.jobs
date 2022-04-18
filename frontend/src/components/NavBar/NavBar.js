@@ -37,10 +37,10 @@ function NavBar() {
        </div>
        <div className="iconsHolder">
 
-          <Link to="/home" className='linkDisplay home' > 
+          <Link to="/home" className='linkDisplay home ' > 
             <div className='iconsDisplay'>
-              <img className='iconsImages' src={house} alt="Home"/>
-              <p className='iconLabel'>Home</p>
+              <img className='iconsImages ' src={house} alt="Home"/>
+              <p className='iconLabel '>Home</p>
             </div>
           </Link>
           <Link to="/connections" className='linkDisplay connections ' > 

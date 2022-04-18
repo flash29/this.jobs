@@ -85,8 +85,8 @@ function PostBox(props){
 
         return(
             <Container className = "PostBox">
-                <div className = "box">
-                    <h1>Create a Post!</h1>
+                <div className = "box ">
+                    <h1 className = "titleToHover" >Create a Post!</h1>
                     <div >
                         <input type = "text" className = "textBox" placeholder = "What's on your mind?"  onChange = { (e) => setPostData({...postData, content : e.target.value})}/>
                     </div>    
