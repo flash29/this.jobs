@@ -64,7 +64,7 @@ function Search() {
 
     return (
       <div className="App">
-          <NavBar />
+          <NavBar className = "NaviBar"/>
           <div className='optionSearch' >
               <div className={ selected === 'peopleID' ? 'optionSelected' : 'option' } id="peopleID" onClick={handleOptions} >People</div>
               <div className={ selected === 'JobsID' ? 'optionSelected' : 'option' }  id = "JobsID" onClick={handleOptions}  >Jobs</div>
