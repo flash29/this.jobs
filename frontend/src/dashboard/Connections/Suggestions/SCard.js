@@ -58,8 +58,6 @@ function SCard(props){
                 }
                 else{
                     setMessage(data.error)
-                    // let path = "/home";
-                    // navigate(path);
                     setStatus(true);
                 }
 

@@ -29,7 +29,7 @@ function DisplayProp(props) {
     console.log(props.posts);
     return (
         <div >
-          <h1>Your Circle!</h1>
+          <h1 className='circleHead'>Your Circle!</h1>
           <div className="mainDivConn">
             <MyConnections posts = {props.posts}/>
           </div>

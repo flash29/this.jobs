@@ -13,6 +13,12 @@
     border-radius: 10px;
 }
 
+.titleToHover:hover{
+  /* cursor: pointer; */
+    transform: scale(1.05);
+    transition: 1s;
+}
+
 .PostBox{
     border-color: black;
     padding : 2%;

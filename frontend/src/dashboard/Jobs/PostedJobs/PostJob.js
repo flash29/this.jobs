@@ -7,6 +7,7 @@ import { useState} from 'react';
 import sicon from "../../../images/send-outline.svg";
 import styled from 'styled-components';
 import picon from "../../../images/camera-outline.svg";
+import PostAlert from '../../../components/PostBox/PostAlert';
 
 const Button1 = styled.button`
   position: relative;
@@ -35,6 +36,8 @@ function PostJob(props){
             org : '',
             salary : ''
         });
+        const [message, setMessage] = useState("");
+        const [status, setStatus] = useState(false);
 
         let userid = sessionStorage.getItem('userid');
         postData.userId = Number(userid);
@@ -54,7 +57,17 @@ function PostJob(props){
                 body:JSON.stringify(postData),
             }).then(response => response.json()).then(data => {
                 console.log(data);
-                // console.log(postData);
+                console.log(data.error);
+
+                if(data.error == undefined){
+                    setMessage("Post Created!");
+                    setStatus(true); 
+                }
+                else{
+                    setMessage(data.error)
+                    setStatus(true);
+                }
+
                 setPostData({ jobId : 0, 
                     userId : 1, 
                     content : '',
@@ -74,7 +87,7 @@ function PostJob(props){
         return(
             <Container className = "PostBox1">
                 <div className = "box">
-                    <h1>Create a Job Post!</h1>
+                    <h1 className='titleToHover'>Create a Job Post!</h1>
                     <div >
                         <input className = "commentBox1" placeholder = "Company" onChange = {(e) => {setPostData({...postData, org: e.target.value}); console.log(postData.org) }}/>
                         <input className = "commentBox1" placeholder = "Job Title"  onChange = { (e) => setPostData({...postData, jobTitle : e.target.value })}/>   
@@ -96,7 +109,11 @@ function PostJob(props){
                             <img src = {sicon} className = "images1" alt = "" />
                         </Button>  
                     </div>
-                </div>        
+                </div>   
+                <PostAlert trigger = {status} url = "/home" msg = {message} setStatus = {setStatus}>
+                    <h1>Alert!</h1>
+                    <h3>{message}</h3>
+                </PostAlert>        
             </Container>    
         );    
     }

@@ -10,7 +10,7 @@ function Home() {
   const [posts, setPosts] = useState();
 
   async function getPosts () {
-      fetch('/feed', {
+      fetch('/feed/following/'+ sessionStorage.getItem('userid'), {
         //headers:{'Content-type':'application/json'},
         headers:{'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
         //body:JSON.stringify(postData),

@@ -25,7 +25,7 @@ function PendingRequests(){
     return(
         <>{
             <div>
-                <h1>Some people can't wait to connect with you!</h1>
+                <h1 className = 'circleHead'>Some people can't wait to connect with you!</h1>
                 <div className = "mainDivConn">
                     <PRs props = {posts}></PRs>
                 </div>

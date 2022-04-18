@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Button} from "react-bootstrap";
 import "./PostBox.css";
+import PostAlert from './PostAlert';
 
 import { useState} from 'react';
 import sicon from "../../images/send-outline.svg";
@@ -23,11 +24,14 @@ const Button1 = styled.button`
 function PostBox(props){
 
         const [postData, setPostData] = useState({ 
-            createdBy : 'user1', 
+            createdBy : 'userName', 
+            creatorId : 1,
             content : '', tag : '', 
             attachments : ''
         });  
         const [base64File, setBase64URL] = useState('');
+        const [message, setMessage] = useState("");
+        const [status, setStatus] = useState(false);
 
         const handleFileInputChange = e => {
             console.log(e.target.files[0]);
@@ -52,7 +56,9 @@ function PostBox(props){
         };
 
         function handleSubmit(){
-            postData.createdBy = sessionStorage.getItem('userid');
+            postData.createdBy = sessionStorage.getItem('username');
+            postData.creatorId = Number(sessionStorage.getItem('userid'));
+            console.log(postData.creatorId);
             console.log(postData);
             fetch('/post', {
                 method : 'POST', 
@@ -61,6 +67,17 @@ function PostBox(props){
                 body:JSON.stringify(postData),
             }).then(response => response.json()).then(data => {
                 console.log(data);
+                console.log(data.error);
+
+                if(data.error == undefined){
+                    setMessage("Post Created!");
+                    setStatus(true); 
+                }
+                else{
+                    setMessage(data.error)
+                    setStatus(true);
+                }
+
                 setPostData({ createdBy : 'user1', content : '', tag : '', attachments : ''});
                 window.location.reload(false)
             }).catch(error => console.log('error', error))
@@ -68,8 +85,8 @@ function PostBox(props){
 
         return(
             <Container className = "PostBox">
-                <div className = "box">
-                    <h1>Create a Post!</h1>
+                <div className = "box ">
+                    <h1 className = "titleToHover" >Create a Post!</h1>
                     <div >
                         <input type = "text" className = "textBox" placeholder = "What's on your mind?"  onChange = { (e) => setPostData({...postData, content : e.target.value})}/>
                     </div>    
@@ -127,7 +144,11 @@ function PostBox(props){
                         </Button>  
                     </div> 
                     <br></br>
-                </div>       
+                </div>     
+                <PostAlert trigger = {status} url = "/home" msg = {message} setStatus = {setStatus}>
+                    <h1>Alert!</h1>
+                    <h3>{message}</h3>
+                </PostAlert>   
             </Container>    
         );    
     }

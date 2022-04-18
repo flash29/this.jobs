@@ -28,7 +28,7 @@ function Suggestions(){
     return(
         <>{
             <div>
-                <h1>People you may know!</h1>
+                <h1 className = "circleHead">People you may know!</h1>
                 <div className = "mainDivConn"> 
                     <SComp props = {posts}/>
                 </div>
