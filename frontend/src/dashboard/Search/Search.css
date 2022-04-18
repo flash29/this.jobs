@@ -1,0 +1,34 @@
+
+
+.optionSearch{
+    display: flex;
+    width: 20vw;
+    padding-left: 10vw;
+    justify-content: space-around;
+}
+
+.option{
+    font-weight: bold;
+    padding: 2vh;
+    border-radius: 20em;
+    border: solid rgb(0, 0, 0);
+}
+
+.option:hover{
+    cursor: pointer;
+}
+
+.optionSelected{
+    font-weight: bold;
+    background-color: black;
+    color: white;
+    padding: 2vh;
+    border-radius: 10em;
+}
+
+.cardDisplay{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vh;
+}
