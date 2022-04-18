@@ -6,6 +6,7 @@ import (
 
 type UserPost struct {
 	PostID      int            `gorm:"primary_key" json:"postId"`
+	CreatorID   int            `json:"creatorId"`
 	CreatedBy   string         `json:"createdBy"`
 	Content     string         `json:"content"`
 	Likes       int            `json:"likes"`

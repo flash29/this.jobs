@@ -161,17 +161,19 @@ func RetrievePeopleYouMayKnowById(c *gin.Context) {
 	var whereClause string
 	if companies != "" {
 		companies = strings.Replace(companies, ", ", "", 1)
-		whereClause += "job_histories.company in (" + companies + ")"
+		whereClause += " (job_histories.company in (" + companies + ")"
 	}
+
 	if institutes != "" {
 		institutes = strings.Replace(institutes, ", ", "", 1)
 		if whereClause != "" {
-			whereClause += "or educations.ins_name in (" + institutes + ") and "
+			whereClause += "or educations.ins_name in (" + institutes + ") ) and "
 		} else {
 			whereClause += "educations.ins_name in (" + institutes + ") and "
 		}
 	}
-	result := utils.DB.Select("users.user_id, users.user_name").
+
+	result := utils.DB.Select(" distinct users.user_id, users.user_name").
 		Joins("left join educations on educations.user_id = users.user_id").
 		Joins("left join job_histories on job_histories.user_id = users.user_id").
 		Where(whereClause + " users.user_id not in (" + followers + ")").Limit(10).Find(&usersList)
