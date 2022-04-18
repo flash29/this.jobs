@@ -34,16 +34,16 @@ function RegForm(props) {
             <H></H>
             <Form className="LoginForm" id="loginForm">
                 <FormGroup controlId="formEmail" className = "FormComp w-50">
-                    <FormControl placeholder="Enter your name" className = "inpBox" onChange={(e) => setPostData({...postData, userName : e.target.value}) }/>
+                    <FormControl placeholder="Enter your name" className = "inpBox" id="nameID" onChange={(e) => setPostData({...postData, userName : e.target.value}) }/>
                 </FormGroup>
                 <FormGroup className = "FormComp w-50">
-                    <FormControl type="email" placeholder="Email Address" className = "inpBox" onChange={(e) => setPostData({...postData, userEmail : e.target.value}) }/>
+                    <FormControl type="email" placeholder="Email Address" className = "inpBox" id="emailID" onChange={(e) => setPostData({...postData, userEmail : e.target.value}) }/>
                 </FormGroup>
-                <FormGroup controlId="formPassword" className = "FormComp w-50" onChange = {(e) => setPostData({...postData, password : e.target.value})}>
-                    <FormControl type="password" placeholder="Password" className = "inpBox"/>
+                <FormGroup controlId="formPassword" className = "FormComp w-50"  onChange = {(e) => setPostData({...postData, password : e.target.value})}>
+                    <FormControl type="password" placeholder="Password" id="passwordID" className = "inpBox"/>
                 </FormGroup>
                 <FormGroup controlId="formSubmit" className = "FormComp">
-                    <Button  className = "buttonStyle"  onClick={handleRegisterClick}>
+                    <Button  className = "buttonStyle" id="submitID" onClick={handleRegisterClick}>
                         Register
                     </Button> 
                 </FormGroup>

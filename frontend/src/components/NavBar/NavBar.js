@@ -55,7 +55,7 @@ function NavBar() {
               <p className='iconLabel'>Jobs</p>
             </div>
           </Link>
-          <Link to="/settings" className='linkDisplay settings'> 
+          <Link to= {`/settings/profile/${sessionStorage.getItem('userid')}`} className='linkDisplay settings'> 
             <div className='iconsDisplay'>
               <img className='iconsImages' src={settings} alt="Home"/>
               <p className='iconLabel'>Settings</p>

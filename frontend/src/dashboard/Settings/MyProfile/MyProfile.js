@@ -603,13 +603,14 @@ function Settings() {
             {
               editableCheck
               ?
-              <div onClick={handleClick} className='changeDP'>
+              <div onClick={handleClick} className='changeDP' >
                 Change Display Picture 
                 <input
                 type="file"
                 ref = {hiddenFileInput}
                 style={{display: 'none'}}
                 id = "inputBoxes"
+                className='userDPUpload'
                 onChange = {handleFileInputChange}/>
              </div>
             :
@@ -622,6 +623,7 @@ function Settings() {
                className='updateButton'
                onClick={ updateBio }
                Style= { `display: ${!bioTracker ? 'none' : 'inline'}`  }
+               id="updateBioID"
                >
                  Update
                </div>
@@ -673,6 +675,7 @@ function Settings() {
                                   ref = {hiddenResumeInput}
                                   style={{display: 'none'}}
                                   id = "inputBoxes  resumeinput"
+                                  className='ResumeID'
                                   onChange = {handleResumeUpload}/>
                            </div>
                        </>
@@ -686,6 +689,7 @@ function Settings() {
                                   ref = {hiddenResumeInput}
                                   style={{display: 'none'}}
                                   id = "inputBoxes  resumeinput"
+                                  className='ResumeID'
                                   onChange = {handleResumeUpload}/>
                            </div>
                        </>
@@ -711,6 +715,7 @@ function Settings() {
                className='updateButton'
                onClick={ clickUpdateEducation }
                Style= { `display: ${!changedTracker ? 'none' : 'inline'}`  }
+               id = "updateEducationID"
                >
                  Update
                </div>
@@ -729,6 +734,7 @@ function Settings() {
                         ?
                         <div 
                           className='addbutton'
+                          id = 'addEducationID'
                           onClick={addEducation }
                           >
                               Add
@@ -779,6 +785,7 @@ function Settings() {
                       <div 
                       className='addItems updateAddButton' 
                       onClick = { addUpdateEducation}
+                      id= "addingNewEducationID"
                       > 
                         Update
                       </div>
@@ -847,6 +854,7 @@ function Settings() {
                         <div 
                           className='addbutton'
                           onClick={addExperience }
+                          id = 'addExperienceID'
                           >
                               Add
                       </div>
@@ -865,7 +873,7 @@ function Settings() {
                         <input 
                         type="text" 
                         name="name" 
-                        className='newNameEducation' 
+                        className='newNameExperience' 
                         id = "inputBoxes"
                         onChange={ (e) => changeExperiencenName(e) }
                         /> 
@@ -876,7 +884,7 @@ function Settings() {
                         <input 
                         type="text" 
                         name="dates" 
-                        className='newDatesEducation'
+                        className='newDatesExperience'
                         id = "inputBoxes"
                         onChange={ (e) => changeExperienceDates(e) }
                         /> 
@@ -887,7 +895,7 @@ function Settings() {
                         <input 
                         type="text" 
                         name="description" 
-                        className='newDescriptionEducation'
+                        className='newDescriptionExperience'
                         id = "inputBoxes"
                         onChange={ (e) => changeExperienceDescription(e) }
                         /> 
@@ -896,6 +904,7 @@ function Settings() {
                       <div 
                       className='addItems updateAddButton' 
                       onClick = { addUpdateExperience}
+                      id= "addingNewExperienceID"
                       > 
                         Update
                       </div>
@@ -965,6 +974,7 @@ function Settings() {
                         <div 
                         className='addbutton'
                         onClick={addProject }
+                        id = "addProjectID"
                         >
                             Add
                       </div>
@@ -984,7 +994,7 @@ function Settings() {
                         <input 
                         type="text" 
                         name="name" 
-                        className='newNameEducation' 
+                        className='newNameProjects' 
                         id = "inputBoxes"
                         onChange={ (e) => changeProjectName(e) }
                         /> 
@@ -995,7 +1005,7 @@ function Settings() {
                         <input 
                         type="text" 
                         name="description" 
-                        className='newDescriptionEducation'
+                        className='newDescriptionProjects'
                         id = "inputBoxes"
                         onChange={ (e) => changeProjectDescription(e) }
                         /> 
@@ -1004,6 +1014,7 @@ function Settings() {
                       <div 
                       className='addItems updateAddButton' 
                       onClick = { addUpdateProject }
+                      id= "addingNewProjectID"
                       > 
                         Update
                       </div>

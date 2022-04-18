@@ -47,9 +47,9 @@ function PJCard(props) {
     return (
       <div className = 'CardType2'>
             <div className='fullClass2' onClick = {clickHandler}>
-                <div className='PostTag3' >{org}   </div>
-                <div className='PostTag2' >{jobtitle}   </div>
-                <div className='PostTag2'> Location: {location}</div>
+                <div className='PostTag3' id = "OrganisationName" >{org}   </div>
+                <div className='PostTag2' id = "jobTitleName" >{jobtitle}   </div>
+                <div className='PostTag2' id = "locationName" > Location: {location}</div>
                 <div className="topCard2">
                     <div className='timeDisplay2'  >valid till: {moment(validTill).format("MM-DD-YYYY")}</div> 
                     <div className='timeDisplay2'  >Job-id : {jobId}</div> 

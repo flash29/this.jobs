@@ -62,10 +62,10 @@ function LoginForm(props) {
             <H className = "title"> this.jobs</H>
             <Form className="LoginForm" id="loginForm">
                 <FormGroup controlId="formEmail" className = "FormComp w-50">
-                    <FormControl type="email" placeholder="Email Address" className = "inpBox" onChange={(e) => setPostData({...postData, useremail : e.target.value}) }/>
+                    <FormControl type="email" placeholder="Email Address" id ="loginEmail" className = "inpBox" onChange={(e) => setPostData({...postData, useremail : e.target.value}) }/>
                 </FormGroup>
                 <FormGroup controlId="formPassword" className = "FormComp w-50" onChange = {(e) => setPostData({...postData, password : e.target.value})}>
-                    <FormControl type="password" className = "FormComp inpBox" placeholder="Password"/>
+                    <FormControl type="password" className = "FormComp inpBox" id ="loginPassword" placeholder="Password"/>
                 </FormGroup>     
                 <FormGroup controlId="formSubmit" data-testid = "formSubmit"  className = "FormComp">
                     <Button  className = "buttonStyle" data-testid = "login" onClick={handleLoginClick} id="loginButton" >
