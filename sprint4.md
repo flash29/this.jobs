@@ -257,3 +257,34 @@ Test cases include searching jobs, people, request, accept and decline of connec
 
 ### Frontend accomplishments
 
+#### Connections – 
+The connections page is mainly the component which allows us to find, request and view our connections. It has the following tabs :
+a.	My Connections – This tab displays all the list of people that we are already connected to / are friends with. If we click on a connection, it will direct us to their profile.
+b.	Pending Requests – This tab displays the list of all people that have sent out a request to connect with the user, but the user hasn’t accepted that request yet. A user can either accept the request or decline it. Users can also view the profiles of the users who requested before accepting or declining by clicking on their name.
+c.	Suggestions – This tab would display the list of all people that the user may know through similar educational interests or work experiences. In case the user does not have anything on their profiles then all the users available would be displayed. The user can send requests to those users based on the suggestions by clicking the request button next to their names. They can also checkout their profiles by clicking on their names.
+
+My Connections - \
+![image](https://user-images.githubusercontent.com/35343343/164289226-bb9b0bc1-be17-4956-bdc5-83b4244f2a57.png)
+
+Pending Requests - \
+![image](https://user-images.githubusercontent.com/35343343/164289326-9e42e4c6-107e-4556-be4b-d3f67f968518.png)
+
+Suggestions - \
+![image](https://user-images.githubusercontent.com/35343343/164289425-a923fa19-c4bb-4d19-8e56-883d6b43bb67.png)
+
+
+#### Search – 
+This allows users to search for any jobs, people, posts that they are interested in. Clicking on the search results would direct the user to whatever they intended to find and the user can act accordingly later.
+
+![image](https://user-images.githubusercontent.com/35343343/164289091-301f9c9b-73be-4850-88ef-e2ef5c402dff.png)
+
+![image](https://user-images.githubusercontent.com/35343343/164288941-3ad13fc0-5466-433f-afac-b99408b464d8.png)
+
+
+#### Jobs - 
+The jobs portal was made more user friendly and we added a few more features to these tabs to make the access even more simpler and easier.
+
+![image](https://user-images.githubusercontent.com/35343343/164288878-83ac2f89-04d0-4710-8884-3c9771794750.png)
+
+
+
