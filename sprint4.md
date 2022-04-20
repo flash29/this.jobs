@@ -249,10 +249,10 @@ Code: 200 OK
 A mock database is created and unit tests are performed on the data from mock DB. The below sections show the unit testing output along with their coverage
 #### Connection Requests Unit Tests
 
-Test cases include request, accept and decline of connections with valid and invalid details and also retrieval of pending requests.
+Test cases include searching jobs, people, request, accept and decline of connections with valid and invalid details and also retrieval of pending requests.
 <!-- should update screenshot -->
-![](./assets/jobposts_unit_tests.PNG)
-![](./assets/jobposts_unit_tests_1.PNG)
+![](./assets/search_controller_unit_tests.PNG)
+![](./assets/connection_controller_unit_tests.PNG)
 
 
 ### Frontend accomplishments
