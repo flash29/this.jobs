@@ -11,11 +11,17 @@ Github repository link: [https://github.com/flash29/this.jobs](https://github.co
   this.jobs is a platform where people can build their profile, connect with other users who share similar interests in careers and find/ apply or post new jobs
 
 ### Demo
-  Complete demo is [here](https://uflorida-my.sharepoint.com/:v:/g/personal/paruchuri_s_ufl_edu/EaA1uQqYdCFNiQO_jia-ZccBJK_soIeGk1qENlrV9nw9Hg?e=CmcSV5)
-  
-  Backend demo can be found [here](https://uflorida-my.sharepoint.com/:v:/g/personal/paruchuri_s_ufl_edu/EX7W1PO2h2RPvXQti2CzYwkBuayh_3BkqZdzYj2C5kKGXw?e=byfZH7) 
+  Complete demo 
 
-  Frontend demo can be found [here](https://uflorida-my.sharepoint.com/:v:/g/personal/paruchuri_s_ufl_edu/EczAWxH-nfhHnQB4gbD1mjwBm9qAGbEpMbXw7GGsyAtoJA?e=gKpXzN)
+https://user-images.githubusercontent.com/47022196/164342837-82a47640-fbd3-4c70-872a-8fbb0c32f66e.mp4
+
+FrontEnd
+
+https://user-images.githubusercontent.com/47022196/164341617-136c40fa-98bf-4462-945c-8856507e2d7f.mp4
+
+BackEnd
+
+https://user-images.githubusercontent.com/47022196/164339380-9b80d278-d9fe-4291-a4b4-03cbd17f1fd1.mp4
 
 
 Technical stack, their pre-requisites and how to setup and run both frontend and backend can be found at this [wiki](https://github.com/flash29/this.jobs/wiki/Installation)
