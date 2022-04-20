@@ -258,10 +258,11 @@ Test cases include searching jobs, people, request, accept and decline of connec
 ### Frontend accomplishments
 
 #### Connections – 
-The connections page is mainly the component which allows us to find, request and view our connections. It has the following tabs :
-a.	My Connections – This tab displays all the list of people that we are already connected to / are friends with. If we click on a connection, it will direct us to their profile.
-b.	Pending Requests – This tab displays the list of all people that have sent out a request to connect with the user, but the user hasn’t accepted that request yet. A user can either accept the request or decline it. Users can also view the profiles of the users who requested before accepting or declining by clicking on their name.
-c.	Suggestions – This tab would display the list of all people that the user may know through similar educational interests or work experiences. In case the user does not have anything on their profiles then all the users available would be displayed. The user can send requests to those users based on the suggestions by clicking the request button next to their names. They can also checkout their profiles by clicking on their names.
+The connections page is mainly the component which allows us to find, request and view our connections. It has the following tabs : \
+
+  1.	My Connections – This tab displays all the list of people that we are already connected to / are friends with. If we click on a connection, it will direct us to their profile. \
+  2.	Pending Requests – This tab displays the list of all people that have sent out a request to connect with the user, but the user hasn’t accepted that request yet. A user can either accept the request or decline it. Users can also view the profiles of the users who requested before accepting or declining by clicking on their name. \
+  3.	Suggestions – This tab would display the list of all people that the user may know through similar educational interests or work experiences. In case the user does not have anything on their profiles then all the users available would be displayed. The user can send requests to those users based on the suggestions by clicking the request button next to their names. They can also checkout their profiles by clicking on their names.\
 
 My Connections - \
 ![image](https://user-images.githubusercontent.com/35343343/164289226-bb9b0bc1-be17-4956-bdc5-83b4244f2a57.png)
@@ -285,6 +286,16 @@ This allows users to search for any jobs, people, posts that they are interested
 The jobs portal was made more user friendly and we added a few more features to these tabs to make the access even more simpler and easier.
 
 ![image](https://user-images.githubusercontent.com/35343343/164288878-83ac2f89-04d0-4710-8884-3c9771794750.png)
+
+### Frontend - Unit Tests 
+
+For all the components created this sprint.
+1. Search - \
+![image](https://user-images.githubusercontent.com/35343343/164289905-147ffe56-cf32-46ce-99b2-8d025076ceb8.png)
+
+2. Connections - \
+![image](https://user-images.githubusercontent.com/35343343/164290032-67bba68f-d7ec-4323-a378-dd2d8b2ea6a1.png)
+
 
 
 
