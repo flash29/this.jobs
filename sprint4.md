@@ -187,7 +187,63 @@ Code: 200 OK
     }
 ]
 ```
+#### Search people
+URL: `<base_url>/search/people?search=<search_term>`
 
+Request Method: `GET`
+
+![](./assets/search_people.PNG)
+
+Possible Response status: `200, 400, 500`
+
+Message format: `json`
+
+Example
+
+Code: 200 OK
+
+```
+[
+    {
+        "userId": 1,
+        "useremail": "u1@app.com",
+        "username": "u1",
+        "bio": ""
+    }
+]
+```
+#### Search jobs
+URL: `<base_url>/search/jobs?search=<search_term>`
+
+Request Method: `GET`
+
+![](./assets/search_people.PNG)
+
+Possible Response status: `200, 400, 500`
+
+Message format: `json`
+
+Example
+
+Code: 200 OK
+
+```
+[
+    {
+        "userId": "1",
+        "useremail": "u1@app.com",
+        "username": "u1",
+        "jobId": 1,
+        "content": "Job posting 1",
+        "createdAt": 1650339367,
+        "validTill": 1648958949,
+        "jobtitle": "sde",
+        "location": "gnv",
+        "org": "google",
+        "salary": "10000"
+    }
+]
+```
 #### Unit Tests
 
 A mock database is created and unit tests are performed on the data from mock DB. The below sections show the unit testing output along with their coverage
