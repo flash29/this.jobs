@@ -11,11 +11,11 @@ Github repository link: [https://github.com/flash29/this.jobs](https://github.co
   this.jobs is a platform where people can build their profile, connect with other users who share similar interests in careers and find/ apply or post new jobs
 
 ### Demo
-  Complete demo is [here](https://uflorida-my.sharepoint.com/:v:/g/personal/paruchuri_s_ufl_edu/EYzrmREymWtCp0nnXiWWM6QBg1Xakiy6IwZsfNo79LmmpQ?e=h3oelv)
+  Complete demo is [here](https://uflorida-my.sharepoint.com/:v:/g/personal/paruchuri_s_ufl_edu/EaA1uQqYdCFNiQO_jia-ZccBJK_soIeGk1qENlrV9nw9Hg?e=CmcSV5)
   
-  Backend demo can be found [here](https://uflorida-my.sharepoint.com/:v:/g/personal/paruchuri_s_ufl_edu/EaLDnL6l7_VPhUuInUm6ILkBJA55_pPUaNtJv-lb9PsHMg?e=Y1UpB9) 
+  Backend demo can be found [here](https://uflorida-my.sharepoint.com/:v:/g/personal/paruchuri_s_ufl_edu/EX7W1PO2h2RPvXQti2CzYwkBuayh_3BkqZdzYj2C5kKGXw?e=byfZH7) 
 
-  Frontend demo can be found [here](https://uflorida-my.sharepoint.com/:v:/g/personal/paruchuri_s_ufl_edu/EXF3CeTdwwZFsy5fZhvg85EBT8hBkkdcqowFyz4Gbug0dg?e=QXZn2U)
+  Frontend demo can be found [here](https://uflorida-my.sharepoint.com/:v:/g/personal/paruchuri_s_ufl_edu/EczAWxH-nfhHnQB4gbD1mjwBm9qAGbEpMbXw7GGsyAtoJA?e=gKpXzN)
 
 
 Technical stack, their pre-requisites and how to setup and run both frontend and backend can be found at this [wiki](https://github.com/flash29/this.jobs/wiki/Installation)
