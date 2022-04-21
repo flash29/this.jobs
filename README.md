@@ -39,7 +39,7 @@ https://user-images.githubusercontent.com/47022196/164343870-1c63a563-4304-4f31-
 [REST API Document](https://github.com/flash29/this.jobs/wiki/REST-API-Documentation)
 
 <strong>Link to project board - </strong>
-[Project Boards](https://github.com/flash29/this.jobs/projects/)
+[Project Boards](https://github.com/flash29/this.jobs/projects?query=is%3Aclosed)
 
 <strong>Sprint Board deliverables link - </strong>
 [Sprint 4](https://github.com/flash29/this.jobs/blob/main/sprint4.md)
