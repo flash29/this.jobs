@@ -17,7 +17,7 @@ jobs:
        - run: cd frontend
        - run: pwd
        - run: cd frontend && npm install
-       - run: cd frontend && npm run test -u
+       - run: cd frontend && npm test -u
 workflows:
   version: 2
   build-test-and-lint:
