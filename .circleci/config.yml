@@ -8,7 +8,7 @@ jobs:
        - run: cd frontend
        - run: pwd
        - run: cd frontend && npm install
-       - run: cd frontend && CI=true npm run build
+       - run: cd frontend && npm run build
    test:
      docker:
        - image: circleci/node:latest
