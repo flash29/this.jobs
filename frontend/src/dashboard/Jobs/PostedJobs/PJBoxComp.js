@@ -1,9 +1,7 @@
 import ServerLost from '../../../ErrorPage/ServerLost'
 import FeedEmpty from '../../../ErrorPage/FeedEmpty'
 import PJCard from './PJCard';
-import { useState } from 'react'
 import './PJBoxComp.css';
-import { Link} from "react-router-dom";
 
 // function Applicants(state){
 //   if(state === 'yes'){  
@@ -15,7 +13,6 @@ import { Link} from "react-router-dom";
 // }
 
 function PJBoxComp(props) {
-  const [state, setState] = useState('no');
   return (
       <>
       {

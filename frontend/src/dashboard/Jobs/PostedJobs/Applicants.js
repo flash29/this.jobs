@@ -1,6 +1,5 @@
 import './Applicants.css';
 import './ApplicantCard';
-import {useState} from 'react';
 import ApplicantCard from './ApplicantCard';
 
 function Applicants(props){

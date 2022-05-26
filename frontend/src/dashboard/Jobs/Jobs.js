@@ -7,13 +7,11 @@ import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 
 import JobSearch from './JobSearch/JobSearch';
-
-import  { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import PostedJobs from './PostedJobs/PostedJobs';
 
 let userid = sessionStorage.getItem('userid');
-if(sessionStorage.getItem('tab') == undefined){
+if(sessionStorage.getItem('tab') === undefined){
   sessionStorage.setItem('tab', 1);
 }
 // let params = useParams();
@@ -22,10 +20,10 @@ function DisplayProp(props) {
   const val = props.val;
   sessionStorage.setItem('tab', val);
   console.log(props.posts)
-  if(val == 2){  
+  if(val === 2){  
     return (<MyApps posts = {props.posts}/>);
   }
-  else if(val == 3){
+  else if(val === 3){
    return (<div><PostedJobs /></div>);
   //  return (<div>Hi</div>)
   }

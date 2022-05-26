@@ -1,27 +1,16 @@
 import React from 'react';
 import { Container, Button} from "react-bootstrap";
-import  { useParams } from "react-router-dom";
 import "./PostJob.css";
 
 import { useState} from 'react';
 import sicon from "../../../images/send-outline.svg";
-import styled from 'styled-components';
-import picon from "../../../images/camera-outline.svg";
+
+
 import PostAlert from '../../../components/PostBox/PostAlert';
 
-const Button1 = styled.button`
-  position: relative;
-  flex-wrap: wrap;
-  flex-direction: row;
-  border-radius: 10%;
-  margin-right : 10px;
-  width: 6%;
-  height: 5%;
-  background: transparent;
-`;
 
 function PostJob(props){
-        let params = useParams();
+
         const [postData, setPostData] = useState({ 
             jobId : 0, 
             userId : 1, 
@@ -51,15 +40,14 @@ function PostJob(props){
             // postData.jobId = sessionStorage.getItem(jobId)
             console.log(postData);
             fetch('/jobpost', {
-                method : 'POST', 
-                headers:{'Content-type':'application/json'},
-                headers:{'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
+                method : 'POST',
+                headers:{'Content-type':'application/json', 'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
                 body:JSON.stringify(postData),
             }).then(response => response.json()).then(data => {
                 console.log(data);
                 console.log(data.error);
 
-                if(data.error == undefined){
+                if(data.error === undefined){
                     setMessage("Post Created!");
                     setStatus(true); 
                 }

@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useState} from 'react';
 import {Form, FormGroup, FormControl, Button } from 'react-bootstrap';
-import { useNavigate } from "react-router-dom";
-import ReactDom from 'react-dom';
 import Popup from '../../components/Popup/Popup';
 import {H} from 'react-headings';
 import './Registration.css'
@@ -22,7 +20,7 @@ function RegForm(props) {
         }).then(response => response.json()).then(data => {
             console.log(data.message);
             setPostData({ userName: '', userEmail : '', password : ''});
-            data.message == undefined ? setMessage("Registration Successful!") :  setMessage(data.message+"! Registration Unsuccessful, Please try again!");
+            data.message === undefined ? setMessage("Registration Successful!") :  setMessage(data.message+"! Registration Unsuccessful, Please try again!");
             
         }).catch(error => {console.log('error', error);
         })

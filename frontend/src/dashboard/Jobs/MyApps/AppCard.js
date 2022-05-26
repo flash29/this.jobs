@@ -1,21 +1,14 @@
 import './AppCard.css';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 function AppCard(props) {
 
     const {
-        jobId,
-        userId,
-        content, 
+
         createdAt, 
-        updatedAt,
-        appliedUsersList,
-        attachments,
-        validTill,
         jobtitle, 
         location, 
-        org,
-        salary
+        org
     } = props.postContent;
 
     let timeOfApplication = '';

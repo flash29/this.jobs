@@ -2,7 +2,6 @@ import PJCard from './PJCard'
 import PostJob from './PostJob'
 import "./PostedJobs.css";
 import React, { useState, useEffect } from 'react';
-import PJBoxComp from './PJBoxComp';
 import Scroll from '../../../components/Scroll';
 import Applicants from './Applicants';
 

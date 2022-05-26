@@ -1,5 +1,4 @@
 import './SComp.css';
-import {useState} from 'react';
 import SCard from './SCard';
 import ServerLost from '../../../ErrorPage/ServerLost'
 
