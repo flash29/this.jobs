@@ -1,5 +1,4 @@
 import './PRs.css';
-import {useState} from 'react';
 import PRCard from './PRCard';
 import ServerLost from '../../../ErrorPage/ServerLost'
 

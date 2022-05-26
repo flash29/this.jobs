@@ -1,5 +1,5 @@
 import './ConnCard.css';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from "react-router-dom";
 
 function ConnCard(props) {
@@ -7,18 +7,7 @@ function ConnCard(props) {
 
     const {
         userId,
-        useremail,
         username,
-        password,
-        picture,
-        resumepath,
-        following,
-        createdAt,
-        updatedAt,
-        bio,
-        education,
-        projects,
-        jobhistory
     } = props.postContent;
 
     const clickHandler = () => {

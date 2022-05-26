@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ServerLost from '../../../ErrorPage/ServerLost'
 import AppCard from './AppCard';
 

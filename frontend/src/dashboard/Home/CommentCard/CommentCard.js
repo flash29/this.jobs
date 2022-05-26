@@ -3,11 +3,8 @@ import './CommentCard.css'
 function CommentCard(props) {
     const {
         commentData,
-        commentId,
         createdAt,
         createdBy,
-        post_id,
-        updatedAt
     } = props.commentContent;
 
     let timeOfPost = '';

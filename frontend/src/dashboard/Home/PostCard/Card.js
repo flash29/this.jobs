@@ -1,5 +1,5 @@
 import './Card.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import CommentCard from '../CommentCard/CommentCard';
 import { useNavigate } from "react-router-dom";
 
@@ -14,15 +14,12 @@ function Card(props) {
     const {
         postId,
         tag,
-        updatedAt,
         likes,
         createdBy,
-        creatorId,
         createdAt,
         content,
         comments,
         attachments,
-        LikesList
     } = props.postContent;
 
     console.log('postid', postId);

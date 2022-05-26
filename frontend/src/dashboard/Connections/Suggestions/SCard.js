@@ -12,18 +12,7 @@ function SCard(props){
 
     const {
         userId,
-        useremail,
         username,
-        password,
-        picture,
-        resumepath,
-        following,
-        createdAt,
-        updatedAt,
-        bio,
-        education,
-        projects,
-        jobhistory
     } = props.postContent;
 
     const clickHandler = () => {
@@ -34,10 +23,15 @@ function SCard(props){
 
     let userid = sessionStorage.getItem('userid');
 
-    const [reqData, setReqData] = useState({ 
+    // const [reqData, setReqData] = useState({ 
+    //     requestedFrom : Number(userid),
+	//     requestedTo : userId
+    // });  
+
+    const reqData = {
         requestedFrom : Number(userid),
 	    requestedTo : userId
-    });  
+    }
 
     const requestButton = () => {
             console.log("Entered Request");
@@ -45,14 +39,13 @@ function SCard(props){
 
             fetch('/requestconnection', {
                 method : 'POST', 
-                headers:{'Content-type':'application/json'},
-                headers:{'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
+                headers:{'Content-type':'application/json', 'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
                 body:JSON.stringify(reqData),
             }).then(response => response.json()).then(data => {
                 console.log(data);
                 console.log(data.error);
 
-                if(data.error == undefined){
+                if(data.error === undefined){
                     setMessage("Request Sent!");
                     setStatus(true); 
                 }
