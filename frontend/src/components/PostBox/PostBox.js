@@ -4,9 +4,6 @@ import "./PostBox.css";
 import PostAlert from './PostAlert';
 
 import { useState} from 'react';
-import sicon from "../../images/send-outline.svg";
-import licon from "../../images/link-outline.svg";
-import ficon from "../../images/document-attach-outline.svg";
 import styled from 'styled-components';
 import picon from "../../images/camera-outline.svg";
 
@@ -62,14 +59,13 @@ function PostBox(props){
             console.log(postData);
             fetch('/post', {
                 method : 'POST', 
-                headers:{'Content-type':'application/json'}, 
-                headers:{'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
+                headers:{'Content-type':'application/json', 'Authorization' : 'Bearer ' + sessionStorage.getItem('token')},
                 body:JSON.stringify(postData),
             }).then(response => response.json()).then(data => {
                 console.log(data);
                 console.log(data.error);
 
-                if(data.error == undefined){
+                if(data.error === undefined){
                     setMessage("Post Created!");
                     setStatus(true); 
                 }

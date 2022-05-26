@@ -1,15 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render correctly the Registration Form component 1`] = `
+exports[`render correctly the LoginForm component 1`] = `
 <div
   className="divStyle"
 >
   <h1
     className="title"
   >
-     this.jobs 
+     this.jobs
   </h1>
-  <h1 />
   <form
     className="LoginForm"
     id="loginForm"
@@ -19,17 +18,7 @@ exports[`render correctly the Registration Form component 1`] = `
     >
       <input
         className="inpBox form-control"
-        id="nameID"
-        onChange={[Function]}
-        placeholder="Enter your name"
-      />
-    </div>
-    <div
-      className="FormComp w-50"
-    >
-      <input
-        className="inpBox form-control"
-        id="emailID"
+        id="loginEmail"
         onChange={[Function]}
         placeholder="Email Address"
         type="email"
@@ -40,43 +29,56 @@ exports[`render correctly the Registration Form component 1`] = `
       onChange={[Function]}
     >
       <input
-        className="inpBox form-control"
-        id="passwordID"
+        className="FormComp inpBox form-control"
+        id="loginPassword"
         placeholder="Password"
         type="password"
       />
     </div>
     <div
       className="FormComp"
+      data-testid="formSubmit"
     >
       <button
         className="buttonStyle btn btn-primary"
+        data-testid="login"
         disabled={false}
-        id="submitID"
+        id="loginButton"
+        onClick={[Function]}
+        type="button"
+      >
+        Login
+      </button>
+      <button
+        className="buttonStyle btn btn-primary"
+        data-testid="reg"
+        disabled={false}
+        id="registrationButton"
         onClick={[Function]}
         type="button"
       >
         Register
       </button>
     </div>
-    
   </form>
+  
 </div>
 `;
 
-exports[`render correctly the Registration Page component 1`] = `
+exports[`render correctly the LoginPage component 1`] = `
 <div
-  className="Registration"
+  className="LoginPage"
+  data-testid="LoginPage"
 >
   <div
     className="divStyle"
+    data-testid="loginForm"
   >
     <h1
       className="title"
     >
-       this.jobs 
+       this.jobs
     </h1>
-    <h1 />
     <form
       className="LoginForm"
       id="loginForm"
@@ -86,17 +88,7 @@ exports[`render correctly the Registration Page component 1`] = `
       >
         <input
           className="inpBox form-control"
-          id="nameID"
-          onChange={[Function]}
-          placeholder="Enter your name"
-        />
-      </div>
-      <div
-        className="FormComp w-50"
-      >
-        <input
-          className="inpBox form-control"
-          id="emailID"
+          id="loginEmail"
           onChange={[Function]}
           placeholder="Email Address"
           type="email"
@@ -107,27 +99,39 @@ exports[`render correctly the Registration Page component 1`] = `
         onChange={[Function]}
       >
         <input
-          className="inpBox form-control"
-          id="passwordID"
+          className="FormComp inpBox form-control"
+          id="loginPassword"
           placeholder="Password"
           type="password"
         />
       </div>
       <div
         className="FormComp"
+        data-testid="formSubmit"
       >
         <button
           className="buttonStyle btn btn-primary"
+          data-testid="login"
           disabled={false}
-          id="submitID"
+          id="loginButton"
+          onClick={[Function]}
+          type="button"
+        >
+          Login
+        </button>
+        <button
+          className="buttonStyle btn btn-primary"
+          data-testid="reg"
+          disabled={false}
+          id="registrationButton"
           onClick={[Function]}
           type="button"
         >
           Register
         </button>
       </div>
-      
     </form>
+    
   </div>
 </div>
 `;

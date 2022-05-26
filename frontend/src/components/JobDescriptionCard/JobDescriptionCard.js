@@ -1,5 +1,4 @@
 import './JobDescriptionCard.css'
-import {useState} from 'react';
 function JobDescriptionCard(props){
 
     const token = sessionStorage.getItem('token');

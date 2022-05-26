@@ -12,7 +12,7 @@ import LoginPage from './dashboard/LoginPage/LoginPage';
 import Registration from './dashboard/Registration/Registration';
 import ProtectedRoute from './auth/ProtectedRoute';
 
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import React from 'react';
 
 const AuthContext = React.createContext(null);
@@ -32,10 +32,6 @@ const getAuth = ({postData}) => {
       sessionStorage.setItem('token', data.token);
       console.log('stored token', sessionStorage.getItem('token') );
       console.log('userid stored', sessionStorage.getItem('userid')   );
-    //  setPostData({ useremail : '', password : ''});
-      //window.location.reload(false)
-     // let path = "/home";
-   //   navigate(path);
   }).catch(error => console.log('error', error))
 } 
 
@@ -65,9 +61,6 @@ const AuthProvider = ({ children }) => {
     );
   };
 
-const useAuth = () => {
-    return useContext(AuthContext);
-};
 
 function App() {
   return (

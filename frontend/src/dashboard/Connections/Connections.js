@@ -10,19 +10,19 @@ import { useState, useEffect } from 'react';
 import './Connections.css';
 
 
-if(sessionStorage.getItem('tab2') == undefined){
+if(sessionStorage.getItem('tab2') === undefined){
   sessionStorage.setItem('tab2', 1);
 }
-let userid = sessionStorage.getItem('userid');
+
 
 function DisplayProp(props) {
   const val = props.val;
   sessionStorage.setItem('tab2', val);
   console.log(props.posts)
-  if(val == 2){  
+  if(val === 2){  
     return (<PendingRequests/>);
   }
-  else if(val == 3){
+  else if(val === 3){
    return (<Suggestions/>);
   }
   else{

@@ -1,9 +1,5 @@
 import {
-    Routes,
-    Route,
-    NavLink,
     Navigate,
-    useNavigate,
   } from 'react-router-dom';
   
   const ProtectedRoute = ({ children }) => {

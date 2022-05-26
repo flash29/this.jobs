@@ -9,7 +9,7 @@ function Popup(props) {
     let navigate = useNavigate();
     const handleClick = () => {
         let path = props.url;
-        props.msg == "Login Unsuccessful! Try Again!" ? navigate("/") : navigate(path);
+        props.msg === "Login Unsuccessful! Try Again!" ? navigate("/") : navigate(path);
         props.setStatus(false);
     }
 
