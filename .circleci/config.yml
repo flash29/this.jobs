@@ -7,8 +7,8 @@ jobs:
        - checkout
        - run: cd frontend
        - run: pwd
-       - run: npm install
-       - run: CI=true npm run build
+       - run: cd frontend && npm install
+       - run: cd frontend && CI=true npm run build
    test:
      docker:
        - image: circleci/node:latest
@@ -16,8 +16,8 @@ jobs:
        - checkout
        - run: cd frontend
        - run: pwd
-       - run: npm install
-       - run: npm run test
+       - run: cd frontend && npm install
+       - run: cd frontend && npm run test
 workflows:
   version: 2
   build-test-and-lint:
